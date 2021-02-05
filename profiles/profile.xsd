@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema targetNamespace="http://baddesthacks.net/porno-graphic/profile"
+<xs:schema targetNamespace="http://romhackers.net/porno-graphic/profile
     elementFormDefault="unqualified"
     attributeFormDefault="unqualified"
-    xmlns="http://baddesthacks.net/porno-graphic/profile"
+    xmlns="http://romhackers.net/porno-graphic/profile
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
 >
   <xs:element name="profile" type="GameProfile" />

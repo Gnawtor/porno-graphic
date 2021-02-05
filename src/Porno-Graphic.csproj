@@ -50,7 +50,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\kyoling.ico</ApplicationIcon>
+    <ApplicationIcon>russy.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -283,6 +283,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\menu\ChooseColor.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="russy.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

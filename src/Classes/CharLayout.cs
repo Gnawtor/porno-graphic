@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 namespace Porno_Graphic.Classes
 {
     [Serializable()]
-    [XmlRoot(ElementName = "layout", Namespace = "http://baddesthacks.net/porno-graphic/profile")]
+    [XmlRoot(ElementName = "layout", Namespace = "http://romhackers.net/porno-graphic/profile")]
     public class CharLayout
     {
         [Serializable()]

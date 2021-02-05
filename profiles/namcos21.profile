@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <profile:profile name="Namco System 21"
-    xsi:schemaLocation="http://baddesthacks.net/porno-graphic/profile profile.xsd"
-    xmlns:profile="http://baddesthacks.net/porno-graphic/profile"
+    xsi:schemaLocation="http://romhackers.net/porno-graphic/profile profile.xsd"
+    xmlns:profile="http://romhackers.net/porno-graphic/profile"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 >
 	<layouts>

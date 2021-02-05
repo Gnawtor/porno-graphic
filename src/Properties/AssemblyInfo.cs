@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Porno-Graphic")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("BaddestHacks.net")]
+[assembly: AssemblyCompany("Rom Hackers Sans Frontières")]
 [assembly: AssemblyProduct("Porno-Graphic")]
-[assembly: AssemblyCopyright("Copyright © BaddestHacks 2016")]
+[assembly: AssemblyCopyright("Copyright © Rom Hackers Sans Frontières 2016-2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

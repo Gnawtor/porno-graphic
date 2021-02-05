@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 namespace Porno_Graphic.Classes
 {
     [Serializable()]
-    [XmlRoot(ElementName = "region", Namespace = "http://baddesthacks.net/porno-graphic/profile")]
+    [XmlRoot(ElementName = "region", Namespace = "http://romhackers.net/porno-graphic/profile")]
     public class LoadRegion
     {
         public enum Lanes

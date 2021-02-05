@@ -80,7 +80,7 @@ namespace Porno_Graphic
 		#endregion
 
 		private void about_CompanyLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-			System.Diagnostics.Process.Start("http://www.baddesthacks.net/");
+			System.Diagnostics.Process.Start("http://www.romhackers.net/");
 		}
 	}
 }

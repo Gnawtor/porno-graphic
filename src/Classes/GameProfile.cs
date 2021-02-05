@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 namespace Porno_Graphic.Classes
 {
     [Serializable()]
-    [XmlRoot(ElementName = "profile", Namespace = "http://baddesthacks.net/porno-graphic/profile")]
+    [XmlRoot(ElementName = "profile", Namespace = "http://romhackers.net/porno-graphic/profile")]
     public class GameProfile
     {
         [XmlAttribute("name")]

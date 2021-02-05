@@ -38,7 +38,7 @@ namespace Porno_Graphic
 			Tool_CircleFill,
 			Tool_CircleStrokeFill,
 			NUM_ToolTypes
-		};
+		};	 // probably obsolete at this point
 
         /* -- main form variables -- */
         private int mImportCount = 0;
@@ -48,8 +48,8 @@ namespace Porno_Graphic
         private ProjectState mActiveProject = null;
 
 		/* -- other important things -- */
-		TileArranger arrangerForm; // the tile arranger/scratchboard
-		TileEditor editorForm; // the tile editor
+		//TileArranger arrangerForm; // the tile arranger/scratchboard
+		//TileEditor editorForm; // the tile editor
 
 		// todo: currently active palette set number
 
@@ -82,14 +82,14 @@ namespace Porno_Graphic
 			cBox_ActivePaletteSet.SelectedIndex = 0;
 
 			/* add tile editor to main window */
-			editorForm = new TileEditor();
-			editorForm.MdiParent = this;
-			editorForm.Show();
+			//editorForm = new TileEditor();
+			//editorForm.MdiParent = this;
+			//editorForm.Show();
 
 			/* add tile arranger to main window */
-			arrangerForm = new TileArranger();
-			arrangerForm.MdiParent = this;
-			arrangerForm.Show();
+			//arrangerForm = new TileArranger();
+			//arrangerForm.MdiParent = this;
+			//arrangerForm.Show();
 
 			/* set variables from settings/config */
 			ShowEditorGrid = Porno_Graphic.Properties.Settings.Default.EditorGrid;
@@ -501,23 +501,23 @@ namespace Porno_Graphic
 		#region Window management routines
 		private void menuItem_Window_Editor_Click(object sender, EventArgs e) {
 			/* bring tile editor to the front */
-			editorForm.BringToFront();
+			//editorForm.BringToFront();
 		}
 
 		private void menuItem_Window_Arranger_Click(object sender, EventArgs e) {
 			/* bring tile arranger to the front */
-			arrangerForm.BringToFront();
+			//arrangerForm.BringToFront();
 		}
 
 		private void closeAllToolStripMenuItem_Click(object sender, EventArgs e) {
-			foreach(Form f in this.MdiChildren){
-				/* somewhat hacky way of not closing the tile arranger and editor */
+			/*foreach(Form f in this.MdiChildren){
+				// somewhat hacky way of not closing the tile arranger and editor
 				if(f.Name != arrangerForm.Name && f.Name != editorForm.Name){
-					/* todo: check if a window is "dirty"/needs to be saved */
+					// todo: check if a window is "dirty"/needs to be save
 					f.Close();
 					NumOpenDocuments--;
 				}
-			}
+			}*/
 		}
 		#endregion
 
@@ -549,7 +549,7 @@ namespace Porno_Graphic
 			Porno_Graphic.Properties.Settings.Default.EditorGrid = ShowEditorGrid;
 			Porno_Graphic.Properties.Settings.Default.Save();
 			/* toggle TileEditor grid */
-			editorForm.ShowGrid = ShowEditorGrid;
+			//editorForm.ShowGrid = ShowEditorGrid;
 		}
 
 		private void menuItem_View_GridArranger_Click(object sender, EventArgs e) {
@@ -557,7 +557,7 @@ namespace Porno_Graphic
 			Porno_Graphic.Properties.Settings.Default.ArrangerGrid = ShowArrangerGrid;
 			Porno_Graphic.Properties.Settings.Default.Save();
 			/* toggle TileArranger grid */
-			arrangerForm.ShowGrid = ShowArrangerGrid;
+			//arrangerForm.ShowGrid = ShowArrangerGrid;
 		}
 		#endregion
 
@@ -694,7 +694,7 @@ namespace Porno_Graphic
         {
             menuItem_File_Save.Enabled = mActiveProject != null;
             menuItem_File_SaveAs.Enabled = mActiveProject != null;
-            menuItem_File_Reload.Enabled = (mActiveProject != null) && (mActiveProject.Project.FilePath != null);
+            //menuItem_File_Reload.Enabled = (mActiveProject != null) && (mActiveProject.Project.FilePath != null);
         }
 
         private bool SaveProject(Classes.Project project, string path)

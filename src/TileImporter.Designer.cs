@@ -35,6 +35,10 @@
             this.countBox = new System.Windows.Forms.TextBox();
             this.importButton = new System.Windows.Forms.Button();
             this.fileGrid = new System.Windows.Forms.DataGridView();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.length = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.browse = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.path = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.regionLabel = new System.Windows.Forms.Label();
             this.regionBox = new System.Windows.Forms.ComboBox();
             this.countButton = new System.Windows.Forms.RadioButton();
@@ -42,10 +46,6 @@
             this.fracNumUpDown = new System.Windows.Forms.NumericUpDown();
             this.fracSepLabel = new System.Windows.Forms.Label();
             this.fracDenUpDown = new System.Windows.Forms.NumericUpDown();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.length = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.browse = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.path = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.fileGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fracNumUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fracDenUpDown)).BeginInit();
@@ -137,6 +137,42 @@
             this.fileGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.fileGrid_CellContentClick);
             this.fileGrid.DragDrop += new System.Windows.Forms.DragEventHandler(this.fileGrid_DragDrop);
             this.fileGrid.DragEnter += new System.Windows.Forms.DragEventHandler(this.fileGrid_DragEnter);
+            // 
+            // name
+            // 
+            this.name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.name.HeaderText = "Name";
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
+            this.name.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.name.Width = 41;
+            // 
+            // length
+            // 
+            this.length.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.length.HeaderText = "Length";
+            this.length.Name = "length";
+            this.length.ReadOnly = true;
+            this.length.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.length.Width = 46;
+            // 
+            // browse
+            // 
+            this.browse.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.browse.HeaderText = "";
+            this.browse.Name = "browse";
+            this.browse.ReadOnly = true;
+            this.browse.Text = "Browse...";
+            this.browse.UseColumnTextForButtonValue = true;
+            this.browse.Width = 5;
+            // 
+            // path
+            // 
+            this.path.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.path.HeaderText = "File (path)";
+            this.path.Name = "path";
+            this.path.ReadOnly = true;
+            this.path.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // regionLabel
             // 
@@ -246,42 +282,6 @@
             0});
             this.fracDenUpDown.ValueChanged += new System.EventHandler(this.fracDenUpDown_ValueChanged);
             // 
-            // name
-            // 
-            this.name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.name.HeaderText = "Name";
-            this.name.Name = "name";
-            this.name.ReadOnly = true;
-            this.name.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.name.Width = 41;
-            // 
-            // length
-            // 
-            this.length.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.length.HeaderText = "Length";
-            this.length.Name = "length";
-            this.length.ReadOnly = true;
-            this.length.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.length.Width = 46;
-            // 
-            // browse
-            // 
-            this.browse.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.browse.HeaderText = "";
-            this.browse.Name = "browse";
-            this.browse.ReadOnly = true;
-            this.browse.Text = "Browse...";
-            this.browse.UseColumnTextForButtonValue = true;
-            this.browse.Width = 5;
-            // 
-            // path
-            // 
-            this.path.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.path.HeaderText = "File (path)";
-            this.path.Name = "path";
-            this.path.ReadOnly = true;
-            this.path.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
             // TileImporter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -304,6 +304,7 @@
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(360, 260);
             this.Name = "TileImporter";
+            this.ShowIcon = false;
             this.Text = "Import Tiles";
             ((System.ComponentModel.ISupportInitialize)(this.fileGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fracNumUpDown)).EndInit();

@@ -24,6 +24,8 @@ namespace Porno_Graphic
 			InitializeComponent();
 
             rotate.SelectedIndex = 0;
+
+            
 		}
 
 		private void TileViewer_Resize(object sender, EventArgs e) {
