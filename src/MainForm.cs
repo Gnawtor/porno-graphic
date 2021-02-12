@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 
@@ -414,6 +415,20 @@ namespace Porno_Graphic
 		 * ShowSaveFileDialog()
 		 * Shows the save file dialog.
 		 */
+
+		
+
+		protected string ShowOpenProjectDialog()
+        {
+			OpenFileDialog dialog = new OpenFileDialog();
+			dialog.Filter = Properties.Resources.MainForm_ProjectFileFilter;
+			dialog.FilterIndex = 1;
+			dialog.Title = "Open Project";
+			if (dialog.ShowDialog() == DialogResult.OK)
+				return dialog.FileName; // TODO: make a method for opening project
+			else
+				return null;
+        }
 		protected bool ShowSaveFileDialog(Classes.Project project)
         {
 			SaveFileDialog dialog = new SaveFileDialog();
@@ -424,6 +439,16 @@ namespace Porno_Graphic
                 return SaveProject(project, dialog.FileName);
             else
                 return false;
+		}
+
+		protected void ShowSaveBinaryDialog(byte[] data)
+        {
+			SaveFileDialog dialog = new SaveFileDialog();
+			dialog.Filter = "Binary Data (*.bin) | *.bin | All files(*.*) | *.* ";
+			dialog.FilterIndex = 1;
+			dialog.Title = "Save Binary Data";
+			if (dialog.ShowDialog() == DialogResult.OK)
+				File.WriteAllBytes(dialog.FileName, data);
 		}
 
 		/*
@@ -455,7 +480,8 @@ namespace Porno_Graphic
 		}
 
 		private void menuItem_File_Open_Click(object sender, EventArgs e) {
-			ShowOpenFileDialog();
+			//ShowOpenFileDialog();
+			OpenProject();
 		}
 		#endregion
 
@@ -634,7 +660,9 @@ namespace Porno_Graphic
             importer.Show();
         }
 
-        public void CreateImportProject(Classes.GfxElementSet elementSet, Classes.IPalette palette)
+
+
+		public void CreateImportProject(Classes.GfxElementSet elementSet, Classes.IPalette palette)
         {
             string displayName = string.Format(Porno_Graphic.Properties.Resources.MainForm_ImportProjectFormat, ++mImportCount);
             Classes.Project project = new Classes.Project(displayName, elementSet);
@@ -693,7 +721,7 @@ namespace Porno_Graphic
         private void fileToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
             menuItem_File_Save.Enabled = mActiveProject != null;
-            menuItem_File_SaveAs.Enabled = mActiveProject != null;
+            //menuItem_File_SaveAs.Enabled = mActiveProject != null;
             //menuItem_File_Reload.Enabled = (mActiveProject != null) && (mActiveProject.Project.FilePath != null);
         }
 
@@ -711,5 +739,190 @@ namespace Porno_Graphic
                 return false;
             }
         }
-    }
+
+		public void OpenProject()
+		{
+			string path = ShowOpenProjectDialog();
+
+			if (path == null)
+				return;
+
+			Classes.ChunkReader reader = new Classes.ChunkReader(new FileStream(path, FileMode.OpenOrCreate, FileAccess.Read));
+			byte[] ProjectData = null;
+			using (reader)
+			{
+				Classes.ChunkType CurrentChunk = reader.ReadChunkHeader();
+				if (CurrentChunk != Classes.ChunkType.ProjectHeader)
+					throw new Exception(string.Format("Invalid Porno-Graphic Project file."));
+				reader.CloseChunk();
+				//reader.StartDecompression();
+				ProjectData = reader.ReadProjectContents();		// Create decompressed array of the project data
+			}
+
+			// DEBUG
+			//ShowSaveBinaryDialog(ProjectData);
+
+			
+			reader = new Classes.ChunkReader(new MemoryStream(ProjectData));
+
+			ulong ProjectLength;
+			ulong CurrentChunkLength;
+
+			// GfxElementSetInfo variables
+			uint GfxElementSetInfo_ElementWidth;
+			uint GfxElementSetInfo_ElementHeight;
+			string GfxElementSetInfo_Name;
+
+			// GfxElement variables
+			List<uint> ElementWidths = new List<uint>();
+			List<uint> ElementHeights = new List<uint>();
+			List<uint[]> PixelsList = new List<uint[]>();
+
+			// TileImportMetadata variables
+			string TileImportMetadata_ProfileFile;
+			string TileImportMetadata_ProfileName;
+			string TileImportMetadata_RegionName;
+			string TileImportMetadata_LayoutName;
+			string TileImportMetadata_Offset;
+			string TileImportMetadata_Planes;
+		
+			using (reader)
+            {
+				Classes.ChunkType CurrentChunk = reader.ReadChunkHeader();
+				if (CurrentChunk != Classes.ChunkType.GfxElementSet)
+					throw new Exception(string.Format("Invalid header. Not a GfxElementSet."));
+				ProjectLength = reader.GetCurrentLength();
+				//reader.SkipRemainingChunk();
+				reader.AbortChunk();		// Finished reading GfxElementSet header (the chunk itself is the entire rest of the project file)
+
+				// Start reading GfxElementSetInfo data.
+				CurrentChunk = reader.ReadChunkHeader();
+				if (CurrentChunk != Classes.ChunkType.GfxElementSetInfo)
+					throw new Exception(string.Format("Invalid header. Not a GfxElementSetInfo."));
+				CurrentChunkLength = reader.GetCurrentLength();
+				GfxElementSetInfo_ElementWidth = reader.ReadUint();
+				GfxElementSetInfo_ElementHeight = reader.ReadUint();
+				GfxElementSetInfo_Name = reader.ReadString();
+				reader.CloseChunk();    
+				// Finished reading GfxElementSetInfo data.
+
+				// Start reading GfxElements.
+				CurrentChunk = reader.ReadChunkHeader();
+				if (CurrentChunk != Classes.ChunkType.GfxElement)
+					throw new Exception(string.Format("Invalid header. Not a GfxElement."));
+				CurrentChunkLength = reader.GetCurrentLength();
+				bool ReadingGfxElements = true;
+				while (ReadingGfxElements)
+                {
+					uint GfxElementWidth = reader.ReadUint();
+					uint GfxElementHeight = reader.ReadUint();
+
+					uint n = 0;
+					uint[] pixels = new uint[GfxElementWidth * GfxElementHeight];
+
+					while (n < (uint)((CurrentChunkLength - 16U) / 4))
+					{
+						for (uint y = 0; y < GfxElementHeight; y++)
+                        {
+							for (uint x = 0; x < GfxElementWidth; x++)
+                            {
+								pixels[x + (y * GfxElementWidth)] = reader.ReadUint();
+								n++;
+							}
+                        }
+					}
+                    PixelsList.Add(pixels);
+					ElementWidths.Add(GfxElementWidth);
+					ElementHeights.Add(GfxElementHeight);
+					reader.CloseChunk();
+					CurrentChunk = reader.ReadChunkHeader();
+					CurrentChunkLength = reader.GetCurrentLength();
+					if (CurrentChunk != Classes.ChunkType.GfxElement)		// Read GfxElements until a different header is encountered.
+                    {
+						ReadingGfxElements = false;
+                    }
+				}
+
+				// Finished reading GfxElements.
+
+				if (CurrentChunk != Classes.ChunkType.TileImportMetadata)
+					throw new Exception("Invalid header. Not TileImportMetadata.");
+
+				TileImportMetadata_ProfileFile = reader.ReadString();
+				TileImportMetadata_ProfileName = reader.ReadString();
+				TileImportMetadata_RegionName = reader.ReadString();
+				TileImportMetadata_LayoutName = reader.ReadString();
+				TileImportMetadata_Offset = reader.ReadString();
+				TileImportMetadata_Planes = reader.ReadString();
+
+				reader.CloseChunk();
+			}
+
+			// DEBUG
+			MessageBox.Show("PROJECT INFO" + Environment.NewLine
+				+ Environment.NewLine
+				+ "Project length = " + ProjectLength.ToString() + Environment.NewLine
+				+ Environment.NewLine
+				+ "GfxElementSetInfo_ElementWidth = " + GfxElementSetInfo_ElementWidth.ToString() + Environment.NewLine
+				+ "GfxElementSetInfo_ElementHeight = " + GfxElementSetInfo_ElementHeight.ToString() + Environment.NewLine
+				+ "GfxElementSetInfo_Name = " + GfxElementSetInfo_Name + Environment.NewLine
+				+ Environment.NewLine
+				+ "Total number of tiles = " + PixelsList.Count.ToString() + Environment.NewLine
+				+ Environment.NewLine
+				+ "TileImportMetadata_ProfileFile = " + TileImportMetadata_ProfileFile + Environment.NewLine
+				+ "TileImportMetadata_ProfileName = " +	TileImportMetadata_ProfileName + Environment.NewLine
+				+ "TileImportMetadata_RegionName = " + TileImportMetadata_RegionName + Environment.NewLine
+				+ "TileImportMetadata_LayoutName = " + TileImportMetadata_LayoutName + Environment.NewLine
+				+ "TileImportMetadata_Offset = " + TileImportMetadata_Offset + Environment.NewLine
+				+ "TileImportMetadata_Planes = " + TileImportMetadata_Planes); ;
+			// END DEBUG
+
+
+			// Begin assembling project
+
+			Classes.GfxElement[] elements = new Classes.GfxElement[PixelsList.Count];
+			Parallel.For(0, PixelsList.Count, index => { elements[index] = new Classes.GfxElement(PixelsList[index], ElementWidths[index], ElementHeights[index]); });
+
+			Classes.TileImportMetadata metadata = new Classes.TileImportMetadata();
+			metadata.ProfileFile = TileImportMetadata_ProfileFile;
+			metadata.ProfileName = TileImportMetadata_ProfileName;
+			metadata.RegionName = TileImportMetadata_RegionName;
+			metadata.LayoutName = TileImportMetadata_LayoutName;
+			metadata.Offset = TileImportMetadata_Offset;
+			metadata.Planes = TileImportMetadata_Planes;
+
+			uint planes;
+			if (uint.TryParse(TileImportMetadata_Planes, out planes))
+			{
+				Classes.GfxElementSet elementSet = new Classes.GfxElementSet();
+				elementSet.Name = GfxElementSetInfo_Name;
+				elementSet.ElementWidth = GfxElementSetInfo_ElementWidth;
+				elementSet.ElementHeight = GfxElementSetInfo_ElementHeight;
+				elementSet.Elements = elements;
+				elementSet.ImportMetadata = metadata;
+				CreateImportProject(elementSet, (planes > 3) ? Classes.IndexedPalette.RGBI : Classes.IndexedPalette.RGB);
+			}
+			else
+				throw new Exception("Invalid 'Planes' value in TileImportMetadata");			
+		}
+		public void SaveBitmap(string path, int TilesPerRow)
+		{
+			long ElementWidth = mActiveProject.TileViewer.ElementWidth;
+			long ElementHeight = mActiveProject.TileViewer.ElementHeight;
+			long ElementsLength = mActiveProject.TileViewer.Elements.Length;
+
+
+
+			long BitmapHeight = ElementHeight * (ElementsLength / TilesPerRow);
+			long BitmapWidth = ElementWidth * TilesPerRow;
+
+			if (ElementsLength % TilesPerRow != 0)
+				BitmapHeight += ElementHeight;
+
+			Bitmap bitmap = new Bitmap((int)BitmapWidth, (int)BitmapHeight);
+			Graphics gfx = Graphics.FromImage(bitmap);
+
+
+		}
+	}
 }

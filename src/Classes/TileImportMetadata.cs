@@ -12,6 +12,7 @@ namespace Porno_Graphic.Classes
         public string RegionName { get; set; }
         public string LayoutName { get; set; }
         public string Offset { get; set; }
+        public string Planes { get; set; }
 
         public void Write(ChunkWriter writer)
         {
@@ -21,6 +22,7 @@ namespace Porno_Graphic.Classes
             writer.Write(RegionName);
             writer.Write(LayoutName);
             writer.Write(Offset);
+            writer.Write(Planes);
             writer.CloseChunk();
         }
 
@@ -31,12 +33,13 @@ namespace Porno_Graphic.Classes
 
         private ulong ChunkContentLength()
         {
-            return (ulong)((5U * 4U)
+            return (ulong)((6U * 4U)
                 + ((ProfileFile != null) ? Encoding.BigEndianUnicode.GetByteCount(ProfileFile) : 0)
                 + ((ProfileName != null) ? Encoding.BigEndianUnicode.GetByteCount(ProfileName) : 0)
                 + ((RegionName != null) ? Encoding.BigEndianUnicode.GetByteCount(RegionName) : 0)
                 + ((LayoutName != null) ? Encoding.BigEndianUnicode.GetByteCount(LayoutName) : 0)
-                + ((Offset != null) ? Encoding.BigEndianUnicode.GetByteCount(Offset) : 0));
+                + ((Offset != null) ? Encoding.BigEndianUnicode.GetByteCount(Offset) : 0)
+                + ((Planes != null) ? Encoding.BigEndianUnicode.GetByteCount(Planes) : 0));
         }
     }
 }

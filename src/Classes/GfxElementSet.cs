@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 
@@ -38,6 +39,11 @@ namespace Porno_Graphic.Classes
             if (ImportMetadata != null)
                 ImportMetadata.Write(writer);
             writer.CloseChunk();
+        }
+
+        public void DrawBitmap(Graphics gfx, int TilesPerRow)
+        {
+            
         }
     }
 }

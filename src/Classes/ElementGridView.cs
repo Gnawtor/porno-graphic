@@ -242,6 +242,43 @@ namespace Porno_Graphic.Classes
             }
         }
 
+        public void DrawExportTileset(Graphics graphics)
+        {
+            int columns = (int)((AutoScrollMinSize.Width - (2 * ElementPadding)) / ItemWidth);
+            int rows = (Elements.Length + columns - 1) / columns;
+
+            if (Palette == null)
+                throw new Exception("Cannot export with null palette.");
+            else
+            {
+                bool swapAxes = (Rotate & 1U) != 0U;
+                bool reverseX = FlipX != (((Rotate + 1U) & 2U) != 0U);
+                bool reverseY = FlipY != ((Rotate & 2U) != 0U);
+                int[,] transform = new int[,] { { swapAxes ? 0 : 1, swapAxes ? 1 : 0, 0 }, { swapAxes ? 1 : 0, swapAxes ? 0 : 1, 0 }, { 0, 0, 1 } };
+                if (reverseX)
+                {
+                    transform[0, 0] = -transform[0, 0];
+                    transform[0, 1] = -transform[0, 1];
+                }
+                if (reverseY)
+                {
+                    transform[1, 0] = -transform[1, 0];
+                    transform[1, 1] = -transform[1, 1];
+                }
+                transform[1, 2] = (int)(reverseY ? (((swapAxes ? ElementWidth : ElementHeight) * ScaleY) - 1) : 0);
+                for (int row = 0; row <= rows; row++, transform[1, 2] += (int)ItemHeight)
+                {
+                    transform[0, 2] = (int)((ItemWidth * 0) + (reverseX ? (((swapAxes ? ElementHeight : ElementWidth) * ScaleX) - 1) : 0));
+                    for (int column = 0; (column <= columns) && (((row * columns) + column) < Elements.Length); column++, transform[0, 2] += (int)ItemWidth)
+                    {
+                        GfxElement element = Elements[(row * columns) + column];
+                        if (element != null)
+                            element.Draw(graphics, Palette, transform);
+                    }
+                }
+            }
+        }
+
         protected override void OnBackColorChanged(EventArgs e)
         {
             base.OnBackColorChanged(e);

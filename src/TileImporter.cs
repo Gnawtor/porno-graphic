@@ -228,7 +228,9 @@ namespace Porno_Graphic
             metadata.RegionName = (string)regionBox.SelectedItem;
             metadata.LayoutName = (string)layoutBox.SelectedItem;
             metadata.Offset = offsetBox.Text;
+            metadata.Planes = layout.Planes.ToString();
             Classes.GfxElementSet elementSet = new Classes.GfxElementSet();
+            elementSet.Name = "TestName";
             elementSet.ElementWidth = layout.Width;
             elementSet.ElementHeight = layout.Height;
             elementSet.Elements = elements;

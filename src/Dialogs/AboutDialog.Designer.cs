@@ -35,7 +35,7 @@
             // 
             // about_ProductLabel
             // 
-            this.about_ProductLabel.Location = new System.Drawing.Point(15, 95);
+            this.about_ProductLabel.Location = new System.Drawing.Point(15, 92);
             this.about_ProductLabel.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.about_ProductLabel.Name = "about_ProductLabel";
             this.about_ProductLabel.Size = new System.Drawing.Size(407, 17);
@@ -45,7 +45,7 @@
             // 
             // about_CopyrightLabel
             // 
-            this.about_CopyrightLabel.Location = new System.Drawing.Point(15, 125);
+            this.about_CopyrightLabel.Location = new System.Drawing.Point(15, 124);
             this.about_CopyrightLabel.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.about_CopyrightLabel.Name = "about_CopyrightLabel";
             this.about_CopyrightLabel.Size = new System.Drawing.Size(256, 17);
@@ -66,7 +66,7 @@
             // about_CompanyLabel
             // 
             this.about_CompanyLabel.AutoSize = true;
-            this.about_CompanyLabel.Location = new System.Drawing.Point(15, 112);
+            this.about_CompanyLabel.Location = new System.Drawing.Point(15, 109);
             this.about_CompanyLabel.Name = "about_CompanyLabel";
             this.about_CompanyLabel.Size = new System.Drawing.Size(42, 13);
             this.about_CompanyLabel.TabIndex = 31;

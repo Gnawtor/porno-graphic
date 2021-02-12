@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 
 namespace Porno_Graphic.Classes
 {
@@ -34,15 +35,17 @@ namespace Porno_Graphic.Classes
             ChunkWriter writer = new ChunkWriter(new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write));
             using (writer)
             {
-                writer.OpenChunk(ChunkType.ProjectHeader, 0U);
+                writer.OpenChunk(ChunkType.ProjectHeader, 0U);  // Write project header
                 writer.CloseChunk();
-                writer.StartCompression();
-                if ((mGfxSet != null) && ((mGfxSet.Elements != null) || (mGfxSet.ImportMetadata != null)))
+                //writer.StartCompression();
+                if ((mGfxSet != null) && ((mGfxSet.Elements != null) || (mGfxSet.ImportMetadata != null)))  // Write everything else in this project
                     mGfxSet.Write(writer);
             }
             mDirty = false;
             mFilePath = path;
             mDisplayName = Path.GetFileName(path);
         }
+
+        
     }
 }

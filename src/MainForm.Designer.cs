@@ -28,11 +28,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItem_File_New = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItem_File_Import = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItem_File_Open = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItem_File_Save = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItem_File_SaveAs = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuItem_File_Exit = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -100,6 +98,10 @@
             this.activeColorsPanel = new System.Windows.Forms.Panel();
             this.panelActiveFGColor = new System.Windows.Forms.Panel();
             this.panelActiveBGColor = new System.Windows.Forms.Panel();
+            this.menuItem_ExportToTilEdMap = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuStrip.SuspendLayout();
             this.mainStatusStrip.SuspendLayout();
             this.mainToolStrip.SuspendLayout();
@@ -113,12 +115,12 @@
             // 
             this.mainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
+            this.helpToolStripMenuItem,
             this.editToolStripMenuItem,
             this.viewToolStripMenuItem,
             this.paletteToolStripMenuItem,
             this.toolsToolStripMenuItem,
-            this.windowToolStripMenuItem,
-            this.helpToolStripMenuItem});
+            this.windowToolStripMenuItem});
             this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.mainMenuStrip.Name = "mainMenuStrip";
             this.mainMenuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -129,35 +131,26 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItem_File_New,
             this.menuItem_File_Import,
             this.menuItem_File_Open,
             this.menuItem_File_Save,
-            this.menuItem_File_SaveAs,
             this.toolStripSeparator1,
+            this.menuItem_ExportToTilEdMap,
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem2,
+            this.toolStripSeparator4,
             this.menuItem_File_Exit});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "&File";
             this.fileToolStripMenuItem.DropDownOpening += new System.EventHandler(this.fileToolStripMenuItem_DropDownOpening);
             // 
-            // menuItem_File_New
-            // 
-            this.menuItem_File_New.AccessibleDescription = "Create a new file.";
-            this.menuItem_File_New.AccessibleName = "New";
-            this.menuItem_File_New.Image = ((System.Drawing.Image)(resources.GetObject("menuItem_File_New.Image")));
-            this.menuItem_File_New.ImageTransparentColor = System.Drawing.Color.Fuchsia;
-            this.menuItem_File_New.Name = "menuItem_File_New";
-            this.menuItem_File_New.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.menuItem_File_New.Size = new System.Drawing.Size(155, 22);
-            this.menuItem_File_New.Text = "&New";
-            this.menuItem_File_New.Click += new System.EventHandler(this.menuItem_File_New_Click);
-            // 
             // menuItem_File_Import
             // 
             this.menuItem_File_Import.Name = "menuItem_File_Import";
-            this.menuItem_File_Import.Size = new System.Drawing.Size(155, 22);
-            this.menuItem_File_Import.Text = "Import Tiles...";
+            this.menuItem_File_Import.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.menuItem_File_Import.Size = new System.Drawing.Size(208, 22);
+            this.menuItem_File_Import.Text = "&New Tileset";
             this.menuItem_File_Import.Click += new System.EventHandler(this.menuItem_File_Import_Click);
             // 
             // menuItem_File_Open
@@ -166,8 +159,8 @@
             this.menuItem_File_Open.ImageTransparentColor = System.Drawing.Color.Fuchsia;
             this.menuItem_File_Open.Name = "menuItem_File_Open";
             this.menuItem_File_Open.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.menuItem_File_Open.Size = new System.Drawing.Size(155, 22);
-            this.menuItem_File_Open.Text = "&Open...";
+            this.menuItem_File_Open.Size = new System.Drawing.Size(208, 22);
+            this.menuItem_File_Open.Text = "&Open Tileset";
             this.menuItem_File_Open.Click += new System.EventHandler(this.menuItem_File_Open_Click);
             // 
             // menuItem_File_Save
@@ -176,21 +169,14 @@
             this.menuItem_File_Save.ImageTransparentColor = System.Drawing.Color.Fuchsia;
             this.menuItem_File_Save.Name = "menuItem_File_Save";
             this.menuItem_File_Save.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.menuItem_File_Save.Size = new System.Drawing.Size(155, 22);
-            this.menuItem_File_Save.Text = "&Save";
+            this.menuItem_File_Save.Size = new System.Drawing.Size(208, 22);
+            this.menuItem_File_Save.Text = "&Save Tileset As";
             this.menuItem_File_Save.Click += new System.EventHandler(this.menuItem_File_Save_Click);
-            // 
-            // menuItem_File_SaveAs
-            // 
-            this.menuItem_File_SaveAs.Name = "menuItem_File_SaveAs";
-            this.menuItem_File_SaveAs.Size = new System.Drawing.Size(155, 22);
-            this.menuItem_File_SaveAs.Text = "Save &As...";
-            this.menuItem_File_SaveAs.Click += new System.EventHandler(this.menuItem_File_SaveAs_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(152, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(205, 6);
             // 
             // menuItem_File_Exit
             // 
@@ -198,7 +184,7 @@
             this.menuItem_File_Exit.ImageTransparentColor = System.Drawing.Color.Fuchsia;
             this.menuItem_File_Exit.Name = "menuItem_File_Exit";
             this.menuItem_File_Exit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.menuItem_File_Exit.Size = new System.Drawing.Size(155, 22);
+            this.menuItem_File_Exit.Size = new System.Drawing.Size(208, 22);
             this.menuItem_File_Exit.Text = "E&xit";
             this.menuItem_File_Exit.Click += new System.EventHandler(this.menuItem_File_Exit_Click);
             // 
@@ -811,6 +797,29 @@
             this.panelActiveBGColor.Size = new System.Drawing.Size(32, 32);
             this.panelActiveBGColor.TabIndex = 0;
             // 
+            // menuItem_ExportToTilEdMap
+            // 
+            this.menuItem_ExportToTilEdMap.Name = "menuItem_ExportToTilEdMap";
+            this.menuItem_ExportToTilEdMap.Size = new System.Drawing.Size(208, 22);
+            this.menuItem_ExportToTilEdMap.Text = "Export to Tiled Set";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(205, 6);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(208, 22);
+            this.toolStripMenuItem1.Text = "Convert TMX to GIF";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(208, 22);
+            this.toolStripMenuItem2.Text = "Apply changes from TMX";
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -818,8 +827,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(952, 613);
             this.Controls.Add(this.palettePanel);
-            this.Controls.Add(this.toolToolStrip);
             this.Controls.Add(this.mainToolStrip);
+            this.Controls.Add(this.toolToolStrip);
             this.Controls.Add(this.mainStatusStrip);
             this.Controls.Add(this.mainMenuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -855,10 +864,8 @@
 		private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
 		private System.Windows.Forms.StatusStrip mainStatusStrip;
 		private System.Windows.Forms.ToolStrip mainToolStrip;
-		private System.Windows.Forms.ToolStripMenuItem menuItem_File_New;
 		private System.Windows.Forms.ToolStripMenuItem menuItem_File_Open;
 		private System.Windows.Forms.ToolStripMenuItem menuItem_File_Save;
-		private System.Windows.Forms.ToolStripMenuItem menuItem_File_SaveAs;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 		private System.Windows.Forms.ToolStripMenuItem menuItem_File_Exit;
 		private System.Windows.Forms.ToolStripMenuItem menuItem_Edit_Undo;
@@ -923,6 +930,10 @@
 		private System.Windows.Forms.ToolStripMenuItem menuItem_Palette_PalSets;
 		private System.Windows.Forms.ToolStripButton toolToolStrip_Button_Selection;
         private System.Windows.Forms.ToolStripMenuItem menuItem_File_Import;
+        private System.Windows.Forms.ToolStripMenuItem menuItem_ExportToTilEdMap;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
     }
 }
 

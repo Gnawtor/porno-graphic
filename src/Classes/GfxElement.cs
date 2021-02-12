@@ -45,6 +45,13 @@ namespace Porno_Graphic.Classes
             }
         }
 
+        public GfxElement(uint[] pixels, uint width, uint height)
+        {
+            Width = width;
+            Height = height;
+            Pixels = pixels;
+        }
+
         public void Write(byte[] data, CharLayout layout, uint offset, uint ch)
         {
             uint charOffset = (8 * offset) + (layout.Stride * ch);

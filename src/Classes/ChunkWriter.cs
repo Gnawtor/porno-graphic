@@ -29,11 +29,11 @@ namespace Porno_Graphic.Classes
             bytes = BitConverter.GetBytes((ulong)type);
             if (BitConverter.IsLittleEndian)
                 bytes.Reverse();
-            mStream.Write(bytes, 0, 8);
+            mStream.Write(bytes, 0, 8);     // write ChunkType ASCII value
             bytes = BitConverter.GetBytes(length);
             if (BitConverter.IsLittleEndian)
                 bytes.Reverse();
-            mStream.Write(bytes, 0, 8);
+            mStream.Write(bytes, 0, 8);     // write length
         }
 
         public void CloseChunk()
