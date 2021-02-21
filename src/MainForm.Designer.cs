@@ -32,7 +32,13 @@
             this.menuItem_File_Open = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItem_File_Save = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuItem_ExportToTilEdMap = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemConvertTmxToGif = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.menuItem_File_Exit = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItem_Edit_Undo = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItem_Edit_Redo = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,8 +73,6 @@
             this.menuItem_Window_Arranger = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.closeAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainStatusStrip = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mainToolStrip = new System.Windows.Forms.ToolStrip();
@@ -98,10 +102,6 @@
             this.activeColorsPanel = new System.Windows.Forms.Panel();
             this.panelActiveFGColor = new System.Windows.Forms.Panel();
             this.panelActiveBGColor = new System.Windows.Forms.Panel();
-            this.menuItem_ExportToTilEdMap = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuStrip.SuspendLayout();
             this.mainStatusStrip.SuspendLayout();
             this.mainToolStrip.SuspendLayout();
@@ -136,7 +136,7 @@
             this.menuItem_File_Save,
             this.toolStripSeparator1,
             this.menuItem_ExportToTilEdMap,
-            this.toolStripMenuItem1,
+            this.MenuItemConvertTmxToGif,
             this.toolStripMenuItem2,
             this.toolStripSeparator4,
             this.menuItem_File_Exit});
@@ -178,6 +178,31 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(205, 6);
             // 
+            // menuItem_ExportToTilEdMap
+            // 
+            this.menuItem_ExportToTilEdMap.Name = "menuItem_ExportToTilEdMap";
+            this.menuItem_ExportToTilEdMap.Size = new System.Drawing.Size(208, 22);
+            this.menuItem_ExportToTilEdMap.Text = "Export to Tiled Set";
+            this.menuItem_ExportToTilEdMap.Click += new System.EventHandler(this.menuItem_ExportToTilEdMap_Click);
+            // 
+            // MenuItemConvertTmxToGif
+            // 
+            this.MenuItemConvertTmxToGif.Name = "MenuItemConvertTmxToGif";
+            this.MenuItemConvertTmxToGif.Size = new System.Drawing.Size(208, 22);
+            this.MenuItemConvertTmxToGif.Text = "Convert TMX to GIF";
+            this.MenuItemConvertTmxToGif.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(208, 22);
+            this.toolStripMenuItem2.Text = "Apply changes from TMX";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(205, 6);
+            // 
             // menuItem_File_Exit
             // 
             this.menuItem_File_Exit.Image = global::Porno_Graphic.Properties.Resources.Exit;
@@ -187,6 +212,21 @@
             this.menuItem_File_Exit.Size = new System.Drawing.Size(208, 22);
             this.menuItem_File_Exit.Text = "E&xit";
             this.menuItem_File_Exit.Click += new System.EventHandler(this.menuItem_File_Exit_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "&Help";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.aboutToolStripMenuItem.Text = "&About...";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
@@ -431,7 +471,7 @@
             this.menuItem_Tools_Options.Image = global::Porno_Graphic.Properties.Resources.Options;
             this.menuItem_Tools_Options.ImageTransparentColor = System.Drawing.Color.Fuchsia;
             this.menuItem_Tools_Options.Name = "menuItem_Tools_Options";
-            this.menuItem_Tools_Options.Size = new System.Drawing.Size(180, 22);
+            this.menuItem_Tools_Options.Size = new System.Drawing.Size(125, 22);
             this.menuItem_Tools_Options.Text = "&Options...";
             this.menuItem_Tools_Options.Click += new System.EventHandler(this.menuItem_Tools_Options_Click);
             // 
@@ -472,21 +512,6 @@
             this.closeAllToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.closeAllToolStripMenuItem.Text = "Close &All";
             this.closeAllToolStripMenuItem.Click += new System.EventHandler(this.closeAllToolStripMenuItem_Click);
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "&Help";
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.aboutToolStripMenuItem.Text = "&About...";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // mainStatusStrip
             // 
@@ -797,29 +822,6 @@
             this.panelActiveBGColor.Size = new System.Drawing.Size(32, 32);
             this.panelActiveBGColor.TabIndex = 0;
             // 
-            // menuItem_ExportToTilEdMap
-            // 
-            this.menuItem_ExportToTilEdMap.Name = "menuItem_ExportToTilEdMap";
-            this.menuItem_ExportToTilEdMap.Size = new System.Drawing.Size(208, 22);
-            this.menuItem_ExportToTilEdMap.Text = "Export to Tiled Set";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(205, 6);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(208, 22);
-            this.toolStripMenuItem1.Text = "Convert TMX to GIF";
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(208, 22);
-            this.toolStripMenuItem2.Text = "Apply changes from TMX";
-            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -827,9 +829,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(952, 613);
             this.Controls.Add(this.palettePanel);
+            this.Controls.Add(this.mainStatusStrip);
             this.Controls.Add(this.mainToolStrip);
             this.Controls.Add(this.toolToolStrip);
-            this.Controls.Add(this.mainStatusStrip);
             this.Controls.Add(this.mainMenuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
@@ -931,7 +933,7 @@
 		private System.Windows.Forms.ToolStripButton toolToolStrip_Button_Selection;
         private System.Windows.Forms.ToolStripMenuItem menuItem_File_Import;
         private System.Windows.Forms.ToolStripMenuItem menuItem_ExportToTilEdMap;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemConvertTmxToGif;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
     }

@@ -50,7 +50,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>russy.ico</ApplicationIcon>
+    <ApplicationIcon>woodduck.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -73,6 +73,7 @@
     <Compile Include="Classes\GameProfile.cs" />
     <Compile Include="Classes\GfxElement.cs" />
     <Compile Include="Classes\GfxElementSet.cs" />
+    <Compile Include="Classes\GifWriter.cs" />
     <Compile Include="Classes\IndexedPalette.cs" />
     <Compile Include="Classes\IPalette.cs" />
     <Compile Include="Classes\LoadOutsideRegionException.cs" />
@@ -80,7 +81,10 @@
     <Compile Include="Classes\LoadRegion.cs" />
     <Compile Include="Classes\Project.cs" />
     <Compile Include="Classes\SolidPalette.cs" />
+    <Compile Include="Classes\TiledImportData.cs" />
+    <Compile Include="Classes\TiledTilesetReader.cs" />
     <Compile Include="Classes\TileImportMetadata.cs" />
+    <Compile Include="Classes\TiledMapReader.cs" />
     <Compile Include="Classes\TileViewerState.cs" />
     <Compile Include="Dialogs\AboutDialog.cs">
       <SubType>Form</SubType>
@@ -285,7 +289,9 @@
     <None Include="Resources\menu\ChooseColor.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\AboutPictureDuck.png" />
     <Content Include="russy.ico" />
+    <Content Include="woodduck.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

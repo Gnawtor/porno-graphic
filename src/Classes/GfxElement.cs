@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Text;
 
 namespace Porno_Graphic.Classes
@@ -110,7 +111,38 @@ namespace Porno_Graphic.Classes
             {
                 Rectangle pixel = rowStart;
                 for (uint x = 0; x < Width; x++, pixel.Offset(xStep))
-                    graphics.FillRectangle(palette.GetBrush(GetPixel(x, y)), pixel);
+                    graphics.FillRectangle(palette.GetBrush(GetPixel(x, y)), pixel); 
+                // Loop always gets next pixel in original order without transformations. 
+                // Pixel is then drawn acccording to transformation.
+            }
+        }
+
+        public void DrawIndexed(byte[] pixels, int[,] transform, int strideMultiplier, int columnPadding)
+        {
+            Rectangle rowStart = new Rectangle(transform[0, 2], transform[1, 2], transform[0, 0] + transform[0, 1], transform[1, 0] + transform[1, 1]);
+
+            if (rowStart.Width < 0)
+            {
+                rowStart.X += rowStart.Width;
+                rowStart.Width = -rowStart.Width;
+            }
+
+            if (rowStart.Height < 0)
+            {
+                rowStart.Y += rowStart.Height;
+                rowStart.Height = -rowStart.Height;
+            }
+
+            Point yStep = new Point(transform[0, 1], transform[1, 1]);
+            Point xStep = new Point(transform[0, 0], transform[1, 0]);
+            for (uint y = 0; y < Height; y++, rowStart.Offset(yStep))
+            {
+                Rectangle pixel = rowStart;
+                for (uint x = 0; x < Width; x++, pixel.Offset(xStep))
+                {
+                    int pixelDest = pixel.X + columnPadding + (pixel.Y * strideMultiplier);
+                    pixels[pixelDest] = (byte)(GetPixel(x, y) & 0xFF);
+                }
             }
         }
 

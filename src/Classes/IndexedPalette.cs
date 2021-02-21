@@ -57,5 +57,9 @@ namespace Porno_Graphic.Classes
         {
             return (uint)(pen % Colors.Length);
         }
+        public uint GetLength()
+        {
+            return (uint)mColors.Length;
+        }
     }
 }

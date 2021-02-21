@@ -19,6 +19,11 @@ namespace Porno_Graphic
         public uint ElementHeight { get { return tileGrid.ElementHeight; } set { tileGrid.ElementHeight = value; } }
         public Classes.GfxElement[] Elements { get { return tileGrid.Elements; } set { tileGrid.Elements = value; } }
         public Classes.IPalette Palette { get { return tileGrid.Palette; } set { tileGrid.Palette = value; } }
+        public bool SwapAxes { get { return (rotate.SelectedIndex & 1U) != 0U; } }
+        public uint ColumnCount { get { return (uint)((tileGrid.AutoScrollMinSize.Width - (2 * tileGrid.ElementPadding)) / tileGrid.ItemWidth);} }
+        public bool FlipX { get { return xFlip.Checked; } }
+        public bool FlipY { get { return yFlip.Checked; } }
+        public uint Rotate { get { return (uint)rotate.SelectedIndex; } }
 
 		public TileViewer() {
 			InitializeComponent();
@@ -67,6 +72,15 @@ namespace Porno_Graphic
         private void rotate_SelectedIndexChanged(object sender, EventArgs e)
         {
             tileGrid.Rotate = (uint)rotate.SelectedIndex;
+        }
+
+        public void DrawExportTileset(Graphics graphics, long ElementsCount, long RowCount, long ColumnCount)
+        {
+            tileGrid.DrawExportTileset(graphics, ElementsCount, RowCount, ColumnCount);
+        }
+        public void DrawIndexedGif(Bitmap bitmap, uint[] mapData, uint mapWidth, uint mapHeight, uint tileWidth, uint tileHeight, uint offset, uint rotate, bool flipX, bool flipY)
+        {
+            tileGrid.DrawIndexedGif(bitmap, mapData, mapWidth, mapHeight, tileWidth, tileHeight, offset, rotate, flipX, flipY);
         }
     }
 }

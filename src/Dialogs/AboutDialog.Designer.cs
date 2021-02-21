@@ -78,7 +78,7 @@
             // 
             this.about_Picture.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.about_Picture.Dock = System.Windows.Forms.DockStyle.Top;
-            this.about_Picture.Image = global::Porno_Graphic.Properties.Resources.AboutPicture;
+            this.about_Picture.Image = global::Porno_Graphic.Properties.Resources.AboutPictureDuck;
             this.about_Picture.Location = new System.Drawing.Point(9, 9);
             this.about_Picture.Name = "about_Picture";
             this.about_Picture.Size = new System.Drawing.Size(412, 76);

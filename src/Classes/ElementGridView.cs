@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
+using System.Drawing.Imaging;
 
 namespace Porno_Graphic.Classes
 {
@@ -185,7 +186,7 @@ namespace Porno_Graphic.Classes
             }
         }
 
-        private uint ItemWidth { get { return (ScaleX * (((Rotate & 1U) != 0U) ? ElementHeight : ElementWidth)) + (2 * ElementPadding); } }
+        public uint ItemWidth { get { return (ScaleX * (((Rotate & 1U) != 0U) ? ElementHeight : ElementWidth)) + (2 * ElementPadding); } }
         private uint ItemHeight { get { return (ScaleY * (((Rotate & 1U) != 0U) ? ElementWidth : ElementHeight)) + (2 * ElementPadding); } }
 
         public ElementGridView()
@@ -242,15 +243,15 @@ namespace Porno_Graphic.Classes
             }
         }
 
-        public void DrawExportTileset(Graphics graphics)
+        public void DrawExportTileset(Graphics graphics, long ElementsCount, long RowCount, long ColumnCount)
         {
-            int columns = (int)((AutoScrollMinSize.Width - (2 * ElementPadding)) / ItemWidth);
-            int rows = (Elements.Length + columns - 1) / columns;
-
             if (Palette == null)
                 throw new Exception("Cannot export with null palette.");
             else
             {
+                int rows = (int)RowCount;
+                int columns = (int)ColumnCount;
+
                 bool swapAxes = (Rotate & 1U) != 0U;
                 bool reverseX = FlipX != (((Rotate + 1U) & 2U) != 0U);
                 bool reverseY = FlipY != ((Rotate & 2U) != 0U);
@@ -265,11 +266,11 @@ namespace Porno_Graphic.Classes
                     transform[1, 0] = -transform[1, 0];
                     transform[1, 1] = -transform[1, 1];
                 }
-                transform[1, 2] = (int)(reverseY ? (((swapAxes ? ElementWidth : ElementHeight) * ScaleY) - 1) : 0);
-                for (int row = 0; row <= rows; row++, transform[1, 2] += (int)ItemHeight)
+                transform[1, 2] = (int)(reverseY ? ((swapAxes ? ElementWidth : ElementHeight) - 1) : 0);
+                for (int row = 0; row <= rows; row++, transform[1, 2] += (swapAxes ? (int)ElementWidth : (int)ElementHeight))
                 {
-                    transform[0, 2] = (int)((ItemWidth * 0) + (reverseX ? (((swapAxes ? ElementHeight : ElementWidth) * ScaleX) - 1) : 0));
-                    for (int column = 0; (column <= columns) && (((row * columns) + column) < Elements.Length); column++, transform[0, 2] += (int)ItemWidth)
+                    transform[0, 2] = (int)((ElementWidth * 0) + (reverseX ? ((swapAxes ? ElementHeight : ElementWidth) - 1) : 0));
+                    for (int column = 0; (column <= columns) && (((row * columns) + column) < Elements.Length); column++, transform[0, 2] += (swapAxes ? (int)ElementHeight : (int)ElementWidth))
                     {
                         GfxElement element = Elements[(row * columns) + column];
                         if (element != null)
@@ -278,6 +279,78 @@ namespace Porno_Graphic.Classes
                 }
             }
         }
+
+        public void DrawIndexedGif(Bitmap bitmap, uint[] mapData, uint mapWidth, uint mapHeight, uint tileWidth, uint tileHeight, uint offset, uint rotate, bool flipX, bool flipY)
+        {
+            
+            int rows = (int)mapHeight;
+            int columns = (int)mapWidth;
+
+            bool swapAxes = (rotate & 1U) != 0U;
+            bool reverseX = flipX != (((rotate + 1U) & 2U) != 0U);
+            bool reverseY = flipY != ((rotate & 2U) != 0U);
+
+            int[,] transform = new int[,] { { swapAxes ? 0 : 1, swapAxes ? 1 : 0, 0 }, { swapAxes ? 1 : 0, swapAxes ? 0 : 1, 0 }, { 0, 0, 1 } };
+            if (reverseX)
+            {
+                transform[0, 0] = -transform[0, 0];
+                transform[0, 1] = -transform[0, 1];
+            }
+            if (reverseY)
+            {
+                transform[1, 0] = -transform[1, 0];
+                transform[1, 1] = -transform[1, 1];
+            }
+
+            transform[1, 2] = (int)(reverseY ? ((swapAxes ? ElementWidth : ElementHeight) - 1) : 0);
+
+            int StrideMultiplier = bitmap.Width;
+            BitmapData bmpData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.WriteOnly, PixelFormat.Format8bppIndexed);
+            IntPtr ptr = bmpData.Scan0;
+            byte[] pixels = new byte[bitmap.Width * bitmap.Height];
+            System.Runtime.InteropServices.Marshal.Copy(ptr, pixels, 0, pixels.Length);
+
+            for (int row = 0; row < rows; row++, transform[1, 2] += (swapAxes ? (int)ElementWidth : (int)ElementHeight))
+            {
+                transform[0, 2] = (int)((ElementWidth * 0) + (reverseX ? ((swapAxes ? ElementHeight : ElementWidth) - 1) : 0));
+                for (int column = 0; column < columns; column++)
+                {
+                    //Rectangle tileDrawArea = new Rectangle(column * (int)(swapAxes ? ElementHeight : ElementWidth), row * (int)(swapAxes ? ElementWidth : ElementHeight),
+                    //    (int)(swapAxes ? ElementHeight : ElementWidth), (int)(swapAxes ? ElementWidth : ElementHeight));
+                    int tileID = (row * columns) + column;
+                    //Point tileTopLeft = new Point(column * (swapAxes ? (int)ElementHeight : (int)ElementWidth), row * (swapAxes ? (int)ElementWidth : (int)ElementHeight));
+
+                    if (tileID == 0)
+                    {
+                        
+                        for (int n = 0; n < pixels.Length; n++)
+                            pixels[n] = 0xFF;
+                        
+                    }
+                    else
+                    {
+                        tileID -= (1 + (int)offset);
+                        GfxElement element = Elements[mapData[(row * columns) + column + offset] - 1];
+                        if (element != null)
+                            element.DrawIndexed(pixels, transform, StrideMultiplier, column * (swapAxes ? (int)ElementHeight : (int)ElementWidth));
+                    }
+                }
+            }
+
+            System.Runtime.InteropServices.Marshal.Copy(pixels, 0, ptr, pixels.Length);
+            bitmap.UnlockBits(bmpData);
+        }
+
+        /*  Transform layout:
+         *       
+         *       0,0    X pixel offset
+         *       0,1    X scale
+         *       0,2    rowstart X
+         *       
+         *       1,0    Y pixel offset
+         *       1,1    Y scale
+         *       1,2    rowstart Y
+         */
 
         protected override void OnBackColorChanged(EventArgs e)
         {

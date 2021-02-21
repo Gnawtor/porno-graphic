@@ -13,6 +13,12 @@ namespace Porno_Graphic.Classes
         public uint ElementHeight { get; set; }
         public GfxElement[] Elements { get; set; }
         public TileImportMetadata ImportMetadata { get; set; }
+        public uint Offset { get {
+                uint offset;
+                if (uint.TryParse(ImportMetadata.Offset, System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.CurrentCulture, out offset))
+                { return offset; }
+                else
+                { return 0; } } }
 
         public void Write(ChunkWriter writer)
         {

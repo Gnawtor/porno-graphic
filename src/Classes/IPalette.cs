@@ -9,5 +9,6 @@ namespace Porno_Graphic.Classes
     {
         Color GetColor(uint pen);
         Brush GetBrush(uint pen);
+        uint GetLength();
     }
 }

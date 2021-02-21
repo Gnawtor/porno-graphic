@@ -451,6 +451,16 @@ namespace Porno_Graphic
 				File.WriteAllBytes(dialog.FileName, data);
 		}
 
+		protected void ShowExportTiledMapSet()
+        {
+			SaveFileDialog dialog = new SaveFileDialog();
+			dialog.Filter = "Tiled map file (*.tmx) | *.tmx | All files(*.*) | *.* ";
+			dialog.FilterIndex = 1;
+			dialog.Title = "Export tileset to Tiled files";
+			if (dialog.ShowDialog() == DialogResult.OK)
+				ExportTilesetFiles(dialog.FileName);
+		}
+
 		/*
 		 * ShowOptionDialog()
 		 * Shows the options dialog.
@@ -753,9 +763,9 @@ namespace Porno_Graphic
 			{
 				Classes.ChunkType CurrentChunk = reader.ReadChunkHeader();
 				if (CurrentChunk != Classes.ChunkType.ProjectHeader)
-					throw new Exception(string.Format("Invalid Porno-Graphic Project file."));
+					throw new Exception(string.Format("Invalid Porno-Graphic project file."));
 				reader.CloseChunk();
-				//reader.StartDecompression();
+				reader.StartDecompression();
 				ProjectData = reader.ReadProjectContents();		// Create decompressed array of the project data
 			}
 
@@ -858,29 +868,29 @@ namespace Porno_Graphic
 				reader.CloseChunk();
 			}
 
-			// DEBUG
-			MessageBox.Show("PROJECT INFO" + Environment.NewLine
-				+ Environment.NewLine
-				+ "Project length = " + ProjectLength.ToString() + Environment.NewLine
-				+ Environment.NewLine
-				+ "GfxElementSetInfo_ElementWidth = " + GfxElementSetInfo_ElementWidth.ToString() + Environment.NewLine
-				+ "GfxElementSetInfo_ElementHeight = " + GfxElementSetInfo_ElementHeight.ToString() + Environment.NewLine
-				+ "GfxElementSetInfo_Name = " + GfxElementSetInfo_Name + Environment.NewLine
-				+ Environment.NewLine
-				+ "Total number of tiles = " + PixelsList.Count.ToString() + Environment.NewLine
-				+ Environment.NewLine
-				+ "TileImportMetadata_ProfileFile = " + TileImportMetadata_ProfileFile + Environment.NewLine
-				+ "TileImportMetadata_ProfileName = " +	TileImportMetadata_ProfileName + Environment.NewLine
-				+ "TileImportMetadata_RegionName = " + TileImportMetadata_RegionName + Environment.NewLine
-				+ "TileImportMetadata_LayoutName = " + TileImportMetadata_LayoutName + Environment.NewLine
-				+ "TileImportMetadata_Offset = " + TileImportMetadata_Offset + Environment.NewLine
-				+ "TileImportMetadata_Planes = " + TileImportMetadata_Planes); ;
-			// END DEBUG
+            // DEBUG
+            //MessageBox.Show("PROJECT INFO" + Environment.NewLine
+            //    + Environment.NewLine
+            //    + "Project length = " + ProjectLength.ToString() + Environment.NewLine
+            //    + Environment.NewLine
+            //    + "GfxElementSetInfo_ElementWidth = " + GfxElementSetInfo_ElementWidth.ToString() + Environment.NewLine
+            //    + "GfxElementSetInfo_ElementHeight = " + GfxElementSetInfo_ElementHeight.ToString() + Environment.NewLine
+            //    + "GfxElementSetInfo_Name = " + GfxElementSetInfo_Name + Environment.NewLine
+            //    + Environment.NewLine
+            //    + "Total number of tiles = " + PixelsList.Count.ToString() + Environment.NewLine
+            //    + Environment.NewLine
+            //    + "TileImportMetadata_ProfileFile = " + TileImportMetadata_ProfileFile + Environment.NewLine
+            //    + "TileImportMetadata_ProfileName = " + TileImportMetadata_ProfileName + Environment.NewLine
+            //    + "TileImportMetadata_RegionName = " + TileImportMetadata_RegionName + Environment.NewLine
+            //    + "TileImportMetadata_LayoutName = " + TileImportMetadata_LayoutName + Environment.NewLine
+            //    + "TileImportMetadata_Offset = " + TileImportMetadata_Offset + Environment.NewLine
+            //    + "TileImportMetadata_Planes = " + TileImportMetadata_Planes); ;
+            // END DEBUG
 
 
-			// Begin assembling project
+            // Begin assembling project
 
-			Classes.GfxElement[] elements = new Classes.GfxElement[PixelsList.Count];
+            Classes.GfxElement[] elements = new Classes.GfxElement[PixelsList.Count];
 			Parallel.For(0, PixelsList.Count, index => { elements[index] = new Classes.GfxElement(PixelsList[index], ElementWidths[index], ElementHeights[index]); });
 
 			Classes.TileImportMetadata metadata = new Classes.TileImportMetadata();
@@ -905,24 +915,157 @@ namespace Porno_Graphic
 			else
 				throw new Exception("Invalid 'Planes' value in TileImportMetadata");			
 		}
-		public void SaveBitmap(string path, int TilesPerRow)
+		public void ExportTilesetFiles(string path)
 		{
+			string FileName = Path.ChangeExtension(path, null);
+			string Name = Path.GetFileNameWithoutExtension(path);
+
+			// write tileset PNG
 			long ElementWidth = mActiveProject.TileViewer.ElementWidth;
 			long ElementHeight = mActiveProject.TileViewer.ElementHeight;
-			long ElementsLength = mActiveProject.TileViewer.Elements.Length;
-
-
-
-			long BitmapHeight = ElementHeight * (ElementsLength / TilesPerRow);
-			long BitmapWidth = ElementWidth * TilesPerRow;
-
-			if (ElementsLength % TilesPerRow != 0)
+			long ElementsCount = mActiveProject.TileViewer.Elements.Length;
+			if (mActiveProject.TileViewer.SwapAxes)		// swap gfxelement width and height if rotated 90 or 270 degrees
+            {
+				long ElementWidthTemp = ElementWidth;
+				ElementWidth = ElementHeight;
+				ElementHeight = ElementWidthTemp;
+            }
+			long ColumnCount = mActiveProject.TileViewer.ColumnCount;
+			long RowCount = ElementsCount / ColumnCount;
+			long BitmapHeight = ElementHeight * RowCount;
+			long BitmapWidth = ElementWidth * ColumnCount;
+			if (ElementsCount % ColumnCount != 0)   // pad image height for remaining tiles that don't fill an entire row
+            {
 				BitmapHeight += ElementHeight;
+				RowCount++;
+			}
+			Bitmap bitmap = new Bitmap((int)BitmapWidth, (int)BitmapHeight, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+			Graphics graphics = Graphics.FromImage(bitmap);
+			mActiveProject.TileViewer.DrawExportTileset(graphics, ElementsCount, RowCount, ColumnCount);
+			bitmap.Save(FileName + ".png", System.Drawing.Imaging.ImageFormat.Png);
 
-			Bitmap bitmap = new Bitmap((int)BitmapWidth, (int)BitmapHeight);
-			Graphics gfx = Graphics.FromImage(bitmap);
+			//<tileset name="!{tileset_name}" tilewidth="!{tilewidth}" tileheight="!{tileheight}" 
+			//tilecount="!{tilecount}" columns="!{columns}" offset="!{offset}" flipx="!{flipx}" flipy="!{flipy}" rotate="!{rotate}">
 
+			// write Tiled tileset file
+			String template = File.ReadAllText("tiled_tileset_template.txt");
+			template = template.Replace("!{tileset_name}", Name);
+			template = template.Replace("!{tileset_image}", Name + ".png");
+			template = template.Replace("!{tilewidth}", ElementWidth.ToString());
+			template = template.Replace("!{tileheight}", ElementHeight.ToString());
+			template = template.Replace("!{tilecount}", ElementsCount.ToString());
+			template = template.Replace("!{columns}", ColumnCount.ToString());
+			template = template.Replace("!{offset}", mActiveProject.Project.Offset.ToString());
+			template = template.Replace("!{flipx}", mActiveProject.TileViewer.FlipX ? "1" : "0");
+			template = template.Replace("!{flipy}", mActiveProject.TileViewer.FlipY ? "1" : "0");
+			template = template.Replace("!{rotate}", mActiveProject.TileViewer.Rotate.ToString());
+			File.WriteAllText(FileName + ".tsx", template);
 
+			// write Tiled tilemap file
+			template = File.ReadAllText("tiled_tilemap_template.txt");
+			//template = template.Replace("!{tilemapwidth}", "64");
+			//template = template.Replace("!{tilemapheight}", "64");
+			template = template.Replace("!{tilewidth}", ElementWidth.ToString());
+			template = template.Replace("!{tileheight}", ElementHeight.ToString());
+			template = template.Replace("!{tileset}", Name + ".tsx");
+			File.WriteAllText(FileName + ".tmx", template);
+		}
+
+		private void ConvertMapToGif(string Path)
+        {
+
+        }
+
+        private void menuItem_ExportToTilEdMap_Click(object sender, EventArgs e)
+        {
+			if (mActiveProject != null)
+			ShowExportTiledMapSet();
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+			OpenFileDialog openTiledMapDialog = new OpenFileDialog();
+			openTiledMapDialog.Title = "Open Tiled Map";
+			openTiledMapDialog.Filter = "Tiled map file (*.tmx)|*.tmx|All files(*.*)|*.*";
+			openTiledMapDialog.FilterIndex = 1;
+			openTiledMapDialog.Multiselect = false;
+			if (openTiledMapDialog.ShowDialog() != DialogResult.OK)
+				return;
+
+			StreamReader reader = null;
+			Classes.TiledMapReader Map = null;
+			try
+			{
+				reader = new StreamReader(openTiledMapDialog.FileName);
+				XmlSerializer MapLoader = new XmlSerializer(typeof(Classes.TiledMapReader));
+				Map = (Classes.TiledMapReader)MapLoader.Deserialize(reader);
+			}
+			catch
+			{
+			}
+			finally
+			{
+				if (reader != null)
+					reader.Close();
+			}
+
+			if (Map == null)
+			{
+				// TODO more meaningful error message
+				MessageBox.Show("Map is null", "ERROR");
+				return;
+			}
+
+			/*
+			//DEBUG
+			MessageBox.Show(
+				"Height: " + Map.mapHeight + Environment.NewLine + 
+				"Width: " + Map.mapWidth + Environment.NewLine +
+				"Tileset: " + Map.TilesetFilename + Environment.NewLine +
+				"Map data: " + Map.MapDataRawString, 
+				"Map Info");
+			//END DEBUG
+			*/
+
+			string TilesetPath = Path.GetDirectoryName(openTiledMapDialog.FileName) + "\\" + Map.TilesetFilename;
+
+			//MessageBox.Show(TilesetPath);
+
+			reader = null;
+			Classes.TiledTilesetReader Tileset = null;
+			try
+			{
+				reader = new StreamReader(TilesetPath);
+				XmlSerializer TilesetLoader = new XmlSerializer(typeof(Classes.TiledTilesetReader));
+				Tileset = (Classes.TiledTilesetReader)TilesetLoader.Deserialize(reader);
+			}
+			catch
+			{
+			}
+			finally
+			{
+				if (reader != null)
+					reader.Close();
+			}
+
+			if (Tileset == null)
+			{
+				// TODO more meaningful error message
+				MessageBox.Show("Tileset is null", "ERROR");
+				return;
+			}
+
+			Classes.TiledImportData tiledImportData = new Classes.TiledImportData(mActiveProject.TileViewer, Map, Tileset);
+
+			Classes.GifWriter gifWriter = new Classes.GifWriter(tiledImportData);
+
+			SaveFileDialog exportGifDialog = new SaveFileDialog();
+			exportGifDialog.Title = "Export Tile Arrangement to indexed GIF";
+			exportGifDialog.Filter = "CompuServe Graphics Interchange (*.gif)|*.gif|All files(*.*)|*.*";
+			exportGifDialog.FilterIndex = 1;
+			if (exportGifDialog.ShowDialog() != DialogResult.OK)
+				return;
+			gifWriter.DrawIndexedGif(exportGifDialog.FileName);
 		}
 	}
 }

@@ -118,35 +118,56 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="AboutPicture" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AboutPicture.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Color_eyedropper" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tools\Color_eyedropper.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Color_fill" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tools\Color_fill.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mainbar\Copy.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Cut" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mainbar\Cut.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mainbar\Delete.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="rect_line" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tools\rect_line.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Edit_Redo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Edit_Redo.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-    <comment>Redo icon</comment>
+  <data name="MainForm_GameProfileFileFilter" xml:space="preserve">
+    <value>Game Profiles (.profile)|*.profile|All Files (*.*)|*.*</value>
   </data>
-  <data name="Edit_Undo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Edit_Undo.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-    <comment>Undo icon</comment>
+  <data name="TileImporter_ErrorMessage_ReadPastFileEnd" xml:space="preserve">
+    <value>Error loading file {0}: tried to read 0x{2:x} bytes to load at offset 0x{1:x} but only got 0x{3:x} bytes. Please check that the files match the region/locations and are large enough.</value>
   </data>
-  <data name="kyoling" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\kyoling.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-    <comment>a kyoling, used as the About menu item</comment>
+  <data name="AboutPicture" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AboutPicture.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TileImporter_ErrorTitle_FileTooSmall" xml:space="preserve">
+    <value>File too small for offset/count</value>
+  </data>
+  <data name="FlipVertical" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tile_editor\FlipVertical.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\menu\Exit.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MainForm_ConfirmTitle_CloseWithoutSave" xml:space="preserve">
+    <value>Save Before Closing</value>
+  </data>
+  <data name="TileImporter_OpenDataFileTitle" xml:space="preserve">
+    <value>Select {0} file</value>
+  </data>
+  <data name="TileImporter_ErrorReadingFile" xml:space="preserve">
+    <value>Error reading file</value>
+  </data>
+  <data name="NudgeRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tile_editor\NudgeRight.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RefreshDocView" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mainbar\RefreshDocView.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NewDocument" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mainbar\NewDocument.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rect_strokefill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tools\rect_strokefill.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TileImporter_ErrorTitle_FillBeyondRegionEnd" xml:space="preserve">
+    <value>Error: fill beyond end of region</value>
+  </data>
+  <data name="Copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mainbar\Copy.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="kyoling_ico" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -219,23 +240,131 @@
         rEGAAKxBgACsQYAArEGAAKxBgACsQYAArEGAAKxBgACsQcABrEHgA6xB
 </value>
   </data>
-  <data name="NewDocument" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mainbar\NewDocument.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="circle_fill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tools\circle_fill.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="OpenFolder" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mainbar\OpenFolder.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="TileImporter_FlatFileDisplayName" xml:space="preserve">
+    <value>data</value>
+  </data>
+  <data name="NudgeLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tile_editor\NudgeLeft.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ChooseColor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\menu\ChooseColor.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MainForm_ImportProjectFormat" xml:space="preserve">
+    <value>Import {0}</value>
+  </data>
+  <data name="Color_eyedropper" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tools\Color_eyedropper.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rotate_clockwise" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tile_editor\rotate_clockwise.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TileImporter_PopulatedTitle" xml:space="preserve">
+    <value>Import Tiles: {0}</value>
+  </data>
+  <data name="NudgeUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tile_editor\NudgeUp.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="selection" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tools\selection.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TileImporter_ErrorMessage_LoadBeyondRegionEnd" xml:space="preserve">
+    <value>Error loading region {0}: attempt to load from file {3} to offset 0x{2:x} which is beyond region length 0x{1:x}. Please check the load instructions in the selected profile.</value>
+  </data>
+  <data name="TileImporter_ErrorMessage_FillBeyondRegionEnd" xml:space="preserve">
+    <value>Error loading region {0}: attempt to fill offset 0x{2:x} which is beyond region length 0x{1:x} with value 0x{3:x2}. Please check the fill instructions in the selected profile.</value>
+  </data>
+  <data name="circle_strokefill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tools\circle_strokefill.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TileImporter_ErrorMessage_FileTooSmall" xml:space="preserve">
+    <value>File is too small to load {0} element(s) from offset {1} (can only load {3} element(s) from offset {1} of 0x{2:x}-byte file using selected layout).</value>
+  </data>
+  <data name="Options" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mainbar\Options.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Linetool" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tools\Linetool.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MainForm_ConfirmMessage_CloseWithoutSave" xml:space="preserve">
+    <value>Do you want to save “{0}” before closing?</value>
+  </data>
+  <data name="MainForm_ProjectFileFilter" xml:space="preserve">
+    <value>Porno-Graphic Projects (*.porn)|*.porn|All Files (*.*)|*.*</value>
   </data>
   <data name="Paste" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mainbar\Paste.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ShowGridlines2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mainbar\ShowGridlines2.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TileImporter_ErrorTitle_LoadBeyondRegionEnd" xml:space="preserve">
+    <value>Error: load beyond end of region</value>
+  </data>
+  <data name="TileImporter_LayoutDisplayFormat" xml:space="preserve">
+    <value>{0} ({1}×{2}×{3})</value>
+  </data>
   <data name="Pointer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tools\Pointer.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Edit_Undo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Edit_Undo.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <comment>Undo icon</comment>
+  </data>
+  <data name="Delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mainbar\Delete.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NudgeDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tile_editor\NudgeDown.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rotate_counterclockwise" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tile_editor\rotate_counterclockwise.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="circle_line" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tools\circle_line.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Edit_Redo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Edit_Redo.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <comment>Redo icon</comment>
+  </data>
+  <data name="Color_fill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tools\Color_fill.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TileImporter_ErrorTitle_RegionTooSmall" xml:space="preserve">
+    <value>Region too small for offset/count</value>
+  </data>
+  <data name="TileImporter_ErrorTitle_ReadPastFileEnd" xml:space="preserve">
+    <value>Error: read past end of file</value>
   </data>
   <data name="Save" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mainbar\Save.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ShowGridlines2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mainbar\ShowGridlines2.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="TileImporter_UnpopulatedTitle" xml:space="preserve">
+    <value>Import Tiles</value>
+  </data>
+  <data name="TileImporter_RegionDisplayFormat" xml:space="preserve">
+    <value>{0} (0x{1:x} bytes)</value>
+  </data>
+  <data name="FlipHorizontal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tile_editor\FlipHorizontal.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kyoling" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kyoling.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <comment>a kyoling, used as the About menu item</comment>
+  </data>
+  <data name="TileImporter_ErrorMessage_RegionTooSmall" xml:space="preserve">
+    <value>Region {0} is too small to load {2} element(s) from offset {3} (can only load {4} element(s) from offset {3} of 0x{1:x}-byte region using selected layout).</value>
+  </data>
+  <data name="OpenFolder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mainbar\OpenFolder.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MainForm_SaveProjectTitleFormat" xml:space="preserve">
+    <value>Save “{0}” As</value>
+  </data>
+  <data name="TileImporter_OpenDataFileFilter" xml:space="preserve">
+    <value>All Files (*.*)|*.*</value>
   </data>
   <data name="Document" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -634,136 +763,10 @@
         0f/AAM//wADP/8AAzf/AAMv/wADK/8AAyP/AAMb/wADF/8APw/8=
 </value>
   </data>
-  <data name="Exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\menu\Exit.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Linetool" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tools\Linetool.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="FlipHorizontal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tile_editor\FlipHorizontal.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="FlipVertical" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tile_editor\FlipVertical.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="NudgeDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tile_editor\NudgeDown.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="NudgeLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tile_editor\NudgeLeft.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="NudgeRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tile_editor\NudgeRight.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="NudgeUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tile_editor\NudgeUp.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="circle_fill" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tools\circle_fill.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="circle_line" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tools\circle_line.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="circle_strokefill" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tools\circle_strokefill.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="rect_fill" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tools\rect_fill.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="rect_line" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tools\rect_line.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="rect_strokefill" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tools\rect_strokefill.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="RefreshDocView" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mainbar\RefreshDocView.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="rotate_clockwise" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tile_editor\rotate_clockwise.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="rotate_counterclockwise" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tile_editor\rotate_counterclockwise.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Options" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mainbar\Options.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="selection" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tools\selection.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ChooseColor" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\menu\ChooseColor.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="TileImporter_ErrorReadingFile" xml:space="preserve">
-    <value>Error reading file</value>
-  </data>
-  <data name="TileImporter_ErrorMessage_FileTooSmall" xml:space="preserve">
-    <value>File is too small to load {0} element(s) from offset {1} (can only load {3} element(s) from offset {1} of 0x{2:x}-byte file using selected layout).</value>
-  </data>
-  <data name="TileImporter_ErrorMessage_FillBeyondRegionEnd" xml:space="preserve">
-    <value>Error loading region {0}: attempt to fill offset 0x{2:x} which is beyond region length 0x{1:x} with value 0x{3:x2}. Please check the fill instructions in the selected profile.</value>
-  </data>
-  <data name="TileImporter_ErrorMessage_LoadBeyondRegionEnd" xml:space="preserve">
-    <value>Error loading region {0}: attempt to load from file {3} to offset 0x{2:x} which is beyond region length 0x{1:x}. Please check the load instructions in the selected profile.</value>
-  </data>
-  <data name="TileImporter_ErrorMessage_ReadPastFileEnd" xml:space="preserve">
-    <value>Error loading file {0}: tried to read 0x{2:x} bytes to load at offset 0x{1:x} but only got 0x{3:x} bytes. Please check that the files match the region/locations and are large enough.</value>
-  </data>
-  <data name="TileImporter_ErrorTitle_FillBeyondRegionEnd" xml:space="preserve">
-    <value>Error: fill beyond end of region</value>
-  </data>
-  <data name="TileImporter_ErrorTitle_LoadBeyondRegionEnd" xml:space="preserve">
-    <value>Error: load beyond end of region</value>
-  </data>
-  <data name="TileImporter_ErrorTitle_ReadPastFileEnd" xml:space="preserve">
-    <value>Error: read past end of file</value>
-  </data>
-  <data name="TileImporter_UnpopulatedTitle" xml:space="preserve">
-    <value>Import Tiles</value>
-  </data>
-  <data name="TileImporter_PopulatedTitle" xml:space="preserve">
-    <value>Import Tiles: {0}</value>
-  </data>
-  <data name="TileImporter_ErrorMessage_RegionTooSmall" xml:space="preserve">
-    <value>Region {0} is too small to load {2} element(s) from offset {3} (can only load {4} element(s) from offset {3} of 0x{1:x}-byte region using selected layout).</value>
-  </data>
-  <data name="TileImporter_ErrorTitle_FileTooSmall" xml:space="preserve">
-    <value>File too small for offset/count</value>
-  </data>
-  <data name="TileImporter_ErrorTitle_RegionTooSmall" xml:space="preserve">
-    <value>Region too small for offset/count</value>
-  </data>
-  <data name="TileImporter_FlatFileDisplayName" xml:space="preserve">
-    <value>data</value>
-  </data>
-  <data name="TileImporter_LayoutDisplayFormat" xml:space="preserve">
-    <value>{0} ({1}×{2}×{3})</value>
-  </data>
-  <data name="TileImporter_OpenDataFileFilter" xml:space="preserve">
-    <value>All Files (*.*)|*.*</value>
-  </data>
-  <data name="TileImporter_OpenDataFileTitle" xml:space="preserve">
-    <value>Select {0} file</value>
-  </data>
-  <data name="TileImporter_RegionDisplayFormat" xml:space="preserve">
-    <value>{0} (0x{1:x} bytes)</value>
-  </data>
-  <data name="MainForm_ConfirmMessage_CloseWithoutSave" xml:space="preserve">
-    <value>Do you want to save “{0}” before closing?</value>
-  </data>
-  <data name="MainForm_ConfirmTitle_CloseWithoutSave" xml:space="preserve">
-    <value>Save Before Closing</value>
-  </data>
-  <data name="MainForm_GameProfileFileFilter" xml:space="preserve">
-    <value>Game Profiles (.profile)|*.profile|All Files (*.*)|*.*</value>
-  </data>
-  <data name="MainForm_ImportProjectFormat" xml:space="preserve">
-    <value>Import {0}</value>
-  </data>
-  <data name="MainForm_ProjectFileFilter" xml:space="preserve">
-    <value>Porno-Graphic Projects (*.porn)|*.porn|All Files (*.*)|*.*</value>
-  </data>
-  <data name="MainForm_SaveProjectTitleFormat" xml:space="preserve">
-    <value>Save “{0}” As</value>
+  <data name="AboutPictureDuck" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AboutPictureDuck.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -17,6 +17,7 @@ namespace Porno_Graphic.Classes
         public string DisplayName { get { return mDisplayName; } }
         public bool Dirty { get { return mDirty; } }
         public string FilePath { get { return mFilePath; } }
+        public uint Offset { get { return mGfxSet.Offset; } }
 
         public Project(string displayName, GfxElementSet gfxSet)
         {
@@ -37,7 +38,7 @@ namespace Porno_Graphic.Classes
             {
                 writer.OpenChunk(ChunkType.ProjectHeader, 0U);  // Write project header
                 writer.CloseChunk();
-                //writer.StartCompression();
+                writer.StartCompression();
                 if ((mGfxSet != null) && ((mGfxSet.Elements != null) || (mGfxSet.ImportMetadata != null)))  // Write everything else in this project
                     mGfxSet.Write(writer);
             }
@@ -45,7 +46,5 @@ namespace Porno_Graphic.Classes
             mFilePath = path;
             mDisplayName = Path.GetFileName(path);
         }
-
-        
     }
 }
