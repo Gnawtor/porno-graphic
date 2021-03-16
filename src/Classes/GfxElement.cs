@@ -67,7 +67,8 @@ namespace Porno_Graphic.Classes
                     {
                         uint bitOffset = pixOffset + layout.PlaneOffset(data, plane);
                         uint byteOffset = bitOffset / 8;
-                        byte mask = (byte)(0x0080U >> (int)(7 - (bitOffset % 8)));
+                        //byte mask = (byte)(0x0080U >> (int)(7 - (bitOffset % 8)));
+                        byte mask = (byte)(0x0080U >> (int)(bitOffset % 8));
                         if ((Pixels[x + (Width * y)] & planeBit) != 0)
                             data[byteOffset] |= mask;
                         else
