@@ -82,5 +82,10 @@ namespace Porno_Graphic
         {
             tileGrid.DrawIndexedGif(bitmap, mapData, mapWidth, mapHeight, tileWidth, tileHeight, offset, rotate, flipX, flipY);
         }
+
+        public void RedrawElementView()
+        {
+            tileGrid.Invalidate();
+        }
     }
 }

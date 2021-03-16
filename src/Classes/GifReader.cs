@@ -85,6 +85,7 @@ namespace Porno_Graphic.Classes
                 transform[1, 1] = -transform[1, 1];
             }
 
+            transform[0, 2] = (int)(reverseX ? (swapAxes ? tileHeight : tileWidth) : 0); // hopefully fixes import rotated tiles offset error
             transform[1, 2] = (int)(reverseY ? (swapAxes ? tileWidth : tileHeight) : 0);
 
             foreach (TileInfo tile in tileBuffer)

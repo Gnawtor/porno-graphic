@@ -18,6 +18,7 @@ namespace Porno_Graphic.Classes
         public bool Dirty { get { return mDirty; } }
         public string FilePath { get { return mFilePath; } }
         public uint Offset { get { return mGfxSet.Offset; } }
+        public TileImportMetadata ImportMetadata { get { return mGfxSet.ImportMetadata; } }
 
         public Project(string displayName, GfxElementSet gfxSet)
         {

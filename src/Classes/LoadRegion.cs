@@ -302,8 +302,8 @@ namespace Porno_Graphic.Classes
             byte[] buffer = null;
             for (int i = 0; i < Files.Length; i++)
             {
-                File file = Files[i];
-                FileStream stream = new FileStream(paths[i], FileMode.Open, FileAccess.Read);
+                File file = Files[i];   // file names defined in the profile
+                FileStream stream = new FileStream(paths[i], FileMode.Open, FileAccess.Read); 
                 try
                 {
                     uint maxSize = 0;

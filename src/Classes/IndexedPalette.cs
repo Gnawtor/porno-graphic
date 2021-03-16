@@ -48,18 +48,28 @@ namespace Porno_Graphic.Classes
             }
         }
 
+        public uint ColorCount
+        {
+            get
+            {
+                return (uint)mColors.Length;
+            }
+            
+        }
+
         public override Color GetColor(uint pen)
         {
             return mColors[pen % Colors.Length];
         }
 
+        public override uint GetColorCount()
+        {
+            return (uint)mColors.Length;
+        }
+
         protected override uint GetEffectivePen(uint pen)
         {
             return (uint)(pen % Colors.Length);
-        }
-        public uint GetLength()
-        {
-            return (uint)mColors.Length;
         }
     }
 }

@@ -73,6 +73,7 @@
     <Compile Include="Classes\GameProfile.cs" />
     <Compile Include="Classes\GfxElement.cs" />
     <Compile Include="Classes\GfxElementSet.cs" />
+    <Compile Include="Classes\GifReader.cs" />
     <Compile Include="Classes\GifWriter.cs" />
     <Compile Include="Classes\IndexedPalette.cs" />
     <Compile Include="Classes\IPalette.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Classes\Project.cs" />
     <Compile Include="Classes\SolidPalette.cs" />
     <Compile Include="Classes\TiledImportData.cs" />
+    <Compile Include="Classes\TiledLoader.cs" />
     <Compile Include="Classes\TiledTilesetReader.cs" />
     <Compile Include="Classes\TileImportMetadata.cs" />
     <Compile Include="Classes\TiledMapReader.cs" />

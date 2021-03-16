@@ -28,11 +28,13 @@ namespace Porno_Graphic
                 mProfile = value;
                 mProfilePath = null;
 
+                // Set title of form
                 if (mProfile != null)
                     Text = string.Format(Porno_Graphic.Properties.Resources.TileImporter_PopulatedTitle, mProfile.Name);
                 else
                     Text = Porno_Graphic.Properties.Resources.TileImporter_UnpopulatedTitle;
 
+                //Populate region combobox
                 while (regionBox.Items.Count > 1)
                     regionBox.Items.RemoveAt(regionBox.Items.Count - 1);
                 if ((mProfile != null) && (mProfile.LoadRegions != null))
@@ -48,6 +50,7 @@ namespace Porno_Graphic
                 }
                 regionBox.SelectedIndex = 0;
 
+                // Populate char layout combobox
                 layoutBox.Items.Clear();
                 if (mProfile != null)
                 {
@@ -132,9 +135,9 @@ namespace Porno_Graphic
             uint count;
             try
             {
-                if (regionBox.SelectedIndex == 0)
+                if (regionBox.SelectedIndex == 0)   // "Flat file" selected
                 {
-                    data = File.ReadAllBytes((string)fileGrid.Rows[0].Cells[3].Value);
+                    data = File.ReadAllBytes((string)fileGrid.Rows[0].Cells[3].Value);  // Only one file to open.
                     count = countButton.Checked ? ParseNumber(countBox.Text) : (uint)(8U * data.Length / layout.Stride * fracNumUpDown.Value / fracDenUpDown.Value);
                     uint max = layout.MaxElements((uint)data.Length, offset);
                     if (max < count)
@@ -151,7 +154,7 @@ namespace Porno_Graphic
                         return;
                     }
                 }
-                else
+                else // Load from multiple ROMs
                 {
                     Classes.LoadRegion region = Profile.LoadRegions[regionBox.SelectedIndex - 1];
                     count = countButton.Checked ? ParseNumber(countBox.Text) : (uint)(8U * region.Length / layout.Stride * fracNumUpDown.Value / fracDenUpDown.Value);
@@ -223,12 +226,23 @@ namespace Porno_Graphic
 
             Classes.TileImportMetadata metadata = new Classes.TileImportMetadata();
             if (mProfilePath != null)
-                metadata.ProfileFile = Path.GetFileName(mProfilePath);
+                metadata.ProfileFile = mProfilePath;
+            //metadata.ProfileFile = Path.GetFileName(mProfilePath);
             metadata.ProfileName = mProfile.Name;
-            metadata.RegionName = (string)regionBox.SelectedItem;
-            metadata.LayoutName = (string)layoutBox.SelectedItem;
+            //metadata.RegionName = (string)regionBox.SelectedItem;
+            //metadata.LayoutName = (string)layoutBox.SelectedItem;
+            if ((regionBox.SelectedIndex - 1) < 0)
+                metadata.RegionName = (string)regionBox.SelectedItem;
+            else
+                metadata.RegionName = mProfile.LoadRegions[regionBox.SelectedIndex - 1].Name;
+            metadata.LayoutName = mProfile.CharLayouts[layoutBox.SelectedIndex].Name;
             metadata.Offset = offsetBox.Text;
             metadata.Planes = layout.Planes.ToString();
+
+            string[] romPaths = new string[fileGrid.Rows.Count];
+            for (int i = 0; i < romPaths.Length; i++)
+                romPaths[i] = (string)fileGrid.Rows[i].Cells[3].Value;
+            metadata.RomFilenames = romPaths;
             Classes.GfxElementSet elementSet = new Classes.GfxElementSet();
             elementSet.Name = "TestName";
             elementSet.ElementWidth = layout.Width;

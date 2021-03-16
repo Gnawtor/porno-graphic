@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace Porno_Graphic.Classes
 {
-    class TiledImportData
+    public class TiledImportData
     {
         public TileViewer mTileViewer { get; private set; }
 		public TiledMapReader mMap { get; private set; }

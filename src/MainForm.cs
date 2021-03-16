@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -731,6 +732,10 @@ namespace Porno_Graphic
         private void fileToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
             menuItem_File_Save.Enabled = mActiveProject != null;
+			menuItem_ExportToTilEdMap.Enabled = mActiveProject != null;
+			menuItemApplyTmx.Enabled = mActiveProject != null;
+			MenuItemConvertTmxToGif.Enabled = mActiveProject != null;
+			MenuItemSaveGraphicsData.Enabled = mActiveProject != null;
             //menuItem_File_SaveAs.Enabled = mActiveProject != null;
             //menuItem_File_Reload.Enabled = (mActiveProject != null) && (mActiveProject.Project.FilePath != null);
         }
@@ -795,6 +800,7 @@ namespace Porno_Graphic
 			string TileImportMetadata_LayoutName;
 			string TileImportMetadata_Offset;
 			string TileImportMetadata_Planes;
+			string[] TileImportMetadata_RomFilenames;
 		
 			using (reader)
             {
@@ -865,6 +871,16 @@ namespace Porno_Graphic
 				TileImportMetadata_Offset = reader.ReadString();
 				TileImportMetadata_Planes = reader.ReadString();
 
+				// Read RomFilenames
+
+				uint RomFilenamesCount = reader.ReadUint();
+				TileImportMetadata_RomFilenames = new string[RomFilenamesCount];
+
+				for (int n = 0; n < RomFilenamesCount; n++)
+                {
+					TileImportMetadata_RomFilenames[n] = reader.ReadString();
+                }
+
 				reader.CloseChunk();
 			}
 
@@ -900,6 +916,7 @@ namespace Porno_Graphic
 			metadata.LayoutName = TileImportMetadata_LayoutName;
 			metadata.Offset = TileImportMetadata_Offset;
 			metadata.Planes = TileImportMetadata_Planes;
+			metadata.RomFilenames = TileImportMetadata_RomFilenames;
 
 			uint planes;
 			if (uint.TryParse(TileImportMetadata_Planes, out planes))
@@ -992,71 +1009,8 @@ namespace Porno_Graphic
 			if (openTiledMapDialog.ShowDialog() != DialogResult.OK)
 				return;
 
-			StreamReader reader = null;
-			Classes.TiledMapReader Map = null;
-			try
-			{
-				reader = new StreamReader(openTiledMapDialog.FileName);
-				XmlSerializer MapLoader = new XmlSerializer(typeof(Classes.TiledMapReader));
-				Map = (Classes.TiledMapReader)MapLoader.Deserialize(reader);
-			}
-			catch
-			{
-			}
-			finally
-			{
-				if (reader != null)
-					reader.Close();
-			}
-
-			if (Map == null)
-			{
-				// TODO more meaningful error message
-				MessageBox.Show("Map is null", "ERROR");
-				return;
-			}
-
-			/*
-			//DEBUG
-			MessageBox.Show(
-				"Height: " + Map.mapHeight + Environment.NewLine + 
-				"Width: " + Map.mapWidth + Environment.NewLine +
-				"Tileset: " + Map.TilesetFilename + Environment.NewLine +
-				"Map data: " + Map.MapDataRawString, 
-				"Map Info");
-			//END DEBUG
-			*/
-
-			string TilesetPath = Path.GetDirectoryName(openTiledMapDialog.FileName) + "\\" + Map.TilesetFilename;
-
-			//MessageBox.Show(TilesetPath);
-
-			reader = null;
-			Classes.TiledTilesetReader Tileset = null;
-			try
-			{
-				reader = new StreamReader(TilesetPath);
-				XmlSerializer TilesetLoader = new XmlSerializer(typeof(Classes.TiledTilesetReader));
-				Tileset = (Classes.TiledTilesetReader)TilesetLoader.Deserialize(reader);
-			}
-			catch
-			{
-			}
-			finally
-			{
-				if (reader != null)
-					reader.Close();
-			}
-
-			if (Tileset == null)
-			{
-				// TODO more meaningful error message
-				MessageBox.Show("Tileset is null", "ERROR");
-				return;
-			}
-
-			Classes.TiledImportData tiledImportData = new Classes.TiledImportData(mActiveProject.TileViewer, Map, Tileset);
-
+			Classes.TiledLoader tiledLoader = new Classes.TiledLoader(openTiledMapDialog.FileName);
+			Classes.TiledImportData tiledImportData = new Classes.TiledImportData(mActiveProject.TileViewer, tiledLoader.Map, tiledLoader.Tileset);
 			Classes.GifWriter gifWriter = new Classes.GifWriter(tiledImportData);
 
 			SaveFileDialog exportGifDialog = new SaveFileDialog();
@@ -1067,5 +1021,99 @@ namespace Porno_Graphic
 				return;
 			gifWriter.DrawIndexedGif(exportGifDialog.FileName);
 		}
-	}
+
+        private void menuItemApplyTmx_Click(object sender, EventArgs e)
+        {
+			OpenFileDialog openTiledMapDialog = new OpenFileDialog();
+			openTiledMapDialog.Title = "Open Tiled Map";
+			openTiledMapDialog.Filter = "Tiled map file (*.tmx)|*.tmx|All files(*.*)|*.*";
+			openTiledMapDialog.FilterIndex = 1;
+			openTiledMapDialog.Multiselect = false;
+			if (openTiledMapDialog.ShowDialog() != DialogResult.OK)
+				return;
+
+			Classes.TiledLoader tiledLoader = new Classes.TiledLoader(openTiledMapDialog.FileName);
+			Classes.TiledImportData tiledImportData = new Classes.TiledImportData(mActiveProject.TileViewer, tiledLoader.Map, tiledLoader.Tileset);
+
+			OpenFileDialog openIndexedGifDialog = new OpenFileDialog();
+			openIndexedGifDialog.Title = "Open Indexed GIF";
+			openIndexedGifDialog.Filter = "CompuServe Graphics Interchange (*.gif)|*.gif|All files(*.*)|*.*";
+			openIndexedGifDialog.FilterIndex = 1;
+			openIndexedGifDialog.Multiselect = false;
+			if (openIndexedGifDialog.ShowDialog() != DialogResult.OK)
+				return;
+
+			Classes.GifReader gifReader = new Classes.GifReader(openIndexedGifDialog.FileName, tiledImportData);
+		}
+
+        private void MenuItemSaveFlatFile_Click(object sender, EventArgs e)
+        {
+			byte[] data = null;
+
+			StreamReader reader = null;
+			Classes.GameProfile profile = null;
+			try
+			{
+				reader = new StreamReader(mActiveProject.Project.ImportMetadata.ProfileFile);
+				XmlSerializer profileLoader = new XmlSerializer(typeof(Classes.GameProfile));
+				profile = (Classes.GameProfile)profileLoader.Deserialize(reader);
+			}
+			catch
+			{
+			}
+			finally
+			{
+				if (reader != null)
+					reader.Close();
+			}
+
+			if (profile == null)
+			{
+				// TODO more meaningful error message
+				MessageBox.Show("Error loading profile");
+				return;
+			}
+			// Find offset to this project's region
+			uint regionOffset = 0U;
+			bool regionFound = false;
+			foreach(Classes.LoadRegion loadRegion in profile.LoadRegions)
+            {
+				if (mActiveProject.Project.ImportMetadata.RegionName != loadRegion.Name)
+					regionOffset++;
+				else
+				{
+					regionFound = true;
+					break;
+				}
+            }
+			if (!regionFound)
+            {
+				MessageBox.Show("Region not found." , "ERROR");
+            }
+			Classes.LoadRegion region = profile.LoadRegions[regionOffset];
+			data = region.LoadFiles(mActiveProject.Project.ImportMetadata.RomFilenames);    // Load original files
+			//Find offset to this project's char layout
+			uint layoutOffset = 0U;
+			bool layoutFound = false;
+			foreach (Classes.CharLayout charLayout in profile.CharLayouts)
+			{
+				if (mActiveProject.Project.ImportMetadata.LayoutName != charLayout.Name)
+					layoutOffset++;
+				else
+                {
+					layoutFound = true;
+					break;
+				}
+			}
+			if (!layoutFound)
+			{
+				MessageBox.Show("Layout not found.", "ERROR");
+			}
+			for(uint ch = 0; ch < mActiveProject.TileViewer.Elements.Length; ch++)
+            {
+				mActiveProject.TileViewer.Elements[ch].Write(data, profile.CharLayouts[layoutOffset], mActiveProject.Project.Offset, ch);
+			}
+			ShowSaveBinaryDialog(data);
+		}
+    }
 }

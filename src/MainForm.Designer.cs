@@ -34,7 +34,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuItem_ExportToTilEdMap = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemConvertTmxToGif = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemApplyTmx = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.menuItem_File_Exit = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -102,6 +102,9 @@
             this.activeColorsPanel = new System.Windows.Forms.Panel();
             this.panelActiveFGColor = new System.Windows.Forms.Panel();
             this.panelActiveBGColor = new System.Windows.Forms.Panel();
+            this.MenuItemSaveGraphicsData = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemSaveFlatFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitRegionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuStrip.SuspendLayout();
             this.mainStatusStrip.SuspendLayout();
             this.mainToolStrip.SuspendLayout();
@@ -137,7 +140,8 @@
             this.toolStripSeparator1,
             this.menuItem_ExportToTilEdMap,
             this.MenuItemConvertTmxToGif,
-            this.toolStripMenuItem2,
+            this.menuItemApplyTmx,
+            this.MenuItemSaveGraphicsData,
             this.toolStripSeparator4,
             this.menuItem_File_Exit});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -149,8 +153,8 @@
             // 
             this.menuItem_File_Import.Name = "menuItem_File_Import";
             this.menuItem_File_Import.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.menuItem_File_Import.Size = new System.Drawing.Size(208, 22);
-            this.menuItem_File_Import.Text = "&New Tileset";
+            this.menuItem_File_Import.Size = new System.Drawing.Size(234, 22);
+            this.menuItem_File_Import.Text = "&New Project";
             this.menuItem_File_Import.Click += new System.EventHandler(this.menuItem_File_Import_Click);
             // 
             // menuItem_File_Open
@@ -159,8 +163,8 @@
             this.menuItem_File_Open.ImageTransparentColor = System.Drawing.Color.Fuchsia;
             this.menuItem_File_Open.Name = "menuItem_File_Open";
             this.menuItem_File_Open.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.menuItem_File_Open.Size = new System.Drawing.Size(208, 22);
-            this.menuItem_File_Open.Text = "&Open Tileset";
+            this.menuItem_File_Open.Size = new System.Drawing.Size(234, 22);
+            this.menuItem_File_Open.Text = "&Open Project";
             this.menuItem_File_Open.Click += new System.EventHandler(this.menuItem_File_Open_Click);
             // 
             // menuItem_File_Save
@@ -169,39 +173,43 @@
             this.menuItem_File_Save.ImageTransparentColor = System.Drawing.Color.Fuchsia;
             this.menuItem_File_Save.Name = "menuItem_File_Save";
             this.menuItem_File_Save.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.menuItem_File_Save.Size = new System.Drawing.Size(208, 22);
-            this.menuItem_File_Save.Text = "&Save Tileset As";
+            this.menuItem_File_Save.Size = new System.Drawing.Size(234, 22);
+            this.menuItem_File_Save.Text = "&Save Project As";
             this.menuItem_File_Save.Click += new System.EventHandler(this.menuItem_File_Save_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(205, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(231, 6);
             // 
             // menuItem_ExportToTilEdMap
             // 
+            this.menuItem_ExportToTilEdMap.Enabled = false;
             this.menuItem_ExportToTilEdMap.Name = "menuItem_ExportToTilEdMap";
-            this.menuItem_ExportToTilEdMap.Size = new System.Drawing.Size(208, 22);
-            this.menuItem_ExportToTilEdMap.Text = "Export to Tiled Set";
+            this.menuItem_ExportToTilEdMap.Size = new System.Drawing.Size(234, 22);
+            this.menuItem_ExportToTilEdMap.Text = "Export to Tiled map and tileset";
             this.menuItem_ExportToTilEdMap.Click += new System.EventHandler(this.menuItem_ExportToTilEdMap_Click);
             // 
             // MenuItemConvertTmxToGif
             // 
+            this.MenuItemConvertTmxToGif.Enabled = false;
             this.MenuItemConvertTmxToGif.Name = "MenuItemConvertTmxToGif";
-            this.MenuItemConvertTmxToGif.Size = new System.Drawing.Size(208, 22);
-            this.MenuItemConvertTmxToGif.Text = "Convert TMX to GIF";
+            this.MenuItemConvertTmxToGif.Size = new System.Drawing.Size(234, 22);
+            this.MenuItemConvertTmxToGif.Text = "Convert TMX to indexed GIF";
             this.MenuItemConvertTmxToGif.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
-            // toolStripMenuItem2
+            // menuItemApplyTmx
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(208, 22);
-            this.toolStripMenuItem2.Text = "Apply changes from TMX";
+            this.menuItemApplyTmx.Enabled = false;
+            this.menuItemApplyTmx.Name = "menuItemApplyTmx";
+            this.menuItemApplyTmx.Size = new System.Drawing.Size(234, 22);
+            this.menuItemApplyTmx.Text = "Import changes from GIF";
+            this.menuItemApplyTmx.Click += new System.EventHandler(this.menuItemApplyTmx_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(205, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(231, 6);
             // 
             // menuItem_File_Exit
             // 
@@ -209,7 +217,7 @@
             this.menuItem_File_Exit.ImageTransparentColor = System.Drawing.Color.Fuchsia;
             this.menuItem_File_Exit.Name = "menuItem_File_Exit";
             this.menuItem_File_Exit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.menuItem_File_Exit.Size = new System.Drawing.Size(208, 22);
+            this.menuItem_File_Exit.Size = new System.Drawing.Size(234, 22);
             this.menuItem_File_Exit.Text = "E&xit";
             this.menuItem_File_Exit.Click += new System.EventHandler(this.menuItem_File_Exit_Click);
             // 
@@ -822,6 +830,30 @@
             this.panelActiveBGColor.Size = new System.Drawing.Size(32, 32);
             this.panelActiveBGColor.TabIndex = 0;
             // 
+            // MenuItemSaveGraphicsData
+            // 
+            this.MenuItemSaveGraphicsData.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.splitRegionsToolStripMenuItem,
+            this.MenuItemSaveFlatFile});
+            this.MenuItemSaveGraphicsData.Enabled = false;
+            this.MenuItemSaveGraphicsData.Name = "MenuItemSaveGraphicsData";
+            this.MenuItemSaveGraphicsData.Size = new System.Drawing.Size(234, 22);
+            this.MenuItemSaveGraphicsData.Text = "Save graphics data to...";
+            // 
+            // MenuItemSaveFlatFile
+            // 
+            this.MenuItemSaveFlatFile.Name = "MenuItemSaveFlatFile";
+            this.MenuItemSaveFlatFile.Size = new System.Drawing.Size(197, 22);
+            this.MenuItemSaveFlatFile.Text = "Flat file";
+            this.MenuItemSaveFlatFile.Click += new System.EventHandler(this.MenuItemSaveFlatFile_Click);
+            // 
+            // splitRegionsToolStripMenuItem
+            // 
+            this.splitRegionsToolStripMenuItem.Enabled = false;
+            this.splitRegionsToolStripMenuItem.Name = "splitRegionsToolStripMenuItem";
+            this.splitRegionsToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.splitRegionsToolStripMenuItem.Text = "Project\'s original ROMs";
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -934,8 +966,11 @@
         private System.Windows.Forms.ToolStripMenuItem menuItem_File_Import;
         private System.Windows.Forms.ToolStripMenuItem menuItem_ExportToTilEdMap;
         private System.Windows.Forms.ToolStripMenuItem MenuItemConvertTmxToGif;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem menuItemApplyTmx;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemSaveGraphicsData;
+        private System.Windows.Forms.ToolStripMenuItem splitRegionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemSaveFlatFile;
     }
 }
 

@@ -24,13 +24,19 @@ namespace Porno_Graphic.Classes
             mTiledData.mTileViewer.DrawIndexedGif(bitmap, mTiledData.mMapData, mTiledData.mMapWidth, mTiledData.mMapHeight, mTiledData.mTileWidth, mTiledData.mTileHeight, mTiledData.mOffset, mTiledData.mRotate, mTiledData.mFlipX, mTiledData.mFlipY);
 
             ColorPalette colorPalette = bitmap.Palette;
-            uint paletteLength = mTiledData.mTileViewer.Palette.GetLength();
 
-            for (int n = 0; n < paletteLength; n++)
+            uint PaletteLength = mTiledData.mTileViewer.Palette.GetColorCount();
+            Color FillColor = Color.FromArgb(128, 255, 0, 255);
+
+            for (uint n = 0; n < PaletteLength; n++)
             {
                 colorPalette.Entries[n] = mTiledData.mTileViewer.Palette.GetColor((uint)n);
             }
-            colorPalette.Entries[255] = Color.Gray; // Blank tile color
+            for (uint n = PaletteLength; n < 255; n++)
+            {
+                colorPalette.Entries[n] = FillColor;
+            }
+            colorPalette.Entries[255] = Color.Transparent;
 
             bitmap.Palette = colorPalette;
 

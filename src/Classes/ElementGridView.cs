@@ -266,10 +266,10 @@ namespace Porno_Graphic.Classes
                     transform[1, 0] = -transform[1, 0];
                     transform[1, 1] = -transform[1, 1];
                 }
-                transform[1, 2] = (int)(reverseY ? ((swapAxes ? ElementWidth : ElementHeight) - 1) : 0);
+                transform[1, 2] = (int)(reverseY ? (swapAxes ? ElementWidth : ElementHeight) : 0);
                 for (int row = 0; row <= rows; row++, transform[1, 2] += (swapAxes ? (int)ElementWidth : (int)ElementHeight))
                 {
-                    transform[0, 2] = (int)((ElementWidth * 0) + (reverseX ? ((swapAxes ? ElementHeight : ElementWidth) - 1) : 0));
+                    transform[0, 2] = (int)((ElementWidth * 0) + (reverseX ? (swapAxes ? ElementHeight : ElementWidth) : 0));
                     for (int column = 0; (column <= columns) && (((row * columns) + column) < Elements.Length); column++, transform[0, 2] += (swapAxes ? (int)ElementHeight : (int)ElementWidth))
                     {
                         GfxElement element = Elements[(row * columns) + column];
@@ -285,7 +285,6 @@ namespace Porno_Graphic.Classes
             
             int rows = (int)mapHeight;
             int columns = (int)mapWidth;
-
             bool swapAxes = (rotate & 1U) != 0U;
             bool reverseX = flipX != (((rotate + 1U) & 2U) != 0U);
             bool reverseY = flipY != ((rotate & 2U) != 0U);
@@ -302,7 +301,7 @@ namespace Porno_Graphic.Classes
                 transform[1, 1] = -transform[1, 1];
             }
 
-            transform[1, 2] = (int)(reverseY ? ((swapAxes ? ElementWidth : ElementHeight) - 1) : 0);
+            transform[1, 2] = (int)(reverseY ? (swapAxes ? ElementWidth : ElementHeight) : 0);
 
             int StrideMultiplier = bitmap.Width;
             BitmapData bmpData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.WriteOnly, PixelFormat.Format8bppIndexed);
@@ -312,25 +311,30 @@ namespace Porno_Graphic.Classes
 
             for (int row = 0; row < rows; row++, transform[1, 2] += (swapAxes ? (int)ElementWidth : (int)ElementHeight))
             {
-                transform[0, 2] = (int)((ElementWidth * 0) + (reverseX ? ((swapAxes ? ElementHeight : ElementWidth) - 1) : 0));
+                transform[0, 2] = (int)(reverseX ? (swapAxes ? ElementHeight : ElementWidth) : 0);
                 for (int column = 0; column < columns; column++)
                 {
-                    //Rectangle tileDrawArea = new Rectangle(column * (int)(swapAxes ? ElementHeight : ElementWidth), row * (int)(swapAxes ? ElementWidth : ElementHeight),
-                    //    (int)(swapAxes ? ElementHeight : ElementWidth), (int)(swapAxes ? ElementWidth : ElementHeight));
-                    int tileID = (row * columns) + column;
-                    //Point tileTopLeft = new Point(column * (swapAxes ? (int)ElementHeight : (int)ElementWidth), row * (swapAxes ? (int)ElementWidth : (int)ElementHeight));
+                    uint tileID = mapData[(row * columns) + column];
 
-                    if (tileID == 0)
+                    if (tileID == 0U)
                     {
-                        
-                        for (int n = 0; n < pixels.Length; n++)
-                            pixels[n] = 0xFF;
-                        
+                        // Fill blank tile
+                        for(int y = 0 ; y < (swapAxes ? (int)ElementWidth : (int)ElementHeight); y++)
+                        {
+                            for(int x = 0; x < (swapAxes ? (int)ElementHeight : (int)ElementWidth); x++)
+                            {
+                                int pixelDest = (row * (((int)ElementWidth * (int)ElementHeight) * columns))
+                                              + (column * (swapAxes ? (int)ElementHeight : (int)ElementWidth))
+                                              + (y * StrideMultiplier)
+                                              + x;
+                                pixels[pixelDest] = 0xFF;
+                            }
+                        }
                     }
                     else
                     {
-                        tileID -= (1 + (int)offset);
-                        GfxElement element = Elements[mapData[(row * columns) + column + offset] - 1];
+                        tileID -= 1U;
+                        GfxElement element = Elements[tileID];
                         if (element != null)
                             element.DrawIndexed(pixels, transform, StrideMultiplier, column * (swapAxes ? (int)ElementHeight : (int)ElementWidth));
                     }
