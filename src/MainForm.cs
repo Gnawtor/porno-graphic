@@ -1073,25 +1073,31 @@ namespace Porno_Graphic
 				MessageBox.Show("Error loading profile");
 				return;
 			}
-			// Find offset to this project's region
-			uint regionOffset = 0U;
-			bool regionFound = false;
-			foreach(Classes.LoadRegion loadRegion in profile.LoadRegions)
+			// Find this project's region
+			if (mActiveProject.Project.ImportMetadata.RegionName == "Flat file")
+				data = File.ReadAllBytes(mActiveProject.Project.ImportMetadata.RomFilenames[0]);	// Flat file region isn't in any profile
+			else
             {
-				if (mActiveProject.Project.ImportMetadata.RegionName != loadRegion.Name)
-					regionOffset++;
-				else
+				uint regionOffset = 0U;
+				bool regionFound = false;
+				foreach (Classes.LoadRegion loadRegion in profile.LoadRegions)
 				{
-					regionFound = true;
-					break;
+					if (mActiveProject.Project.ImportMetadata.RegionName != loadRegion.Name)
+						regionOffset++;
+					else
+					{
+						regionFound = true;
+						break;
+					}
 				}
-            }
-			if (!regionFound)
-            {
-				MessageBox.Show("Region not found." , "ERROR");
-            }
-			Classes.LoadRegion region = profile.LoadRegions[regionOffset];
-			data = region.LoadFiles(mActiveProject.Project.ImportMetadata.RomFilenames);    // Load original files
+				if (!regionFound)
+				{
+					MessageBox.Show("Region not found.", "ERROR");
+				}
+				Classes.LoadRegion region = profile.LoadRegions[regionOffset];
+				data = region.LoadFiles(mActiveProject.Project.ImportMetadata.RomFilenames);    // Load original files
+			}
+			
 			//Find offset to this project's char layout
 			uint layoutOffset = 0U;
 			bool layoutFound = false;
