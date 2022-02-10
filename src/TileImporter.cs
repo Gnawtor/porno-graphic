@@ -236,7 +236,8 @@ namespace Porno_Graphic
             else
                 metadata.RegionName = mProfile.LoadRegions[regionBox.SelectedIndex - 1].Name;
             metadata.LayoutName = mProfile.CharLayouts[layoutBox.SelectedIndex].Name;
-            metadata.Offset = offsetBox.Text;
+            if (offsetBox.Text.StartsWith("0x"))
+                metadata.Offset = offsetBox.Text.Substring(2);
             metadata.Planes = layout.Planes.ToString();
 
             string[] romPaths = new string[fileGrid.Rows.Count];

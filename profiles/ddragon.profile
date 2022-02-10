@@ -3,7 +3,16 @@
     xsi:schemaLocation="http://romhackers.net/porno-graphic/profile profile.xsd"
     xmlns:profile="http://romhackers.net/porno-graphic/profile"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
->
+>static const gfx_layout char_layout =
+{
+	8,8,
+	RGN_FRAC(1,1),
+	4,
+	{ STEP4(0,2) },
+	{ 1, 0, 8*8+1, 8*8+0, 16*8+1, 16*8+0, 24*8+1, 24*8+0 },
+	{ STEP8(0,8) },
+	32*8
+};
 	<layouts>
 		<layout name="Chars">
 			<plane>

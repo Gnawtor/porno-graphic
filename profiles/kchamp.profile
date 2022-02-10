@@ -79,7 +79,7 @@
   </layouts>
 
   <regions>
-    <region name="Tiles" length="08000">
+    <region name="kchamp Tiles" length="08000">
       <file name="b000">
         <load offset="00000" size="2000" />
       </file>
@@ -88,7 +88,7 @@
       </file>
     </region>
 
-    <region name="Sprites" length="18000">
+    <region name="kchamp Sprites" length="18000">
       <file name="b013">
         <load offset="00000" size="2000" />
       </file>
@@ -123,6 +123,156 @@
         <load offset="14000" size="2000" />
       </file>
       <file name="b008">
+        <load offset="16000" size="2000" />
+      </file>
+    </region>
+	
+	<region name="karatedo Tiles" length="08000">
+      <file name="be00">
+        <load offset="00000" size="2000" />
+      </file>
+      <file name="be01">
+        <load offset="04000" size="2000" />
+      </file>
+    </region>
+
+    <region name="karatedo Sprites" length="18000">
+      <file name="be13">
+        <load offset="00000" size="2000" />
+      </file>
+      <file name="be04">
+        <load offset="02000" size="2000" />
+      </file>
+      <file name="b012">
+        <load offset="04000" size="2000" />
+      </file>
+      <file name="b003">
+        <load offset="06000" size="2000" />
+      </file>
+      <file name="b011">
+        <load offset="08000" size="2000" />
+      </file>
+      <file name="b002">
+        <load offset="0a000" size="2000" />
+      </file>
+      <file name="be07">
+        <load offset="0c000" size="2000" />
+      </file>
+      <file name="be10">
+        <load offset="0e000" size="2000" />
+      </file>
+      <file name="b006">
+        <load offset="10000" size="2000" />
+      </file>
+      <file name="b009">
+        <load offset="12000" size="2000" />
+      </file>
+      <file name="b005">
+        <load offset="14000" size="2000" />
+      </file>
+      <file name="b008">
+        <load offset="16000" size="2000" />
+      </file>
+    </region>
+	
+	<region name="karateda Tiles" length="08000">
+      <file name="h3">
+        <load offset="00000" size="2000" />
+      </file>
+      <file name="h6">
+        <load offset="04000" size="2000" />
+      </file>
+    </region>
+
+    <region name="karateda Sprites" length="18000">
+      <file name="k15">
+        <load offset="00000" size="2000" />
+      </file>
+      <file name="j15">
+        <load offset="02000" size="2000" />
+      </file>
+      <file name="k13">
+        <load offset="04000" size="2000" />
+      </file>
+      <file name="j13">
+        <load offset="06000" size="2000" />
+      </file>
+      <file name="k12">
+        <load offset="08000" size="2000" />
+      </file>
+      <file name="j12">
+        <load offset="0a000" size="2000" />
+      </file>
+      <file name="k4">
+        <load offset="0c000" size="2000" />
+      </file>
+      <file name="k9">
+        <load offset="0e000" size="2000" />
+      </file>
+      <file name="k2">
+        <load offset="10000" size="2000" />
+      </file>
+      <file name="k8">
+        <load offset="12000" size="2000" />
+      </file>
+      <file name="k1">
+        <load offset="14000" size="2000" />
+      </file>
+      <file name="k7">
+        <load offset="16000" size="2000" />
+      </file>
+    </region>
+	
+	<region name="kchampvs Tiles" length="08000">
+      <file name="k1">
+        <load offset="00000" size="2000" />
+      </file>
+      <file name="k3">
+        <load offset="02000" size="2000" />
+      </file>
+	  <file name="k5">
+        <load offset="04000" size="2000" />
+      </file>
+      <file name="k6">
+        <load offset="06000" size="2000" />
+      </file>
+    </region>
+
+    <region name="kchampvs Sprites" length="18000">
+      <file name="a1">
+        <load offset="00000" size="2000" />
+      </file>
+      <file name="c1">
+        <load offset="02000" size="2000" />
+      </file>
+      <file name="a3">
+        <load offset="04000" size="2000" />
+      </file>
+      <file name="c3">
+        <load offset="06000" size="2000" />
+      </file>
+      <file name="a5">
+        <load offset="08000" size="2000" />
+      </file>
+      <file name="c5">
+        <load offset="0a000" size="2000" />
+      </file>
+      <file name="a6">
+        <load offset="0c000" size="2000" />
+      </file>
+      <file name="c6">
+        <load offset="0e000" size="2000" />
+      </file>
+      <file name="a8">
+        <load offset="10000" size="2000" />
+      </file>
+      <file name="c8">
+        <load offset="12000" size="2000" />
+      </file>
+      <file name="a10">
+        <load offset="14000" size="2000" />
+      </file>
+      <file name="c10">
         <load offset="16000" size="2000" />
       </file>
     </region>
