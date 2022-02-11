@@ -445,7 +445,7 @@ namespace Porno_Graphic
 		protected void ShowSaveBinaryDialog(byte[] data)
         {
 			SaveFileDialog dialog = new SaveFileDialog();
-			dialog.Filter = "Binary Data (*.bin) | *.bin | All files(*.*) | *.* ";
+			dialog.Filter = "Binary Data (*.bin)|*.bin|All files(*.*)|*.* ";
 			dialog.FilterIndex = 1;
 			dialog.Title = "Save Binary Data";
 			if (dialog.ShowDialog() == DialogResult.OK)
@@ -455,7 +455,7 @@ namespace Porno_Graphic
 		protected void ShowExportTiledMapSet()
         {
 			SaveFileDialog dialog = new SaveFileDialog();
-			dialog.Filter = "Tiled map file (*.tmx) | *.tmx | All files(*.*) | *.* ";
+			dialog.Filter = "Tiled map file (*.tmx)|*.tmx|All files(*.*)|*.* ";
 			dialog.FilterIndex = 1;
 			dialog.Title = "Export tileset to Tiled files";
 			if (dialog.ShowDialog() == DialogResult.OK)
