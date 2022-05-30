@@ -310,6 +310,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutPictureDuck.png" />
+    <None Include="Resources\tiled_tilemap_template.txt" />
+    <None Include="Resources\tiled_tileset_template.txt" />
     <Content Include="russy.ico" />
     <Content Include="woodduck.ico" />
   </ItemGroup>

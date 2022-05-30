@@ -63,16 +63,6 @@ namespace Porno_Graphic.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap AboutPicture {
-            get {
-                object obj = ResourceManager.GetObject("AboutPicture", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap AboutPictureDuck {
             get {
                 object obj = ResourceManager.GetObject("AboutPictureDuck", resourceCulture);
@@ -491,6 +481,33 @@ namespace Porno_Graphic.Properties {
             get {
                 object obj = ResourceManager.GetObject("ShowGridlines2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+        ///&lt;map version=&quot;1.2&quot; tiledversion=&quot;1.2.3&quot; orientation=&quot;orthogonal&quot; renderorder=&quot;right-down&quot; width=&quot;64&quot; height=&quot;64&quot; tilewidth=&quot;!{tilewidth}&quot; tileheight=&quot;!{tileheight}&quot; infinite=&quot;0&quot; nextlayerid=&quot;2&quot; nextobjectid=&quot;1&quot;&gt;
+        /// &lt;tileset firstgid=&quot;1&quot; source=&quot;!{tileset}&quot;/&gt;
+        /// &lt;layer id=&quot;1&quot; name=&quot;Porno-Graphic Tile Arrangement&quot; width=&quot;64&quot; height=&quot;64&quot;&gt;
+        ///  &lt;data encoding=&quot;csv&quot;&gt;
+        ///0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0, [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string tiled_tilemap_template {
+            get {
+                return ResourceManager.GetString("tiled_tilemap_template", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+        ///&lt;tileset name=&quot;!{tileset_name}&quot; tilewidth=&quot;!{tilewidth}&quot; tileheight=&quot;!{tileheight}&quot; tilecount=&quot;!{tilecount}&quot; columns=&quot;!{columns}&quot; offset=&quot;!{offset}&quot; flipx=&quot;!{flipx}&quot; flipy=&quot;!{flipy}&quot; rotate=&quot;!{rotate}&quot;&gt;
+        /// &lt;image source=&quot;!{tileset_image}&quot; width=&quot;!{imagewidth}&quot; height=&quot;!{imageheight}&quot;/&gt;
+        ///&lt;/tileset&gt;
+        ///.
+        /// </summary>
+        internal static string tiled_tileset_template {
+            get {
+                return ResourceManager.GetString("tiled_tileset_template", resourceCulture);
             }
         }
         

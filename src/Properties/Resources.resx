@@ -130,9 +130,6 @@
   <data name="TileImporter_ErrorMessage_ReadPastFileEnd" xml:space="preserve">
     <value>Error loading file {0}: tried to read 0x{2:x} bytes to load at offset 0x{1:x} but only got 0x{3:x} bytes. Please check that the files match the region/locations and are large enough.</value>
   </data>
-  <data name="AboutPicture" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AboutPicture.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="TileImporter_ErrorTitle_FileTooSmall" xml:space="preserve">
     <value>File too small for offset/count</value>
   </data>
@@ -768,5 +765,11 @@
   </data>
   <data name="AboutPictureDuck" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AboutPictureDuck.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tiled_tilemap_template" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tiled_tilemap_template.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="tiled_tileset_template" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tiled_tileset_template.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
 </root>

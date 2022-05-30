@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tileset name="!{tileset_name}" tilewidth="!{tilewidth}" tileheight="!{tileheight}" tilecount="!{tilecount}" columns="!{columns}" offset="!{offset}" flipx="!{flipx}" flipy="!{flipy}" rotate="!{rotate}">
+ <image source="!{tileset_image}" width="!{imagewidth}" height="!{imageheight}"/>
+</tileset>

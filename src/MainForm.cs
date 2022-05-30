@@ -965,7 +965,8 @@ namespace Porno_Graphic
 			//tilecount="!{tilecount}" columns="!{columns}" offset="!{offset}" flipx="!{flipx}" flipy="!{flipy}" rotate="!{rotate}">
 
 			// write Tiled tileset file
-			String template = File.ReadAllText("tiled_tileset_template.txt");
+			//String template = File.ReadAllText("tiled_tileset_template.txt");
+			String template = Porno_Graphic.Properties.Resources.tiled_tileset_template;
 			template = template.Replace("!{tileset_name}", Name);
 			template = template.Replace("!{tileset_image}", Name + ".png");
 			template = template.Replace("!{tilewidth}", ElementWidth.ToString());
@@ -979,7 +980,8 @@ namespace Porno_Graphic
 			File.WriteAllText(FileName + ".tsx", template);
 
 			// write Tiled tilemap file
-			template = File.ReadAllText("tiled_tilemap_template.txt");
+			//template = File.ReadAllText("tiled_tilemap_template.txt");
+			template = Porno_Graphic.Properties.Resources.tiled_tilemap_template;
 			//template = template.Replace("!{tilemapwidth}", "64");
 			//template = template.Replace("!{tilemapheight}", "64");
 			template = template.Replace("!{tilewidth}", ElementWidth.ToString());
