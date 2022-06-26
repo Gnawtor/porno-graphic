@@ -49,6 +49,9 @@ namespace Porno_Graphic.Classes
         }
 
         public abstract Color GetColor(uint pen);
+        public abstract void SetColor(Color color, uint pen);
+        public abstract string GetName();
+        public abstract void SetName(string name);
 
         protected abstract uint GetEffectivePen(uint pen);
         public abstract uint GetColorCount();

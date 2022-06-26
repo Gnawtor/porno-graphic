@@ -11,6 +11,7 @@ namespace Porno_Graphic.Classes
         public string Name { get; set; }
         public uint ElementWidth { get; set; }
         public uint ElementHeight { get; set; }
+        public uint Planes { get; set; }
         public GfxElement[] Elements { get; set; }
         public TileImportMetadata ImportMetadata { get; set; }
         public uint Offset { get {

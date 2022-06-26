@@ -249,8 +249,12 @@ namespace Porno_Graphic
             elementSet.ElementWidth = layout.Width;
             elementSet.ElementHeight = layout.Height;
             elementSet.Elements = elements;
+            elementSet.Planes = layout.Planes;
             elementSet.ImportMetadata = metadata;
-            mParent.CreateImportProject(elementSet, (layout.Planes > 3) ? Classes.IndexedPalette.RGBI : Classes.IndexedPalette.RGB);
+            Classes.IndexedPalette defaultPalette = new Classes.IndexedPalette(layout.Planes, "Default palette");
+            BindingList<Classes.IPalette> paletteSet = new BindingList<Classes.IPalette>();
+            paletteSet.Add(defaultPalette);
+            mParent.CreateImportProject(elementSet, paletteSet);
             Close();
         }
 

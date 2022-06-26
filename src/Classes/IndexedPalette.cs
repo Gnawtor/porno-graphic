@@ -1,39 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 
 namespace Porno_Graphic.Classes
 {
     public class IndexedPalette : SolidPalette
     {
-        public static IPalette RGB;
-        public static IPalette RGBI;
-
-        static IndexedPalette()
+        public IndexedPalette(uint planes, string name)
         {
-            IndexedPalette pal;
+            mName = name;
 
-            pal = new IndexedPalette();
-            pal.Colors = new Color[8];
-            for (uint i = 0; i < pal.Colors.Length; i++)
-                pal.Colors[i] = Color.FromArgb(((i & 0x01) != 0) ? 0xff : 0x00, ((i & 0x02) != 0) ? 0xff : 0x00, ((i & 0x04) != 0) ? 0xff : 0x00);
-            RGB = pal;
+            int paletteLength = 1 << (int)planes;
+            Colors = new Color[paletteLength];
 
-            pal = new IndexedPalette();
-            pal.Colors = new Color[16];
-            for (uint i = 0; i < pal.Colors.Length; i++)
+            for (uint i = 0; i < Colors.Length; i++)
             {
-                int intensity = ((i & 0x08) != 0) ? 0x80 : 0;
-                int red = intensity | (((i & 0x01) != 0) ? 0x7f : 0x00);
-                int green = intensity | (((i & 0x02) != 0) ? 0x7f : 0x00);
-                int blue = intensity | (((i & 0x04) != 0) ? 0x7f : 0x00);
-                pal.Colors[i] = Color.FromArgb(red, green, blue);
+                int intensity = (int)(((paletteLength - 1) - i) * (256 / (paletteLength - 1)));
+                Colors[i] = Color.FromArgb(intensity, intensity, intensity);
             }
-            RGBI = pal;
+        }
+
+        public IndexedPalette(IPalette sourcePalette)
+        {
+            mName = sourcePalette.GetName() + " (Copy)";
+            uint colorCount = sourcePalette.GetColorCount();
+            Colors = new Color[colorCount];
+            for (uint i = 0; i < colorCount; i++)
+            {
+                Color sourceColor = sourcePalette.GetColor(i);
+                Colors[i] = Color.FromArgb(sourceColor.R, sourceColor.G, sourceColor.B);
+            }
         }
 
         private Color[] mColors;
+        private string mName;
 
         public Color[] Colors
         {
@@ -62,6 +64,13 @@ namespace Porno_Graphic.Classes
             return mColors[pen % Colors.Length];
         }
 
+        public override void SetColor (Color color, uint pen)
+        {
+            pen = (uint)(pen % Colors.Length);
+            mColors[pen] = color;
+            ClearCache();
+        }
+
         public override uint GetColorCount()
         {
             return (uint)mColors.Length;
@@ -70,6 +79,21 @@ namespace Porno_Graphic.Classes
         protected override uint GetEffectivePen(uint pen)
         {
             return (uint)(pen % Colors.Length);
+        }
+
+        public override string GetName()
+        {
+            return mName;
+        }
+
+        public override void SetName(string name)
+        {
+            mName = name;
+        }
+
+        public override string ToString()
+        {
+            return mName;
         }
     }
 }

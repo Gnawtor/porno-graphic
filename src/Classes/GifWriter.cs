@@ -25,12 +25,12 @@ namespace Porno_Graphic.Classes
 
             ColorPalette colorPalette = bitmap.Palette;
 
-            uint PaletteLength = mTiledData.mTileViewer.Palette.GetColorCount();
+            uint PaletteLength = mTiledData.mTileViewer.SelectedPalette.GetColorCount();
             Color FillColor = Color.FromArgb(128, 255, 0, 255);
 
             for (uint n = 0; n < PaletteLength; n++)
             {
-                colorPalette.Entries[n] = mTiledData.mTileViewer.Palette.GetColor((uint)n);
+                colorPalette.Entries[n] = mTiledData.mTileViewer.SelectedPalette.GetColor((uint)n);
             }
             for (uint n = PaletteLength; n < 255; n++)
             {

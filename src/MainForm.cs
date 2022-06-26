@@ -673,7 +673,7 @@ namespace Porno_Graphic
 
 
 
-		public void CreateImportProject(Classes.GfxElementSet elementSet, Classes.IPalette palette)
+		public void CreateImportProject(Classes.GfxElementSet elementSet, BindingList<Classes.IPalette> paletteSet)
         {
             string displayName = string.Format(Porno_Graphic.Properties.Resources.MainForm_ImportProjectFormat, ++mImportCount);
             Classes.Project project = new Classes.Project(displayName, elementSet);
@@ -682,7 +682,12 @@ namespace Porno_Graphic
             viewer.ElementWidth = elementSet.ElementWidth;
             viewer.ElementHeight = elementSet.ElementHeight;
             viewer.Elements = elementSet.Elements;
-            viewer.Palette = palette;
+			viewer.Palettes = paletteSet;
+			viewer.PalettesBindingSource = new BindingSource();
+			viewer.PalettesBindingSource.DataSource = viewer.Palettes;
+			viewer.SelectedPalette = viewer.Palettes[0];
+			viewer.Planes = elementSet.Planes;
+			
 
             ProjectState state = new ProjectState(project);
             state.TileViewer = viewer;
@@ -925,9 +930,13 @@ namespace Porno_Graphic
 				elementSet.Name = GfxElementSetInfo_Name;
 				elementSet.ElementWidth = GfxElementSetInfo_ElementWidth;
 				elementSet.ElementHeight = GfxElementSetInfo_ElementHeight;
+				elementSet.Planes = planes;
 				elementSet.Elements = elements;
 				elementSet.ImportMetadata = metadata;
-				CreateImportProject(elementSet, (planes > 3) ? Classes.IndexedPalette.RGBI : Classes.IndexedPalette.RGB);
+				Classes.IndexedPalette defaultPalette = new Classes.IndexedPalette(planes, "Default palette"); // TODO make this import palette data from the project
+				BindingList<Classes.IPalette> paletteSet = new BindingList<Classes.IPalette>();
+				paletteSet.Add(defaultPalette);
+				CreateImportProject(elementSet, paletteSet);
 			}
 			else
 				throw new Exception("Invalid 'Planes' value in TileImportMetadata");			

@@ -15,28 +15,84 @@ namespace Porno_Graphic
 {
 	public partial class TileViewer : Form
 	{
+        private uint mPlanes;
         public uint ElementWidth { get { return tileGrid.ElementWidth; } set { tileGrid.ElementWidth = value; } }
         public uint ElementHeight { get { return tileGrid.ElementHeight; } set { tileGrid.ElementHeight = value; } }
         public Classes.GfxElement[] Elements { get { return tileGrid.Elements; } set { tileGrid.Elements = value; } }
-        public Classes.IPalette Palette { get { return tileGrid.Palette; } set { tileGrid.Palette = value; } }
+        public Classes.IPalette SelectedPalette 
+        { 
+            get 
+            { 
+                return tileGrid.SelectedPalette; 
+            } 
+            set 
+            { 
+                tileGrid.SelectedPalette = value; 
+                paletteBar.Palette = value; 
+            } 
+        }
+        public BindingList<Classes.IPalette> Palettes { get { return tileGrid.Palettes; } set { tileGrid.Palettes = value; paletteBar.Invalidate(); } }
+        public BindingSource PalettesBindingSource { 
+            get { return tileGrid.PalettesBindingSource; } 
+            set 
+            { 
+                tileGrid.PalettesBindingSource = value; 
+                comboPalettes.DataSource = PalettesBindingSource;
+            } }
         public bool SwapAxes { get { return (rotate.SelectedIndex & 1U) != 0U; } }
         public uint ColumnCount { get { return (uint)((tileGrid.AutoScrollMinSize.Width - (2 * tileGrid.ElementPadding)) / tileGrid.ItemWidth);} }
         public bool FlipX { get { return xFlip.Checked; } }
         public bool FlipY { get { return yFlip.Checked; } }
         public uint Rotate { get { return (uint)rotate.SelectedIndex; } }
+        public uint Planes { get { return mPlanes; } set { mPlanes = value; } }
 
-		public TileViewer() {
+		public TileViewer() 
+        {
 			InitializeComponent();
-
             rotate.SelectedIndex = 0;
 
-            
-		}
+            comboPalettes.SelectedIndexChanged += comboPalettes_SelectedIndexChanged;
 
-		private void TileViewer_Resize(object sender, EventArgs e) {
-			// act like TLP:
-			// * restrict size to 8 columns of 8px tiles minimum; 128 columns max??
-			// * only resize by multiples of 8
+            btnAddPalette.Click += btnAddPalette_Click;
+            btnDuplicatePalette.Click += btnDuplicatePalette_Click;
+            btnEditPalette.Click += btnEditPalette_Click;
+        }
+
+        private void comboPalettes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboPalettes.SelectedIndex > -1)
+            {
+                SelectedPalette = Palettes[comboPalettes.SelectedIndex];
+                if (btnEditPalette.Enabled == false) btnEditPalette.Enabled = true;
+                if (btnDuplicatePalette.Enabled == false) btnDuplicatePalette.Enabled = true;
+            }
+            else { btnEditPalette.Enabled = false; btnDuplicatePalette.Enabled = false; }
+        }
+
+        private void btnAddPalette_Click(object sender, EventArgs e)
+        {
+            Classes.IndexedPalette pal = new Classes.IndexedPalette(Planes, "New palette");
+        }
+
+        private void btnDuplicatePalette_Click(object sender, EventArgs e)
+        {
+            Palettes.Add(new Classes.IndexedPalette(SelectedPalette));
+        }
+
+        private void btnEditPalette_Click(object sender, EventArgs e)
+        {
+            PaletteEditor paletteEditor = new PaletteEditor(SelectedPalette);
+            if (paletteEditor.ShowDialog() == DialogResult.OK)
+            {
+                paletteEditor.Close();
+                comboPalettes.Invalidate();
+            }
+        }
+
+
+        private void TileViewer_Resize(object sender, EventArgs e) 
+        {
+			
 		}
 
         private void xScale_ValueChanged(object sender, EventArgs e)

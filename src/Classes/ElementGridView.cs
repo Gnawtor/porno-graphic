@@ -25,7 +25,9 @@ namespace Porno_Graphic.Classes
         private Color mHighlightColor = Color.FromArgb(255, 255, 255, 0);
 
         private GfxElement[] mElements = new GfxElement[0];
-        private IPalette mPalette;
+        private IPalette mSelectedPalette;
+        private BindingList<IPalette> mPalettes;
+        private BindingSource mPalettesBindingSource;
 
         [DefaultValue(typeof(uint), "8")]
         public uint ElementWidth
@@ -173,16 +175,41 @@ namespace Porno_Graphic.Classes
                 Invalidate();
             }
         }
-        public IPalette Palette
+        public IPalette SelectedPalette
         {
             get
             {
-                return mPalette;
+                return mSelectedPalette;
             }
             set
             {
-                mPalette = value;
+                mSelectedPalette = value;
                 Invalidate();
+            }
+        }
+
+        public BindingList<IPalette> Palettes
+        {
+            get
+            {
+                return mPalettes;
+            }
+            set
+            {
+                mPalettes = value;
+                Invalidate();
+            }
+        }
+
+        public BindingSource PalettesBindingSource
+        {
+            get
+            {
+                return mPalettesBindingSource;
+            }
+            set
+            {
+                mPalettesBindingSource = value;
             }
         }
 
@@ -209,7 +236,7 @@ namespace Porno_Graphic.Classes
             int lastRow = (int)Math.Min((clip.Bottom - 1 - (2 * ElementPadding)) / ItemHeight, rows - 1);
             int firstColumn = (int)Math.Max(clip.Left / ItemWidth, 0);
             int lastColumn = (int)Math.Min((clip.Right - 1 - (2 * ElementPadding)) / ItemWidth, columns - 1);
-            if (Palette != null)
+            if (SelectedPalette != null)
             {
                 bool swapAxes = (Rotate & 1U) != 0U;
                 bool reverseX = FlipX != (((Rotate + 1U) & 2U) != 0U);
@@ -237,7 +264,7 @@ namespace Porno_Graphic.Classes
                     {
                         GfxElement element = Elements[(row * columns) + column];
                         if (element != null)
-                            element.Draw(e.Graphics, Palette, transform);
+                            element.Draw(e.Graphics, SelectedPalette, transform);
                     }
                 }
             }
@@ -245,7 +272,7 @@ namespace Porno_Graphic.Classes
 
         public void DrawExportTileset(Graphics graphics, long ElementsCount, long RowCount, long ColumnCount)
         {
-            if (Palette == null)
+            if (SelectedPalette == null)
                 throw new Exception("Cannot export with null palette.");
             else
             {
@@ -274,7 +301,7 @@ namespace Porno_Graphic.Classes
                     {
                         GfxElement element = Elements[(row * columns) + column];
                         if (element != null)
-                            element.Draw(graphics, Palette, transform);
+                            element.Draw(graphics, SelectedPalette, transform);
                     }
                 }
             }
