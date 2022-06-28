@@ -29,14 +29,14 @@ namespace Porno_Graphic
             InitializeComponent();
             Palette = palette;
             paletteGrid.InitializePalette(Palette);
-            textBoxName.Text = Palette.GetName();
+            textBoxName.Text = Palette.Name;
             btnOk.Click += btnOk_Click;
             btnCancel.Click += btnCancel_Click;
         }
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            Palette.SetName(textBoxName.Text);
+            Palette.Name = textBoxName.Text;
             Color[] editedColors = paletteGrid.GetColors;
             for (uint i = 0; i < Palette.GetColorCount(); i++)
             {

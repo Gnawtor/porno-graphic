@@ -14,6 +14,7 @@ namespace Porno_Graphic.Classes
         GfxElementSetInfo = 0x74696c65696e666f, // 'tileinfo'
         GfxElement = 0x706f726e6f676678, // 'pornogfx'
         TileImportMetadata = 0x696d706f72746564, // 'imported'
-        TileViewerState = 0x74696c6576696577 // 'tileview'
+        TileViewerState = 0x74696c6576696577, // 'tileview'
+        IndexedPalette = 0x6970616C65747465 // 'ipalette'
     }
 }

@@ -31,14 +31,22 @@ namespace Porno_Graphic
                 paletteBar.Palette = value; 
             } 
         }
-        public BindingList<Classes.IPalette> Palettes { get { return tileGrid.Palettes; } set { tileGrid.Palettes = value; paletteBar.Invalidate(); } }
-        public BindingSource PalettesBindingSource { 
-            get { return tileGrid.PalettesBindingSource; } 
-            set 
+        public BindingList<Classes.IPalette> Palettes { get { return tileGrid.Palettes; } set 
             { 
-                tileGrid.PalettesBindingSource = value; 
-                comboPalettes.DataSource = PalettesBindingSource;
+                tileGrid.Palettes = value;
+                paletteBar.Invalidate(); 
             } }
+        public BindingSource PalettesBindingSource
+        {
+            get { return tileGrid.PalettesBindingSource; }
+            set
+            {
+                tileGrid.PalettesBindingSource = value;
+                comboPalettes.DisplayMember = "Name";
+                comboPalettes.ValueMember = "Name";
+                comboPalettes.DataSource = PalettesBindingSource;
+            }
+        }
         public bool SwapAxes { get { return (rotate.SelectedIndex & 1U) != 0U; } }
         public uint ColumnCount { get { return (uint)((tileGrid.AutoScrollMinSize.Width - (2 * tileGrid.ElementPadding)) / tileGrid.ItemWidth);} }
         public bool FlipX { get { return xFlip.Checked; } }
@@ -85,7 +93,9 @@ namespace Porno_Graphic
             if (paletteEditor.ShowDialog() == DialogResult.OK)
             {
                 paletteEditor.Close();
-                comboPalettes.Invalidate();
+                PalettesBindingSource.ResetBindings(false); // force combo box text to update
+                tileGrid.Invalidate();
+                paletteBar.Invalidate();
             }
         }
 

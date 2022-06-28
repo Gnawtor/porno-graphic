@@ -128,7 +128,7 @@ namespace Porno_Graphic.Classes
             mStream.Write(bytes, 0, 8);
         }
 
-        public void Write(string value)
+        public void Write(string value) // Every string also writes a uint for the string length. Factor this into your chunk length calc.
         {
             if (value != null)
             {

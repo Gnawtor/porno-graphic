@@ -11,7 +11,8 @@ namespace Porno_Graphic.Classes
         void SetColor(Color color, uint pen);
         Brush GetBrush(uint pen);
         uint GetColorCount();
-        string GetName();
-        void SetName(string name);
+        string Name { get; set; }
+        void Write(ChunkWriter writer);
+        uint ChunkSize();
     }
 }

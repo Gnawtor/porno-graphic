@@ -210,6 +210,7 @@ namespace Porno_Graphic.Classes
             set
             {
                 mPalettesBindingSource = value;
+                mPalettesBindingSource.DataSource = mPalettes;
             }
         }
 

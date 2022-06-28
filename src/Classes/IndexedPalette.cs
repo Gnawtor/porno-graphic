@@ -3,28 +3,28 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.ComponentModel;
 
 namespace Porno_Graphic.Classes
 {
     public class IndexedPalette : SolidPalette
     {
-        public IndexedPalette(uint planes, string name)
+        public IndexedPalette(uint colorCount, string name)
         {
             mName = name;
 
-            int paletteLength = 1 << (int)planes;
-            Colors = new Color[paletteLength];
+            Colors = new Color[colorCount];
 
             for (uint i = 0; i < Colors.Length; i++)
             {
-                int intensity = (int)(((paletteLength - 1) - i) * (256 / (paletteLength - 1)));
+                int intensity = (int)(((colorCount - 1) - i) * (256 / (colorCount - 1)));
                 Colors[i] = Color.FromArgb(intensity, intensity, intensity);
             }
         }
 
         public IndexedPalette(IPalette sourcePalette)
         {
-            mName = sourcePalette.GetName() + " (Copy)";
+            mName = sourcePalette.Name + " (Copy)";
             uint colorCount = sourcePalette.GetColorCount();
             Colors = new Color[colorCount];
             for (uint i = 0; i < colorCount; i++)
@@ -81,19 +81,34 @@ namespace Porno_Graphic.Classes
             return (uint)(pen % Colors.Length);
         }
 
-        public override string GetName()
+        public override string Name
         {
-            return mName;
+            get
+            {
+                return mName;
+            }
+            set
+            {
+                mName = value;
+            }
+        }
+        public override void Write(ChunkWriter writer)
+        {
+            writer.OpenChunk(ChunkType.IndexedPalette, (uint)Encoding.BigEndianUnicode.GetByteCount(Name) + 4U + 4U + (12U * GetColorCount()));
+            writer.Write(Name);
+            writer.Write(GetColorCount());
+            for (int i = 0; i < GetColorCount(); i++)
+            {
+                writer.Write((uint)Colors[i].R);
+                writer.Write((uint)Colors[i].G);
+                writer.Write((uint)Colors[i].B);
+            }
+            writer.CloseChunk();
         }
 
-        public override void SetName(string name)
+        public override uint ChunkSize()
         {
-            mName = name;
-        }
-
-        public override string ToString()
-        {
-            return mName;
+            return 16U + (uint)Encoding.BigEndianUnicode.GetByteCount(Name) + 4U + 4U + (12U * GetColorCount());
         }
     }
 }

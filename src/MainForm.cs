@@ -673,7 +673,7 @@ namespace Porno_Graphic
 
 
 
-		public void CreateImportProject(Classes.GfxElementSet elementSet, BindingList<Classes.IPalette> paletteSet)
+		public void CreateImportProject(Classes.GfxElementSet elementSet)
         {
             string displayName = string.Format(Porno_Graphic.Properties.Resources.MainForm_ImportProjectFormat, ++mImportCount);
             Classes.Project project = new Classes.Project(displayName, elementSet);
@@ -682,10 +682,9 @@ namespace Porno_Graphic
             viewer.ElementWidth = elementSet.ElementWidth;
             viewer.ElementHeight = elementSet.ElementHeight;
             viewer.Elements = elementSet.Elements;
-			viewer.Palettes = paletteSet;
-			viewer.PalettesBindingSource = new BindingSource();
-			viewer.PalettesBindingSource.DataSource = viewer.Palettes;
-			viewer.SelectedPalette = viewer.Palettes[0];
+			viewer.Palettes = elementSet.Palettes;
+            viewer.PalettesBindingSource = new BindingSource();
+            viewer.SelectedPalette = viewer.Palettes[0];
 			viewer.Planes = elementSet.Planes;
 			
 
@@ -798,6 +797,13 @@ namespace Porno_Graphic
 			List<uint> ElementHeights = new List<uint>();
 			List<uint[]> PixelsList = new List<uint[]>();
 
+			// IndexedPalette variables
+			List<string> PaletteNames = new List<string>();
+			List<uint> ColorCounts = new List<uint>();
+			List<uint[]> PaletteReds = new List<uint[]>();
+			List<uint[]> PaletteGreens = new List<uint[]>();
+			List<uint[]> PaletteBlues = new List<uint[]>();
+
 			// TileImportMetadata variables
 			string TileImportMetadata_ProfileFile;
 			string TileImportMetadata_ProfileName;
@@ -866,6 +872,40 @@ namespace Porno_Graphic
 
 				// Finished reading GfxElements.
 
+				// Read IndexedPalettes
+
+				if (CurrentChunk != Classes.ChunkType.IndexedPalette)
+					throw new Exception("Invalid header. Not IndexedPalette.");
+
+				bool ReadingPalettes = true;
+				while (ReadingPalettes)
+                {
+					PaletteNames.Add(reader.ReadString());
+					uint colorCount = reader.ReadUint();
+					ColorCounts.Add(colorCount);
+					uint[] reds = new uint[colorCount];
+					uint[] greens = new uint[colorCount];
+					uint[] blues = new uint[colorCount];
+					for(int i = 0; i < colorCount; i++)
+                    {
+						reds[i] = reader.ReadUint();
+						greens[i] = reader.ReadUint();
+						blues[i] = reader.ReadUint();
+                    }
+
+					PaletteReds.Add(reds);
+					PaletteGreens.Add(greens);
+					PaletteBlues.Add(blues);
+
+					reader.CloseChunk();
+					CurrentChunk = reader.ReadChunkHeader();
+					CurrentChunkLength = reader.GetCurrentLength();
+					if (CurrentChunk != Classes.ChunkType.IndexedPalette) ReadingPalettes = false;     // Read IndexedPalettes until a different header is encountered.
+                }
+
+
+				// Finished reading IndexedPalettes
+
 				if (CurrentChunk != Classes.ChunkType.TileImportMetadata)
 					throw new Exception("Invalid header. Not TileImportMetadata.");
 
@@ -885,6 +925,8 @@ namespace Porno_Graphic
                 {
 					TileImportMetadata_RomFilenames[n] = reader.ReadString();
                 }
+
+				
 
 				reader.CloseChunk();
 			}
@@ -933,10 +975,22 @@ namespace Porno_Graphic
 				elementSet.Planes = planes;
 				elementSet.Elements = elements;
 				elementSet.ImportMetadata = metadata;
-				Classes.IndexedPalette defaultPalette = new Classes.IndexedPalette(planes, "Default palette"); // TODO make this import palette data from the project
+
+				// Construct palettes
 				BindingList<Classes.IPalette> paletteSet = new BindingList<Classes.IPalette>();
-				paletteSet.Add(defaultPalette);
-				CreateImportProject(elementSet, paletteSet);
+
+				for (int p = 0; p < PaletteNames.Count; p++)
+                {
+					Classes.IndexedPalette palette = new Classes.IndexedPalette(ColorCounts[p], PaletteNames[p]);
+					for (uint c = 0; c < palette.GetColorCount(); c++)
+                    {
+						palette.SetColor(Color.FromArgb((int)PaletteReds[p][c], (int)PaletteGreens[p][c], (int)PaletteBlues[p][c]), c);
+                    }
+					paletteSet.Add(palette);
+                }
+
+				elementSet.Palettes = paletteSet;
+				CreateImportProject(elementSet);
 			}
 			else
 				throw new Exception("Invalid 'Planes' value in TileImportMetadata");			
