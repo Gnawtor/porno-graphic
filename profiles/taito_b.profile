@@ -154,4 +154,22 @@
       <stride>256</stride>
     </layout>
   </layouts>
+	<regions>
+		<region name="Crime City" length="100000">
+			<file name="18">
+				<load offset="0" size="80000" />
+			</file>
+			<file name="19">
+				<load offset="80000" size="80000" />
+			</file>
+		</region>
+		<region name="Ashura" length="100000">
+			<file name="c43-02">
+				<load offset="0" size="80000" />
+			</file>
+			<file name="c43-03">
+				<load offset="80000" size="80000" />
+			</file>
+		</region>
+	</regions>
 </profile:profile>
