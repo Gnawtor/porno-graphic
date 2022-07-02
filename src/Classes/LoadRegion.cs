@@ -243,7 +243,7 @@ namespace Porno_Graphic.Classes
         public uint Length { get; set; }
 
         [XmlIgnore]
-        public bool Erase { get; set; }
+        public bool Erase { get; set; } // for erase regions in mame where there are empty gaps in memory between files (ie, ROMREGION_ERASEFF) (see Blocken game definition in shangha3 for an example)
 
         [XmlIgnore]
         public byte EraseValue { get; set; }
@@ -358,6 +358,55 @@ namespace Porno_Graphic.Classes
                     result[i] = (byte)~result[i];
             }
             return result;
+        }
+
+        public void SaveFiles(byte[] data, string[] paths)
+        {
+            for (int i = 0; i < Files.Length; i++)
+            {
+                File file = Files[i];
+                
+                byte[] saveData = null;
+
+                FileStream stream = new FileStream(paths[i], FileMode.OpenOrCreate, FileAccess.Write);
+                try
+                {
+                    uint fileSize = 0;
+                    foreach (Instruction instruction in file.Instructions)
+                        fileSize += instruction.Size;
+                    if (saveData == null || saveData.Length < fileSize)
+                        saveData = new byte[fileSize];
+
+                    for (int j = 0; j < file.Instructions.Length; j++)
+                    {
+                        Instruction instruction = file.Instructions[j];
+                        uint source = instruction.Offset;
+
+                        for (uint dest = 0; dest < instruction.Size; dest++)
+                        {
+                            uint offset = source ^ file.SwapMask;
+                            if (offset >= Length)
+                                throw new LoadOutsideRegionException(this, i, offset);
+                            saveData[dest] = data[offset];
+                            source++;
+                            if ((dest % file.Group) == (file.Group - 1))
+                                source += file.Skip;
+                        }
+                    }
+
+                    if (Invert)
+                    {
+                        for (uint k = 0; k < Length; k++)
+                            saveData[k] = (byte)~saveData[k];
+                    }
+
+                    stream.Write(saveData, 0, saveData.Length);
+                }
+                finally
+                {
+                    stream.Close();
+                }
+            }
         }
     }
 }

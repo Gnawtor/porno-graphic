@@ -40,7 +40,11 @@ namespace Porno_Graphic.Classes
                         reader.Close();
                 }
 
-                if (profile == null) { ErrorMessages.Add(String.Format("Error loading profile {0}", Path.GetFileName(path))); }
+                if (profile == null) 
+                { 
+                    if (ErrorMessages == null) { ErrorMessages = new List<string>(); }
+                    ErrorMessages.Add(String.Format("Error loading {0}", Path.GetFileName(path))); 
+                }
                 else { Profiles.Add(new ProfileLoadModel(profile, path)); }
             }
 

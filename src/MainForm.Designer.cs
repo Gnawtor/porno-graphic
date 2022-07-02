@@ -138,10 +138,10 @@
             this.menuItem_File_Open,
             this.menuItem_File_Save,
             this.toolStripSeparator1,
+            this.MenuItemSaveGraphicsData,
             this.menuItem_ExportToTilEdMap,
             this.MenuItemConvertTmxToGif,
             this.menuItemApplyTmx,
-            this.MenuItemSaveGraphicsData,
             this.toolStripSeparator4,
             this.menuItem_File_Exit});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -218,15 +218,14 @@
             // 
             // splitRegionsToolStripMenuItem
             // 
-            this.splitRegionsToolStripMenuItem.Enabled = false;
             this.splitRegionsToolStripMenuItem.Name = "splitRegionsToolStripMenuItem";
-            this.splitRegionsToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.splitRegionsToolStripMenuItem.Text = "Project\'s original ROMs";
+            this.splitRegionsToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.splitRegionsToolStripMenuItem.Text = "Project\'s Source Roms";
             // 
             // MenuItemSaveFlatFile
             // 
             this.MenuItemSaveFlatFile.Name = "MenuItemSaveFlatFile";
-            this.MenuItemSaveFlatFile.Size = new System.Drawing.Size(197, 22);
+            this.MenuItemSaveFlatFile.Size = new System.Drawing.Size(191, 22);
             this.MenuItemSaveFlatFile.Text = "Flat file";
             this.MenuItemSaveFlatFile.Click += new System.EventHandler(this.MenuItemSaveFlatFile_Click);
             // 

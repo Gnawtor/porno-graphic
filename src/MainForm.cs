@@ -105,6 +105,8 @@ namespace Porno_Graphic
 			menuItem_View_GridEdit.Checked = ShowEditorGrid;
 			menuItem_View_GridArranger.Checked = ShowArrangerGrid;
 			menuItem_View_GridView.Checked = ShowViewerGrid;
+
+			splitRegionsToolStripMenuItem.Click += MenuItemSplitRegions_Click;
 		}
 
 		private void menuItem_File_Exit_Click(object sender, EventArgs e) {
@@ -632,44 +634,6 @@ namespace Porno_Graphic
 
         private void menuItem_File_Import_Click(object sender, EventArgs e)
         {
-			// TODO move this out to a different method
-			// TODO make this localisable
-
-			//OpenFileDialog openProfileDialog = new OpenFileDialog();
-			//openProfileDialog.Title = "Select Profile";
-			//openProfileDialog.Filter = Properties.Resources.MainForm_GameProfileFileFilter;
-			//openProfileDialog.FilterIndex = 1;
-			//openProfileDialog.Multiselect = false;
-			//if (openProfileDialog.ShowDialog() != DialogResult.OK)
-			//    return;
-
-			//StreamReader reader = null;
-			//Classes.GameProfile profile = null;
-			//try
-			//{
-			//    reader = new StreamReader(openProfileDialog.FileName);
-			//    XmlSerializer profileLoader = new XmlSerializer(typeof(Classes.GameProfile));
-			//    profile = (Classes.GameProfile)profileLoader.Deserialize(reader);
-			//}
-			//catch
-			//{
-			//}
-			//finally
-			//{
-			//    if (reader != null)
-			//        reader.Close();
-			//}
-
-			//if (profile == null)
-			//{
-			//    // TODO more meaningful error message
-			//    MessageBox.Show("Error loading profile");
-			//    return;
-			//}
-
-			//TileImporter importer = new TileImporter(this, profile, openProfileDialog.FileName);
-			//importer.Show();
-
 			NewProject();
         }
 
@@ -743,44 +707,6 @@ namespace Porno_Graphic
             viewer.Show();
         }
 
-		public void SaveChangesToSourceFiles()
-        {
-			if(mActiveProject != null)
-            {
-				if(mActiveProject.Project != null)
-                {
-					string profilePath = AppDomain.CurrentDomain.BaseDirectory + @"\profiles";
-					if (!Directory.Exists(profilePath))
-					{
-						MessageBox.Show(Properties.Resources.MainForm_ProfileFolderNotFound, "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-						return;
-					}
-
-					Classes.ProfileList profileModel = new Classes.ProfileList(profilePath);
-					if (profileModel.Profiles == null || profileModel.Profiles.Count < 1)
-                    {
-						MessageBox.Show(Properties.Resources.MainForm_NoValidProfilesFound, "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-						return;
-                    }
-
-					List<Classes.GameProfile> profileList = new List<Classes.GameProfile>();
-					foreach (Classes.ProfileLoadModel model in profileModel.Profiles)
-						profileList.Add(model.Profile);
-
-					Classes.GameProfile profile = profileList.Find(m => m.Name == mActiveProject.Project.ImportMetadata.ProfileName);
-
-					if (profile == null)
-                    {
-						MessageBox.Show(String.Format(Properties.Resources.MainForm_MatchingProfileNameNotFound, mActiveProject.Project.ImportMetadata.ProfileName), "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-						return;
-                    }
-
-					// TODO finish this
-				}
-            }
-			
-        }
-
         private void fileToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
             menuItem_File_Save.Enabled = mActiveProject != null;
@@ -825,10 +751,6 @@ namespace Porno_Graphic
 				reader.StartDecompression();
 				ProjectData = reader.ReadProjectContents();		// Create decompressed array of the project data
 			}
-
-			// DEBUG
-			//ShowSaveBinaryDialog(ProjectData);
-
 			
 			reader = new Classes.ChunkReader(new MemoryStream(ProjectData));
 
@@ -867,7 +789,6 @@ namespace Porno_Graphic
 				if (CurrentChunk != Classes.ChunkType.GfxElementSet)
 					throw new Exception(string.Format("Invalid header. Not a GfxElementSet."));
 				ProjectLength = reader.GetCurrentLength();
-				//reader.SkipRemainingChunk();
 				reader.AbortChunk();		// Finished reading GfxElementSet header (the chunk itself is the entire rest of the project file)
 
 				// Start reading GfxElementSetInfo data.
@@ -979,26 +900,6 @@ namespace Porno_Graphic
 				reader.CloseChunk();
 			}
 
-            // DEBUG
-            //MessageBox.Show("PROJECT INFO" + Environment.NewLine
-            //    + Environment.NewLine
-            //    + "Project length = " + ProjectLength.ToString() + Environment.NewLine
-            //    + Environment.NewLine
-            //    + "GfxElementSetInfo_ElementWidth = " + GfxElementSetInfo_ElementWidth.ToString() + Environment.NewLine
-            //    + "GfxElementSetInfo_ElementHeight = " + GfxElementSetInfo_ElementHeight.ToString() + Environment.NewLine
-            //    + "GfxElementSetInfo_Name = " + GfxElementSetInfo_Name + Environment.NewLine
-            //    + Environment.NewLine
-            //    + "Total number of tiles = " + PixelsList.Count.ToString() + Environment.NewLine
-            //    + Environment.NewLine
-            //    + "TileImportMetadata_ProfileFile = " + TileImportMetadata_ProfileFile + Environment.NewLine
-            //    + "TileImportMetadata_ProfileName = " + TileImportMetadata_ProfileName + Environment.NewLine
-            //    + "TileImportMetadata_RegionName = " + TileImportMetadata_RegionName + Environment.NewLine
-            //    + "TileImportMetadata_LayoutName = " + TileImportMetadata_LayoutName + Environment.NewLine
-            //    + "TileImportMetadata_Offset = " + TileImportMetadata_Offset + Environment.NewLine
-            //    + "TileImportMetadata_Planes = " + TileImportMetadata_Planes); ;
-            // END DEBUG
-
-
             // Begin assembling project
 
             Classes.GfxElement[] elements = new Classes.GfxElement[PixelsList.Count];
@@ -1101,11 +1002,6 @@ namespace Porno_Graphic
 			File.WriteAllText(FileName + ".tmx", template);
 		}
 
-		private void ConvertMapToGif(string Path)
-        {
-
-        }
-
         private void menuItem_ExportToTilEdMap_Click(object sender, EventArgs e)
         {
 			if (mActiveProject != null)
@@ -1159,43 +1055,50 @@ namespace Porno_Graphic
 			Classes.GifReader gifReader = new Classes.GifReader(openIndexedGifDialog.FileName, tiledImportData);
 		}
 
-        private void MenuItemSaveFlatFile_Click(object sender, EventArgs e)
-        {
-			byte[] data = null;
+		public Classes.ExportDataSet WriteProjectTilesToSource(Classes.Project project, TileViewer tileViewer)
+		{
+			Classes.ExportDataSet exportData = new Classes.ExportDataSet();
+			if (project == null) return null;
 
-			StreamReader reader = null;
-			Classes.GameProfile profile = null;
-			try
+			string profilePath = AppDomain.CurrentDomain.BaseDirectory + @"\profiles";
+			if (!Directory.Exists(profilePath))
 			{
-				reader = new StreamReader(mActiveProject.Project.ImportMetadata.ProfileFile);
-				XmlSerializer profileLoader = new XmlSerializer(typeof(Classes.GameProfile));
-				profile = (Classes.GameProfile)profileLoader.Deserialize(reader);
+				MessageBox.Show(Properties.Resources.MainForm_ProfileFolderNotFound, "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return null;
 			}
-			catch
+
+			Classes.ProfileList profileModel = new Classes.ProfileList(profilePath);
+			if (profileModel.Profiles == null || profileModel.Profiles.Count < 1)
 			{
+				MessageBox.Show(Properties.Resources.MainForm_NoValidProfilesFound, "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return null;
 			}
-			finally
-			{
-				if (reader != null)
-					reader.Close();
-			}
+
+			List<Classes.GameProfile> profileList = new List<Classes.GameProfile>();
+			foreach (Classes.ProfileLoadModel model in profileModel.Profiles)
+				profileList.Add(model.Profile);
+
+			Classes.GameProfile profile = profileList.Find(m => m.Name == project.ImportMetadata.ProfileName);
 
 			if (profile == null)
 			{
-				// TODO more meaningful error message
-				MessageBox.Show("Error loading profile");
-				return;
+				MessageBox.Show(String.Format(Properties.Resources.MainForm_MatchingProfileNameNotFound, project.ImportMetadata.ProfileName), "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return null;
 			}
+
+			byte[] data = null;
+			Classes.LoadRegion region = null;
+
 			// Find this project's region
-			if (mActiveProject.Project.ImportMetadata.RegionName == "Flat file")
-				data = File.ReadAllBytes(mActiveProject.Project.ImportMetadata.RomFilenames[0]);	// Flat file region isn't in any profile
+			if (project.ImportMetadata.RegionName == "Flat file")
+				data = File.ReadAllBytes(project.ImportMetadata.RomFilenames[0]);    // Flat file region isn't in any profile
 			else
-            {
+			{
 				uint regionOffset = 0U;
 				bool regionFound = false;
 				foreach (Classes.LoadRegion loadRegion in profile.LoadRegions)
 				{
-					if (mActiveProject.Project.ImportMetadata.RegionName != loadRegion.Name)
+					if (project.ImportMetadata.RegionName != loadRegion.Name)
 						regionOffset++;
 					else
 					{
@@ -1207,19 +1110,19 @@ namespace Porno_Graphic
 				{
 					MessageBox.Show("Region not found.", "ERROR");
 				}
-				Classes.LoadRegion region = profile.LoadRegions[regionOffset];
-				data = region.LoadFiles(mActiveProject.Project.ImportMetadata.RomFilenames);    // Load original files
+				region = profile.LoadRegions[regionOffset];
+				data = region.LoadFiles(project.ImportMetadata.RomFilenames);    // Load original files
 			}
-			
+
 			//Find offset to this project's char layout
 			uint layoutOffset = 0U;
 			bool layoutFound = false;
 			foreach (Classes.CharLayout charLayout in profile.CharLayouts)
 			{
-				if (mActiveProject.Project.ImportMetadata.LayoutName != charLayout.Name)
+				if (project.ImportMetadata.LayoutName != charLayout.Name)
 					layoutOffset++;
 				else
-                {
+				{
 					layoutFound = true;
 					break;
 				}
@@ -1228,11 +1131,37 @@ namespace Porno_Graphic
 			{
 				MessageBox.Show("Layout not found.", "ERROR");
 			}
-			for(uint ch = 0; ch < mActiveProject.TileViewer.Elements.Length; ch++)
-            {
-				mActiveProject.TileViewer.Elements[ch].Write(data, profile.CharLayouts[layoutOffset], mActiveProject.Project.Offset, ch);
+			for (uint ch = 0; ch < tileViewer.Elements.Length; ch++)
+			{
+				tileViewer.Elements[ch].WriteBinary(data, profile.CharLayouts[layoutOffset], project.Offset, ch);
 			}
-			ShowSaveBinaryDialog(data);
+
+			exportData.Data = data;
+			exportData.LoadRegion = region;
+			return exportData;
+		}
+
+		private void MenuItemSaveFlatFile_Click(object sender, EventArgs e)
+        {
+			Classes.ExportDataSet exportData = WriteProjectTilesToSource(mActiveProject.Project, mActiveProject.TileViewer);
+			ShowSaveBinaryDialog(exportData.Data);
+		}
+
+		private void MenuItemSplitRegions_Click(object sender, EventArgs e)
+        {
+			if (mActiveProject != null)
+            {
+				if (mActiveProject.Project != null)
+                {
+					SaveToSourceRoms();
+                }
+            }
+        }
+
+		private void SaveToSourceRoms()
+        {
+			Classes.ExportDataSet exportData = WriteProjectTilesToSource(mActiveProject.Project, mActiveProject.TileViewer);
+			exportData.LoadRegion.SaveFiles(exportData.Data, mActiveProject.Project.ImportMetadata.RomFilenames);
 		}
     }
 }

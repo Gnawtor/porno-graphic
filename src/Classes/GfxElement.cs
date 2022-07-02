@@ -53,7 +53,7 @@ namespace Porno_Graphic.Classes
             Pixels = pixels;
         }
 
-        public void Write(byte[] data, CharLayout layout, uint offset, uint ch)
+        public void WriteBinary(byte[] data, CharLayout layout, uint offset, uint ch)
         {
             uint charOffset = (8 * offset) + (layout.Stride * ch);
             for (uint y = 0; y < Height; y++)

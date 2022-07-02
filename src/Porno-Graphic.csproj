@@ -87,6 +87,7 @@
     <Compile Include="Classes\ElementGridView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Classes\ExportDataSet.cs" />
     <Compile Include="Classes\FillOutsideRegionException.cs" />
     <Compile Include="Classes\GameProfile.cs" />
     <Compile Include="Classes\GfxElement.cs" />
