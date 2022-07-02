@@ -94,12 +94,12 @@ namespace Porno_Graphic
 			//arrangerForm.Show();
 
 			/* set variables from settings/config */
-			ShowEditorGrid = Porno_Graphic.Properties.Settings.Default.EditorGrid;
-			ShowArrangerGrid = Porno_Graphic.Properties.Settings.Default.ArrangerGrid;
-			ShowViewerGrid = Porno_Graphic.Properties.Settings.Default.ViewerGrid;
-			EditorGridColor = Porno_Graphic.Properties.Settings.Default.EditorGridColor;
-			ArrangerGridColor = Porno_Graphic.Properties.Settings.Default.ArrangerGridColor;
-			ViewerGridColor = Porno_Graphic.Properties.Settings.Default.ViewerGridColor;
+			//ShowEditorGrid = Porno_Graphic.Properties.Settings.Default.EditorGrid;
+			//ShowArrangerGrid = Porno_Graphic.Properties.Settings.Default.ArrangerGrid;
+			//ShowViewerGrid = Porno_Graphic.Properties.Settings.Default.ViewerGrid;
+			//EditorGridColor = Porno_Graphic.Properties.Settings.Default.EditorGridColor;
+			//ArrangerGridColor = Porno_Graphic.Properties.Settings.Default.ArrangerGridColor;
+			//ViewerGridColor = Porno_Graphic.Properties.Settings.Default.ViewerGridColor;
 
 			/* initialize grid item checkmarks */
 			menuItem_View_GridEdit.Checked = ShowEditorGrid;
@@ -424,7 +424,7 @@ namespace Porno_Graphic
 			OpenFileDialog dialog = new OpenFileDialog();
 			dialog.Filter = Properties.Resources.MainForm_ProjectFileFilter;
 			dialog.FilterIndex = 1;
-			dialog.Title = "Open Project";
+			dialog.Title = Properties.Resources.MainForm_OpenProjectDialogTitle;
 			if (dialog.ShowDialog() == DialogResult.OK)
 				return dialog.FileName; // TODO: make a method for opening project
 			else
@@ -445,9 +445,9 @@ namespace Porno_Graphic
 		protected void ShowSaveBinaryDialog(byte[] data)
         {
 			SaveFileDialog dialog = new SaveFileDialog();
-			dialog.Filter = "Binary Data (*.bin)|*.bin|All files(*.*)|*.* ";
+			dialog.Filter = Properties.Resources.MainForm_BinaryFileFilter;
 			dialog.FilterIndex = 1;
-			dialog.Title = "Save Binary Data";
+			dialog.Title = Properties.Resources.MainForm_SaveBinaryDataTile;
 			if (dialog.ShowDialog() == DialogResult.OK)
 				File.WriteAllBytes(dialog.FileName, data);
 		}
@@ -455,9 +455,9 @@ namespace Porno_Graphic
 		protected void ShowExportTiledMapSet()
         {
 			SaveFileDialog dialog = new SaveFileDialog();
-			dialog.Filter = "Tiled map file (*.tmx)|*.tmx|All files(*.*)|*.* ";
+			dialog.Filter = Properties.Resources.MainForm_TiledMapFileFilter;
 			dialog.FilterIndex = 1;
-			dialog.Title = "Export tileset to Tiled files";
+			dialog.Title = Properties.Resources.MainForm_ExportToTiledTitle;
 			if (dialog.ShowDialog() == DialogResult.OK)
 				ExportTilesetFiles(dialog.FileName);
 		}
@@ -575,24 +575,24 @@ namespace Porno_Graphic
 		#region Grid toggle
 		private void viewerGridToolStripMenuItem_Click(object sender, EventArgs e) {
 			ShowViewerGrid = !ShowViewerGrid;
-			Porno_Graphic.Properties.Settings.Default.ViewerGrid = ShowViewerGrid;
-			Porno_Graphic.Properties.Settings.Default.Save();
+			//Porno_Graphic.Properties.Settings.Default.ViewerGrid = ShowViewerGrid;
+			//Porno_Graphic.Properties.Settings.Default.Save();
 			/* toggle TileViewer grid */
 			// xxx: is this per-document or for all documents?
 		}
 
 		private void editorGridToolStripMenuItem_Click(object sender, EventArgs e) {
 			ShowEditorGrid = !ShowEditorGrid;
-			Porno_Graphic.Properties.Settings.Default.EditorGrid = ShowEditorGrid;
-			Porno_Graphic.Properties.Settings.Default.Save();
+			//Porno_Graphic.Properties.Settings.Default.EditorGrid = ShowEditorGrid;
+			//Porno_Graphic.Properties.Settings.Default.Save();
 			/* toggle TileEditor grid */
 			//editorForm.ShowGrid = ShowEditorGrid;
 		}
 
 		private void menuItem_View_GridArranger_Click(object sender, EventArgs e) {
 			ShowArrangerGrid = !ShowArrangerGrid;
-			Porno_Graphic.Properties.Settings.Default.ArrangerGrid = ShowArrangerGrid;
-			Porno_Graphic.Properties.Settings.Default.Save();
+			//Porno_Graphic.Properties.Settings.Default.ArrangerGrid = ShowArrangerGrid;
+			//Porno_Graphic.Properties.Settings.Default.Save();
 			/* toggle TileArranger grid */
 			//arrangerForm.ShowGrid = ShowArrangerGrid;
 		}
@@ -632,46 +632,56 @@ namespace Porno_Graphic
 
         private void menuItem_File_Import_Click(object sender, EventArgs e)
         {
-            // TODO move this out to a different method
-            // TODO make this localisable
+			// TODO move this out to a different method
+			// TODO make this localisable
 
-            OpenFileDialog openProfileDialog = new OpenFileDialog();
-            openProfileDialog.Title = "Select Profile";
-            openProfileDialog.Filter = Properties.Resources.MainForm_GameProfileFileFilter;
-            openProfileDialog.FilterIndex = 1;
-            openProfileDialog.Multiselect = false;
-            if (openProfileDialog.ShowDialog() != DialogResult.OK)
-                return;
+			//OpenFileDialog openProfileDialog = new OpenFileDialog();
+			//openProfileDialog.Title = "Select Profile";
+			//openProfileDialog.Filter = Properties.Resources.MainForm_GameProfileFileFilter;
+			//openProfileDialog.FilterIndex = 1;
+			//openProfileDialog.Multiselect = false;
+			//if (openProfileDialog.ShowDialog() != DialogResult.OK)
+			//    return;
 
-            StreamReader reader = null;
-            Classes.GameProfile profile = null;
-            try
-            {
-                reader = new StreamReader(openProfileDialog.FileName);
-                XmlSerializer profileLoader = new XmlSerializer(typeof(Classes.GameProfile));
-                profile = (Classes.GameProfile)profileLoader.Deserialize(reader);
-            }
-            catch
-            {
-            }
-            finally
-            {
-                if (reader != null)
-                    reader.Close();
-            }
+			//StreamReader reader = null;
+			//Classes.GameProfile profile = null;
+			//try
+			//{
+			//    reader = new StreamReader(openProfileDialog.FileName);
+			//    XmlSerializer profileLoader = new XmlSerializer(typeof(Classes.GameProfile));
+			//    profile = (Classes.GameProfile)profileLoader.Deserialize(reader);
+			//}
+			//catch
+			//{
+			//}
+			//finally
+			//{
+			//    if (reader != null)
+			//        reader.Close();
+			//}
 
-            if (profile == null)
-            {
-                // TODO more meaningful error message
-                MessageBox.Show("Error loading profile");
-                return;
-            }
+			//if (profile == null)
+			//{
+			//    // TODO more meaningful error message
+			//    MessageBox.Show("Error loading profile");
+			//    return;
+			//}
 
-            TileImporter importer = new TileImporter(this, profile, openProfileDialog.FileName);
-            importer.Show();
+			//TileImporter importer = new TileImporter(this, profile, openProfileDialog.FileName);
+			//importer.Show();
+
+			NewProject();
         }
 
+		private void NewProject()
+        {
+			ProfileSelector profileSelector = new ProfileSelector();
+			if (profileSelector.ShowDialog() != DialogResult.OK)
+				return;
 
+			TileImporter importer = new TileImporter(this, profileSelector.SelectedProfile, profileSelector.SelectedProfilePath);
+			importer.Show();
+		}
 
 		public void CreateImportProject(Classes.GfxElementSet elementSet)
         {
@@ -731,6 +741,44 @@ namespace Porno_Graphic
             });
 
             viewer.Show();
+        }
+
+		public void SaveChangesToSourceFiles()
+        {
+			if(mActiveProject != null)
+            {
+				if(mActiveProject.Project != null)
+                {
+					string profilePath = AppDomain.CurrentDomain.BaseDirectory + @"\profiles";
+					if (!Directory.Exists(profilePath))
+					{
+						MessageBox.Show(Properties.Resources.MainForm_ProfileFolderNotFound, "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						return;
+					}
+
+					Classes.ProfileList profileModel = new Classes.ProfileList(profilePath);
+					if (profileModel.Profiles == null || profileModel.Profiles.Count < 1)
+                    {
+						MessageBox.Show(Properties.Resources.MainForm_NoValidProfilesFound, "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						return;
+                    }
+
+					List<Classes.GameProfile> profileList = new List<Classes.GameProfile>();
+					foreach (Classes.ProfileLoadModel model in profileModel.Profiles)
+						profileList.Add(model.Profile);
+
+					Classes.GameProfile profile = profileList.Find(m => m.Name == mActiveProject.Project.ImportMetadata.ProfileName);
+
+					if (profile == null)
+                    {
+						MessageBox.Show(String.Format(Properties.Resources.MainForm_MatchingProfileNameNotFound, mActiveProject.Project.ImportMetadata.ProfileName), "ERROR!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						return;
+                    }
+
+					// TODO finish this
+				}
+            }
+			
         }
 
         private void fileToolStripMenuItem_DropDownOpening(object sender, EventArgs e)

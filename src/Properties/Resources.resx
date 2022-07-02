@@ -772,4 +772,28 @@
   <data name="tiled_tileset_template" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tiled_tileset_template.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="MainForm_BinaryFileFilter" xml:space="preserve">
+    <value>Binary Data (*.bin)|*.bin|All files(*.*)|*.*</value>
+  </data>
+  <data name="MainForm_ExportToTiledTitle" xml:space="preserve">
+    <value>Export tileset to Tiled files</value>
+  </data>
+  <data name="MainForm_MatchingProfileNameNotFound" xml:space="preserve">
+    <value>Could not find matching profile with name {0}</value>
+  </data>
+  <data name="MainForm_NoValidProfilesFound" xml:space="preserve">
+    <value>No valid profiles found!</value>
+  </data>
+  <data name="MainForm_OpenProjectDialogTitle" xml:space="preserve">
+    <value>Open Project</value>
+  </data>
+  <data name="MainForm_ProfileFolderNotFound" xml:space="preserve">
+    <value>Profile folder not found!</value>
+  </data>
+  <data name="MainForm_SaveBinaryDataTile" xml:space="preserve">
+    <value>Save Binary Data</value>
+  </data>
+  <data name="MainForm_TiledMapFileFilter" xml:space="preserve">
+    <value>Tiled map file (*.tmx)|*.tmx|All files(*.*)|*.*</value>
+  </data>
 </root>

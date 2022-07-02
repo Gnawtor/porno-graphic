@@ -20,5 +20,11 @@ namespace Porno_Graphic.Classes
         [XmlArray(ElementName = "regions", Form = XmlSchemaForm.Unqualified)]
         [XmlArrayItem(ElementName = "region", Form = XmlSchemaForm.Unqualified)]
         public LoadRegion[] LoadRegions { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
+    
 }

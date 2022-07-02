@@ -35,13 +35,13 @@
             this.rotateLabel = new System.Windows.Forms.Label();
             this.rotate = new System.Windows.Forms.ComboBox();
             this.groupBox_Options = new System.Windows.Forms.GroupBox();
+            this.btnDuplicatePalette = new System.Windows.Forms.Button();
+            this.paletteBar = new Porno_Graphic.Classes.PaletteSingleBar();
             this.labelPalette = new System.Windows.Forms.Label();
             this.btnEditPalette = new System.Windows.Forms.Button();
             this.btnAddPalette = new System.Windows.Forms.Button();
             this.comboPalettes = new System.Windows.Forms.ComboBox();
-            this.paletteBar = new Porno_Graphic.Classes.PaletteSingleBar();
             this.tileGrid = new Porno_Graphic.Classes.ElementGridView();
-            this.btnDuplicatePalette = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.xScale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.yScale)).BeginInit();
             this.groupBox_Options.SuspendLayout();
@@ -50,18 +50,16 @@
             // xScaleLabel
             // 
             this.xScaleLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.xScaleLabel.Location = new System.Drawing.Point(14, 38);
-            this.xScaleLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.xScaleLabel.Location = new System.Drawing.Point(7, 20);
             this.xScaleLabel.Name = "xScaleLabel";
-            this.xScaleLabel.Size = new System.Drawing.Size(94, 25);
+            this.xScaleLabel.Size = new System.Drawing.Size(47, 13);
             this.xScaleLabel.TabIndex = 1;
             this.xScaleLabel.Text = "X Scale:";
             // 
             // xScale
             // 
             this.xScale.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.xScale.Location = new System.Drawing.Point(120, 35);
-            this.xScale.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.xScale.Location = new System.Drawing.Point(60, 18);
             this.xScale.Maximum = new decimal(new int[] {
             32,
             0,
@@ -73,7 +71,7 @@
             0,
             0});
             this.xScale.Name = "xScale";
-            this.xScale.Size = new System.Drawing.Size(96, 31);
+            this.xScale.Size = new System.Drawing.Size(48, 20);
             this.xScale.TabIndex = 2;
             this.xScale.Value = new decimal(new int[] {
             1,
@@ -85,18 +83,16 @@
             // yScaleLabel
             // 
             this.yScaleLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.yScaleLabel.Location = new System.Drawing.Point(14, 88);
-            this.yScaleLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.yScaleLabel.Location = new System.Drawing.Point(7, 46);
             this.yScaleLabel.Name = "yScaleLabel";
-            this.yScaleLabel.Size = new System.Drawing.Size(94, 25);
+            this.yScaleLabel.Size = new System.Drawing.Size(47, 13);
             this.yScaleLabel.TabIndex = 3;
             this.yScaleLabel.Text = "Y Scale:";
             // 
             // yScale
             // 
             this.yScale.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.yScale.Location = new System.Drawing.Point(120, 85);
-            this.yScale.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.yScale.Location = new System.Drawing.Point(60, 44);
             this.yScale.Maximum = new decimal(new int[] {
             32,
             0,
@@ -108,7 +104,7 @@
             0,
             0});
             this.yScale.Name = "yScale";
-            this.yScale.Size = new System.Drawing.Size(96, 31);
+            this.yScale.Size = new System.Drawing.Size(48, 20);
             this.yScale.TabIndex = 4;
             this.yScale.Value = new decimal(new int[] {
             1,
@@ -122,10 +118,9 @@
             this.lockScale.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lockScale.Checked = true;
             this.lockScale.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.lockScale.Location = new System.Drawing.Point(230, 63);
-            this.lockScale.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.lockScale.Location = new System.Drawing.Point(115, 33);
             this.lockScale.Name = "lockScale";
-            this.lockScale.Size = new System.Drawing.Size(100, 33);
+            this.lockScale.Size = new System.Drawing.Size(50, 17);
             this.lockScale.TabIndex = 5;
             this.lockScale.Text = "Lock";
             this.lockScale.UseVisualStyleBackColor = true;
@@ -135,10 +130,9 @@
             // 
             this.xFlip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.xFlip.AutoSize = true;
-            this.xFlip.Location = new System.Drawing.Point(24, 210);
-            this.xFlip.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.xFlip.Location = new System.Drawing.Point(12, 107);
             this.xFlip.Name = "xFlip";
-            this.xFlip.Size = new System.Drawing.Size(99, 29);
+            this.xFlip.Size = new System.Drawing.Size(52, 17);
             this.xFlip.TabIndex = 6;
             this.xFlip.Text = "Flip X";
             this.xFlip.UseVisualStyleBackColor = true;
@@ -148,10 +142,9 @@
             // 
             this.yFlip.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.yFlip.AutoSize = true;
-            this.yFlip.Location = new System.Drawing.Point(144, 210);
-            this.yFlip.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.yFlip.Location = new System.Drawing.Point(72, 107);
             this.yFlip.Name = "yFlip";
-            this.yFlip.Size = new System.Drawing.Size(100, 29);
+            this.yFlip.Size = new System.Drawing.Size(52, 17);
             this.yFlip.TabIndex = 7;
             this.yFlip.Text = "Flip Y";
             this.yFlip.UseVisualStyleBackColor = true;
@@ -160,10 +153,9 @@
             // rotateLabel
             // 
             this.rotateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.rotateLabel.Location = new System.Drawing.Point(12, 150);
-            this.rotateLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.rotateLabel.Location = new System.Drawing.Point(6, 78);
             this.rotateLabel.Name = "rotateLabel";
-            this.rotateLabel.Size = new System.Drawing.Size(96, 25);
+            this.rotateLabel.Size = new System.Drawing.Size(48, 13);
             this.rotateLabel.TabIndex = 8;
             this.rotateLabel.Text = "Rotate:";
             // 
@@ -177,10 +169,9 @@
             "90°",
             "180°",
             "270°"});
-            this.rotate.Location = new System.Drawing.Point(120, 144);
-            this.rotate.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.rotate.Location = new System.Drawing.Point(60, 75);
             this.rotate.Name = "rotate";
-            this.rotate.Size = new System.Drawing.Size(124, 33);
+            this.rotate.Size = new System.Drawing.Size(64, 21);
             this.rotate.TabIndex = 9;
             this.rotate.SelectedIndexChanged += new System.EventHandler(this.rotate_SelectedIndexChanged);
             // 
@@ -202,41 +193,56 @@
             this.groupBox_Options.Controls.Add(this.xFlip);
             this.groupBox_Options.Controls.Add(this.lockScale);
             this.groupBox_Options.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox_Options.Location = new System.Drawing.Point(0, 678);
-            this.groupBox_Options.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox_Options.Location = new System.Drawing.Point(0, 254);
             this.groupBox_Options.Name = "groupBox_Options";
-            this.groupBox_Options.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.groupBox_Options.Size = new System.Drawing.Size(1248, 260);
+            this.groupBox_Options.Size = new System.Drawing.Size(624, 135);
             this.groupBox_Options.TabIndex = 10;
             this.groupBox_Options.TabStop = false;
             this.groupBox_Options.Text = "Options";
             // 
+            // btnDuplicatePalette
+            // 
+            this.btnDuplicatePalette.Location = new System.Drawing.Point(228, 78);
+            this.btnDuplicatePalette.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDuplicatePalette.Name = "btnDuplicatePalette";
+            this.btnDuplicatePalette.Size = new System.Drawing.Size(61, 23);
+            this.btnDuplicatePalette.TabIndex = 15;
+            this.btnDuplicatePalette.Text = "Duplicate";
+            this.btnDuplicatePalette.UseVisualStyleBackColor = true;
+            // 
+            // paletteBar
+            // 
+            this.paletteBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.paletteBar.Location = new System.Drawing.Point(181, 32);
+            this.paletteBar.Name = "paletteBar";
+            this.paletteBar.Palette = null;
+            this.paletteBar.Size = new System.Drawing.Size(432, 40);
+            this.paletteBar.TabIndex = 14;
+            // 
             // labelPalette
             // 
             this.labelPalette.AutoSize = true;
-            this.labelPalette.Location = new System.Drawing.Point(356, 31);
-            this.labelPalette.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelPalette.Location = new System.Drawing.Point(178, 16);
             this.labelPalette.Name = "labelPalette";
-            this.labelPalette.Size = new System.Drawing.Size(79, 25);
+            this.labelPalette.Size = new System.Drawing.Size(40, 13);
             this.labelPalette.TabIndex = 13;
             this.labelPalette.Text = "Palette";
             // 
             // btnEditPalette
             // 
-            this.btnEditPalette.Location = new System.Drawing.Point(588, 150);
-            this.btnEditPalette.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnEditPalette.Location = new System.Drawing.Point(294, 78);
             this.btnEditPalette.Name = "btnEditPalette";
-            this.btnEditPalette.Size = new System.Drawing.Size(92, 44);
+            this.btnEditPalette.Size = new System.Drawing.Size(46, 23);
             this.btnEditPalette.TabIndex = 12;
             this.btnEditPalette.Text = "Edit";
             this.btnEditPalette.UseVisualStyleBackColor = true;
             // 
             // btnAddPalette
             // 
-            this.btnAddPalette.Location = new System.Drawing.Point(362, 150);
-            this.btnAddPalette.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnAddPalette.Location = new System.Drawing.Point(181, 78);
             this.btnAddPalette.Name = "btnAddPalette";
-            this.btnAddPalette.Size = new System.Drawing.Size(86, 44);
+            this.btnAddPalette.Size = new System.Drawing.Size(43, 23);
             this.btnAddPalette.TabIndex = 11;
             this.btnAddPalette.Text = "Add";
             this.btnAddPalette.UseVisualStyleBackColor = true;
@@ -247,22 +253,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboPalettes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboPalettes.FormattingEnabled = true;
-            this.comboPalettes.Location = new System.Drawing.Point(692, 152);
-            this.comboPalettes.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.comboPalettes.Location = new System.Drawing.Point(346, 79);
             this.comboPalettes.Name = "comboPalettes";
-            this.comboPalettes.Size = new System.Drawing.Size(530, 33);
+            this.comboPalettes.Size = new System.Drawing.Size(267, 21);
             this.comboPalettes.TabIndex = 10;
-            // 
-            // paletteBar
-            // 
-            this.paletteBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.paletteBar.Location = new System.Drawing.Point(362, 62);
-            this.paletteBar.Margin = new System.Windows.Forms.Padding(6);
-            this.paletteBar.Name = "paletteBar";
-            this.paletteBar.Palette = null;
-            this.paletteBar.Size = new System.Drawing.Size(864, 77);
-            this.paletteBar.TabIndex = 14;
             // 
             // tileGrid
             // 
@@ -270,40 +264,30 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tileGrid.AutoScroll = true;
-            this.tileGrid.AutoScrollMinSize = new System.Drawing.Size(1242, 2);
+            this.tileGrid.AutoScrollMinSize = new System.Drawing.Size(622, 2);
             this.tileGrid.Elements = new Porno_Graphic.Classes.GfxElement[0];
             this.tileGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.tileGrid.HighlightColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(0)))));
             this.tileGrid.Location = new System.Drawing.Point(0, 0);
-            this.tileGrid.Margin = new System.Windows.Forms.Padding(6);
             this.tileGrid.Name = "tileGrid";
             this.tileGrid.Palettes = null;
+            this.tileGrid.PalettesBindingSource = null;
             this.tileGrid.SelectedPalette = null;
-            this.tileGrid.Size = new System.Drawing.Size(1248, 650);
+            this.tileGrid.Size = new System.Drawing.Size(624, 248);
             this.tileGrid.TabIndex = 0;
             this.tileGrid.Tag = "";
             // 
-            // btnDuplicatePalette
-            // 
-            this.btnDuplicatePalette.Location = new System.Drawing.Point(457, 150);
-            this.btnDuplicatePalette.Name = "btnDuplicatePalette";
-            this.btnDuplicatePalette.Size = new System.Drawing.Size(122, 44);
-            this.btnDuplicatePalette.TabIndex = 15;
-            this.btnDuplicatePalette.Text = "Duplicate";
-            this.btnDuplicatePalette.UseVisualStyleBackColor = true;
-            // 
             // TileViewer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1248, 938);
+            this.ClientSize = new System.Drawing.Size(624, 389);
             this.Controls.Add(this.groupBox_Options);
             this.Controls.Add(this.tileGrid);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Icon = global::Porno_Graphic.Properties.Resources.Document;
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.MinimumSize = new System.Drawing.Size(614, 396);
+            this.MinimumSize = new System.Drawing.Size(315, 225);
             this.Name = "TileViewer";
             this.Text = "[Tile Viewer]";
             this.Resize += new System.EventHandler(this.TileViewer_Resize);

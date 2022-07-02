@@ -46,6 +46,7 @@
             this.fracNumUpDown = new System.Windows.Forms.NumericUpDown();
             this.fracSepLabel = new System.Windows.Forms.Label();
             this.fracDenUpDown = new System.Windows.Forms.NumericUpDown();
+            this.maxButton = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.fileGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fracNumUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fracDenUpDown)).BeginInit();
@@ -57,7 +58,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.layoutBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.layoutBox.FormattingEnabled = true;
-            this.layoutBox.Location = new System.Drawing.Point(66, 218);
+            this.layoutBox.Location = new System.Drawing.Point(66, 217);
             this.layoutBox.Name = "layoutBox";
             this.layoutBox.Size = new System.Drawing.Size(386, 21);
             this.layoutBox.TabIndex = 0;
@@ -66,7 +67,7 @@
             // layoutLabel
             // 
             this.layoutLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.layoutLabel.Location = new System.Drawing.Point(12, 221);
+            this.layoutLabel.Location = new System.Drawing.Point(12, 220);
             this.layoutLabel.Name = "layoutLabel";
             this.layoutLabel.Size = new System.Drawing.Size(48, 13);
             this.layoutLabel.TabIndex = 2;
@@ -75,7 +76,7 @@
             // offsetBox
             // 
             this.offsetBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.offsetBox.Location = new System.Drawing.Point(90, 245);
+            this.offsetBox.Location = new System.Drawing.Point(90, 244);
             this.offsetBox.Name = "offsetBox";
             this.offsetBox.Size = new System.Drawing.Size(120, 20);
             this.offsetBox.TabIndex = 5;
@@ -86,7 +87,7 @@
             // offsetLabel
             // 
             this.offsetLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.offsetLabel.Location = new System.Drawing.Point(12, 248);
+            this.offsetLabel.Location = new System.Drawing.Point(12, 247);
             this.offsetLabel.Name = "offsetLabel";
             this.offsetLabel.Size = new System.Drawing.Size(72, 13);
             this.offsetLabel.TabIndex = 6;
@@ -95,7 +96,7 @@
             // countBox
             // 
             this.countBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.countBox.Location = new System.Drawing.Point(90, 271);
+            this.countBox.Location = new System.Drawing.Point(90, 270);
             this.countBox.Name = "countBox";
             this.countBox.Size = new System.Drawing.Size(120, 20);
             this.countBox.TabIndex = 7;
@@ -107,7 +108,7 @@
             // 
             this.importButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.importButton.Enabled = false;
-            this.importButton.Location = new System.Drawing.Point(377, 297);
+            this.importButton.Location = new System.Drawing.Point(377, 317);
             this.importButton.Name = "importButton";
             this.importButton.Size = new System.Drawing.Size(75, 23);
             this.importButton.TabIndex = 9;
@@ -132,7 +133,7 @@
             this.fileGrid.Location = new System.Drawing.Point(12, 39);
             this.fileGrid.Name = "fileGrid";
             this.fileGrid.RowHeadersVisible = false;
-            this.fileGrid.Size = new System.Drawing.Size(440, 173);
+            this.fileGrid.Size = new System.Drawing.Size(440, 170);
             this.fileGrid.TabIndex = 10;
             this.fileGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.fileGrid_CellContentClick);
             this.fileGrid.DragDrop += new System.Windows.Forms.DragEventHandler(this.fileGrid_DragDrop);
@@ -200,7 +201,7 @@
             // 
             this.countButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.countButton.Checked = true;
-            this.countButton.Location = new System.Drawing.Point(12, 272);
+            this.countButton.Location = new System.Drawing.Point(12, 271);
             this.countButton.Name = "countButton";
             this.countButton.Size = new System.Drawing.Size(72, 17);
             this.countButton.TabIndex = 13;
@@ -212,7 +213,7 @@
             // fractionButton
             // 
             this.fractionButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.fractionButton.Location = new System.Drawing.Point(12, 297);
+            this.fractionButton.Location = new System.Drawing.Point(12, 296);
             this.fractionButton.Name = "fractionButton";
             this.fractionButton.Size = new System.Drawing.Size(72, 17);
             this.fractionButton.TabIndex = 14;
@@ -224,7 +225,7 @@
             // 
             this.fracNumUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.fracNumUpDown.Enabled = false;
-            this.fracNumUpDown.Location = new System.Drawing.Point(90, 297);
+            this.fracNumUpDown.Location = new System.Drawing.Point(90, 296);
             this.fracNumUpDown.Maximum = new decimal(new int[] {
             1,
             0,
@@ -250,7 +251,7 @@
             // 
             this.fracSepLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.fracSepLabel.AutoSize = true;
-            this.fracSepLabel.Location = new System.Drawing.Point(144, 299);
+            this.fracSepLabel.Location = new System.Drawing.Point(144, 298);
             this.fracSepLabel.Name = "fracSepLabel";
             this.fracSepLabel.Size = new System.Drawing.Size(12, 13);
             this.fracSepLabel.TabIndex = 16;
@@ -260,7 +261,7 @@
             // 
             this.fracDenUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.fracDenUpDown.Enabled = false;
-            this.fracDenUpDown.Location = new System.Drawing.Point(162, 297);
+            this.fracDenUpDown.Location = new System.Drawing.Point(162, 296);
             this.fracDenUpDown.Maximum = new decimal(new int[] {
             1024,
             0,
@@ -282,11 +283,23 @@
             0});
             this.fracDenUpDown.ValueChanged += new System.EventHandler(this.fracDenUpDown_ValueChanged);
             // 
+            // maxButton
+            // 
+            this.maxButton.AutoSize = true;
+            this.maxButton.Location = new System.Drawing.Point(12, 322);
+            this.maxButton.Name = "maxButton";
+            this.maxButton.Size = new System.Drawing.Size(118, 17);
+            this.maxButton.TabIndex = 18;
+            this.maxButton.TabStop = true;
+            this.maxButton.Text = "All Tiles From Offset";
+            this.maxButton.UseVisualStyleBackColor = true;
+            // 
             // TileImporter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(464, 332);
+            this.ClientSize = new System.Drawing.Size(464, 352);
+            this.Controls.Add(this.maxButton);
             this.Controls.Add(this.fracDenUpDown);
             this.Controls.Add(this.fracSepLabel);
             this.Controls.Add(this.fracNumUpDown);
@@ -302,6 +315,7 @@
             this.Controls.Add(this.layoutLabel);
             this.Controls.Add(this.layoutBox);
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(360, 260);
             this.Name = "TileImporter";
             this.ShowIcon = false;
@@ -334,5 +348,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn length;
         private System.Windows.Forms.DataGridViewButtonColumn browse;
         private System.Windows.Forms.DataGridViewTextBoxColumn path;
+        private System.Windows.Forms.RadioButton maxButton;
     }
 }

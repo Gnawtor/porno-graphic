@@ -104,6 +104,8 @@
     <Compile Include="Classes\PaletteSingleBar.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Classes\ProfileList.cs" />
+    <Compile Include="Classes\ProfileLoadModel.cs" />
     <Compile Include="Classes\Project.cs" />
     <Compile Include="Classes\SolidPalette.cs" />
     <Compile Include="Classes\TiledImportData.cs" />
@@ -148,8 +150,20 @@
     <Compile Include="PaletteEditor.Designer.cs">
       <DependentUpon>PaletteEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProfileSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProfileSelector.Designer.cs">
+      <DependentUpon>ProfileSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextDisplayer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TextDisplayer.Designer.cs">
+      <DependentUpon>TextDisplayer.cs</DependentUpon>
+    </Compile>
     <Compile Include="TileArranger.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -192,10 +206,16 @@
     <EmbeddedResource Include="PaletteEditor.resx">
       <DependentUpon>PaletteEditor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProfileSelector.resx">
+      <DependentUpon>ProfileSelector.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TextDisplayer.resx">
+      <DependentUpon>TextDisplayer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TileArranger.resx">
       <DependentUpon>TileArranger.cs</DependentUpon>

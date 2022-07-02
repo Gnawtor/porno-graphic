@@ -138,8 +138,11 @@ namespace Porno_Graphic
                 if (regionBox.SelectedIndex == 0)   // "Flat file" selected
                 {
                     data = File.ReadAllBytes((string)fileGrid.Rows[0].Cells[3].Value);  // Only one file to open.
-                    count = countButton.Checked ? ParseNumber(countBox.Text) : (uint)(8U * data.Length / layout.Stride * fracNumUpDown.Value / fracDenUpDown.Value);
                     uint max = layout.MaxElements((uint)data.Length, offset);
+                    if (countButton.Checked) { count = ParseNumber(countBox.Text); }
+                    else if (fractionButton.Checked) { count = (uint)(8U * data.Length / layout.Stride * fracNumUpDown.Value / fracDenUpDown.Value); }
+                    else { count = max; }
+
                     if (max < count)
                     {
                         string displayCount = countButton.Checked ? countBox.Text : count.ToString();
@@ -157,8 +160,11 @@ namespace Porno_Graphic
                 else // Load from multiple ROMs
                 {
                     Classes.LoadRegion region = Profile.LoadRegions[regionBox.SelectedIndex - 1];
-                    count = countButton.Checked ? ParseNumber(countBox.Text) : (uint)(8U * region.Length / layout.Stride * fracNumUpDown.Value / fracDenUpDown.Value);
                     uint max = layout.MaxElements(region.Length, offset);
+
+                    if (countButton.Checked) { count = ParseNumber(countBox.Text); }
+                    else if (fractionButton.Checked) { count = (uint)(8U * region.Length / layout.Stride * fracNumUpDown.Value / fracDenUpDown.Value); }
+                    else { count = max; }
                     if (max < count)
                     {
                         string displayCount = countButton.Checked ? countBox.Text : count.ToString();

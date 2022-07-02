@@ -251,6 +251,15 @@ namespace Porno_Graphic.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Binary Data (*.bin)|*.bin|All files(*.*)|*.*.
+        /// </summary>
+        internal static string MainForm_BinaryFileFilter {
+            get {
+                return ResourceManager.GetString("MainForm_BinaryFileFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you want to save “{0}” before closing?.
         /// </summary>
         internal static string MainForm_ConfirmMessage_CloseWithoutSave {
@@ -265,6 +274,15 @@ namespace Porno_Graphic.Properties {
         internal static string MainForm_ConfirmTitle_CloseWithoutSave {
             get {
                 return ResourceManager.GetString("MainForm_ConfirmTitle_CloseWithoutSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export tileset to Tiled files.
+        /// </summary>
+        internal static string MainForm_ExportToTiledTitle {
+            get {
+                return ResourceManager.GetString("MainForm_ExportToTiledTitle", resourceCulture);
             }
         }
         
@@ -287,6 +305,42 @@ namespace Porno_Graphic.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not find matching profile with name {0}.
+        /// </summary>
+        internal static string MainForm_MatchingProfileNameNotFound {
+            get {
+                return ResourceManager.GetString("MainForm_MatchingProfileNameNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No valid profiles found!.
+        /// </summary>
+        internal static string MainForm_NoValidProfilesFound {
+            get {
+                return ResourceManager.GetString("MainForm_NoValidProfilesFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Project.
+        /// </summary>
+        internal static string MainForm_OpenProjectDialogTitle {
+            get {
+                return ResourceManager.GetString("MainForm_OpenProjectDialogTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile folder not found!.
+        /// </summary>
+        internal static string MainForm_ProfileFolderNotFound {
+            get {
+                return ResourceManager.GetString("MainForm_ProfileFolderNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Porno-Graphic Projects (*.porn)|*.porn|All Files (*.*)|*.*.
         /// </summary>
         internal static string MainForm_ProjectFileFilter {
@@ -296,11 +350,29 @@ namespace Porno_Graphic.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save Binary Data.
+        /// </summary>
+        internal static string MainForm_SaveBinaryDataTile {
+            get {
+                return ResourceManager.GetString("MainForm_SaveBinaryDataTile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save “{0}” As.
         /// </summary>
         internal static string MainForm_SaveProjectTitleFormat {
             get {
                 return ResourceManager.GetString("MainForm_SaveProjectTitleFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tiled map file (*.tmx)|*.tmx|All files(*.*)|*.*.
+        /// </summary>
+        internal static string MainForm_TiledMapFileFilter {
+            get {
+                return ResourceManager.GetString("MainForm_TiledMapFileFilter", resourceCulture);
             }
         }
         

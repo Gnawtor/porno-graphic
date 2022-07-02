@@ -35,6 +35,9 @@
             this.menuItem_ExportToTilEdMap = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemConvertTmxToGif = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemApplyTmx = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemSaveGraphicsData = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitRegionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemSaveFlatFile = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.menuItem_File_Exit = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -102,9 +105,6 @@
             this.activeColorsPanel = new System.Windows.Forms.Panel();
             this.panelActiveFGColor = new System.Windows.Forms.Panel();
             this.panelActiveBGColor = new System.Windows.Forms.Panel();
-            this.MenuItemSaveGraphicsData = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuItemSaveFlatFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.splitRegionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuStrip.SuspendLayout();
             this.mainStatusStrip.SuspendLayout();
             this.mainToolStrip.SuspendLayout();
@@ -174,7 +174,7 @@
             this.menuItem_File_Save.Name = "menuItem_File_Save";
             this.menuItem_File_Save.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.menuItem_File_Save.Size = new System.Drawing.Size(234, 22);
-            this.menuItem_File_Save.Text = "&Save Project As";
+            this.menuItem_File_Save.Text = "&Save Project";
             this.menuItem_File_Save.Click += new System.EventHandler(this.menuItem_File_Save_Click);
             // 
             // toolStripSeparator1
@@ -205,6 +205,30 @@
             this.menuItemApplyTmx.Size = new System.Drawing.Size(234, 22);
             this.menuItemApplyTmx.Text = "Import changes from GIF";
             this.menuItemApplyTmx.Click += new System.EventHandler(this.menuItemApplyTmx_Click);
+            // 
+            // MenuItemSaveGraphicsData
+            // 
+            this.MenuItemSaveGraphicsData.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.splitRegionsToolStripMenuItem,
+            this.MenuItemSaveFlatFile});
+            this.MenuItemSaveGraphicsData.Enabled = false;
+            this.MenuItemSaveGraphicsData.Name = "MenuItemSaveGraphicsData";
+            this.MenuItemSaveGraphicsData.Size = new System.Drawing.Size(234, 22);
+            this.MenuItemSaveGraphicsData.Text = "Save graphics data to...";
+            // 
+            // splitRegionsToolStripMenuItem
+            // 
+            this.splitRegionsToolStripMenuItem.Enabled = false;
+            this.splitRegionsToolStripMenuItem.Name = "splitRegionsToolStripMenuItem";
+            this.splitRegionsToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.splitRegionsToolStripMenuItem.Text = "Project\'s original ROMs";
+            // 
+            // MenuItemSaveFlatFile
+            // 
+            this.MenuItemSaveFlatFile.Name = "MenuItemSaveFlatFile";
+            this.MenuItemSaveFlatFile.Size = new System.Drawing.Size(197, 22);
+            this.MenuItemSaveFlatFile.Text = "Flat file";
+            this.MenuItemSaveFlatFile.Click += new System.EventHandler(this.MenuItemSaveFlatFile_Click);
             // 
             // toolStripSeparator4
             // 
@@ -829,30 +853,6 @@
             this.panelActiveBGColor.Name = "panelActiveBGColor";
             this.panelActiveBGColor.Size = new System.Drawing.Size(32, 32);
             this.panelActiveBGColor.TabIndex = 0;
-            // 
-            // MenuItemSaveGraphicsData
-            // 
-            this.MenuItemSaveGraphicsData.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.splitRegionsToolStripMenuItem,
-            this.MenuItemSaveFlatFile});
-            this.MenuItemSaveGraphicsData.Enabled = false;
-            this.MenuItemSaveGraphicsData.Name = "MenuItemSaveGraphicsData";
-            this.MenuItemSaveGraphicsData.Size = new System.Drawing.Size(234, 22);
-            this.MenuItemSaveGraphicsData.Text = "Save graphics data to...";
-            // 
-            // MenuItemSaveFlatFile
-            // 
-            this.MenuItemSaveFlatFile.Name = "MenuItemSaveFlatFile";
-            this.MenuItemSaveFlatFile.Size = new System.Drawing.Size(197, 22);
-            this.MenuItemSaveFlatFile.Text = "Flat file";
-            this.MenuItemSaveFlatFile.Click += new System.EventHandler(this.MenuItemSaveFlatFile_Click);
-            // 
-            // splitRegionsToolStripMenuItem
-            // 
-            this.splitRegionsToolStripMenuItem.Enabled = false;
-            this.splitRegionsToolStripMenuItem.Name = "splitRegionsToolStripMenuItem";
-            this.splitRegionsToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.splitRegionsToolStripMenuItem.Text = "Project\'s original ROMs";
             // 
             // MainForm
             // 

@@ -17,7 +17,7 @@ namespace Porno_Graphic
 
 		public TileArranger() {
 			InitializeComponent();
-			ShowGrid = Porno_Graphic.Properties.Settings.Default.ArrangerGrid;
+			//ShowGrid = Porno_Graphic.Properties.Settings.Default.ArrangerGrid;
 		}
 
 		private void TileArranger_Resize(object sender, EventArgs e) {
