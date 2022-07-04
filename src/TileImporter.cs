@@ -68,13 +68,14 @@ namespace Porno_Graphic
             }
         }
 
-        public TileImporter(MainForm parent, Classes.GameProfile profile, string profilePath)
+        public TileImporter(MainForm parent, Classes.GameProfile profile, string profilePath, string defaultName)
         {
             InitializeComponent();
             mParent = parent;
             MdiParent = parent;
             Profile = profile;
             mProfilePath = profilePath;
+            projectNameTextBox.Text = defaultName;
         }
 
         private void layoutBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -233,10 +234,7 @@ namespace Porno_Graphic
             Classes.TileImportMetadata metadata = new Classes.TileImportMetadata();
             if (mProfilePath != null)
                 metadata.ProfileFile = mProfilePath;
-            //metadata.ProfileFile = Path.GetFileName(mProfilePath);
             metadata.ProfileName = mProfile.Name;
-            //metadata.RegionName = (string)regionBox.SelectedItem;
-            //metadata.LayoutName = (string)layoutBox.SelectedItem;
             if ((regionBox.SelectedIndex - 1) < 0)
                 metadata.RegionName = (string)regionBox.SelectedItem;
             else
@@ -251,7 +249,7 @@ namespace Porno_Graphic
                 romPaths[i] = (string)fileGrid.Rows[i].Cells[3].Value;
             metadata.RomFilenames = romPaths;
             Classes.GfxElementSet elementSet = new Classes.GfxElementSet();
-            elementSet.Name = "TestName";
+            elementSet.Name = projectNameTextBox.Text == String.Empty ? "New Project" : projectNameTextBox.Text;
             elementSet.ElementWidth = layout.Width;
             elementSet.ElementHeight = layout.Height;
             elementSet.Elements = elements;

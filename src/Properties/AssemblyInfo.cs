@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Porno-Graphic")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A configurable graphics editor for older video games that use indexed color tiles.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Rom Hackers Sans Frontières")]
 [assembly: AssemblyProduct("Porno-Graphic")]
-[assembly: AssemblyCopyright("Copyright © Rom Hackers Sans Frontières 2016-2021")]
+[assembly: AssemblyCopyright("Copyright © Rom Hackers Sans Frontières 2016-2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.0.1")]
+[assembly: AssemblyFileVersion("1.0.0.1")]

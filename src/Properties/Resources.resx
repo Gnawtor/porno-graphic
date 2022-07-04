@@ -796,4 +796,7 @@
   <data name="MainForm_TiledMapFileFilter" xml:space="preserve">
     <value>Tiled map file (*.tmx)|*.tmx|All files(*.*)|*.*</value>
   </data>
+  <data name="ProjectProperties_Title" xml:space="preserve">
+    <value>'{0}' Properties</value>
+  </data>
 </root>

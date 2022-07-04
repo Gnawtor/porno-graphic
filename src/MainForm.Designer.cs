@@ -32,12 +32,12 @@
             this.menuItem_File_Open = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItem_File_Save = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuItem_ExportToTilEdMap = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuItemConvertTmxToGif = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemApplyTmx = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemSaveGraphicsData = new System.Windows.Forms.ToolStripMenuItem();
             this.splitRegionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemSaveFlatFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItem_ExportToTilEdMap = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemConvertTmxToGif = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemApplyTmx = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.menuItem_File_Exit = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -105,6 +105,9 @@
             this.activeColorsPanel = new System.Windows.Forms.Panel();
             this.panelActiveFGColor = new System.Windows.Forms.Panel();
             this.panelActiveBGColor = new System.Windows.Forms.Panel();
+            this.projectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.propertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveProjectAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenuStrip.SuspendLayout();
             this.mainStatusStrip.SuspendLayout();
             this.mainToolStrip.SuspendLayout();
@@ -118,6 +121,7 @@
             // 
             this.mainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
+            this.projectToolStripMenuItem,
             this.helpToolStripMenuItem,
             this.editToolStripMenuItem,
             this.viewToolStripMenuItem,
@@ -137,6 +141,7 @@
             this.menuItem_File_Import,
             this.menuItem_File_Open,
             this.menuItem_File_Save,
+            this.saveProjectAsToolStripMenuItem,
             this.toolStripSeparator1,
             this.MenuItemSaveGraphicsData,
             this.menuItem_ExportToTilEdMap,
@@ -151,6 +156,8 @@
             // 
             // menuItem_File_Import
             // 
+            this.menuItem_File_Import.Image = global::Porno_Graphic.Properties.Resources.NewDocument;
+            this.menuItem_File_Import.ImageTransparentColor = System.Drawing.Color.Fuchsia;
             this.menuItem_File_Import.Name = "menuItem_File_Import";
             this.menuItem_File_Import.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
             this.menuItem_File_Import.Size = new System.Drawing.Size(234, 22);
@@ -182,6 +189,29 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(231, 6);
             // 
+            // MenuItemSaveGraphicsData
+            // 
+            this.MenuItemSaveGraphicsData.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.splitRegionsToolStripMenuItem,
+            this.MenuItemSaveFlatFile});
+            this.MenuItemSaveGraphicsData.Enabled = false;
+            this.MenuItemSaveGraphicsData.Name = "MenuItemSaveGraphicsData";
+            this.MenuItemSaveGraphicsData.Size = new System.Drawing.Size(234, 22);
+            this.MenuItemSaveGraphicsData.Text = "Save graphics data to...";
+            // 
+            // splitRegionsToolStripMenuItem
+            // 
+            this.splitRegionsToolStripMenuItem.Name = "splitRegionsToolStripMenuItem";
+            this.splitRegionsToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.splitRegionsToolStripMenuItem.Text = "Project\'s Source Roms";
+            // 
+            // MenuItemSaveFlatFile
+            // 
+            this.MenuItemSaveFlatFile.Name = "MenuItemSaveFlatFile";
+            this.MenuItemSaveFlatFile.Size = new System.Drawing.Size(191, 22);
+            this.MenuItemSaveFlatFile.Text = "Flat file";
+            this.MenuItemSaveFlatFile.Click += new System.EventHandler(this.MenuItemSaveFlatFile_Click);
+            // 
             // menuItem_ExportToTilEdMap
             // 
             this.menuItem_ExportToTilEdMap.Enabled = false;
@@ -205,29 +235,6 @@
             this.menuItemApplyTmx.Size = new System.Drawing.Size(234, 22);
             this.menuItemApplyTmx.Text = "Import changes from GIF";
             this.menuItemApplyTmx.Click += new System.EventHandler(this.menuItemApplyTmx_Click);
-            // 
-            // MenuItemSaveGraphicsData
-            // 
-            this.MenuItemSaveGraphicsData.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.splitRegionsToolStripMenuItem,
-            this.MenuItemSaveFlatFile});
-            this.MenuItemSaveGraphicsData.Enabled = false;
-            this.MenuItemSaveGraphicsData.Name = "MenuItemSaveGraphicsData";
-            this.MenuItemSaveGraphicsData.Size = new System.Drawing.Size(234, 22);
-            this.MenuItemSaveGraphicsData.Text = "Save graphics data to...";
-            // 
-            // splitRegionsToolStripMenuItem
-            // 
-            this.splitRegionsToolStripMenuItem.Name = "splitRegionsToolStripMenuItem";
-            this.splitRegionsToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.splitRegionsToolStripMenuItem.Text = "Project\'s Source Roms";
-            // 
-            // MenuItemSaveFlatFile
-            // 
-            this.MenuItemSaveFlatFile.Name = "MenuItemSaveFlatFile";
-            this.MenuItemSaveFlatFile.Size = new System.Drawing.Size(191, 22);
-            this.MenuItemSaveFlatFile.Text = "Flat file";
-            this.MenuItemSaveFlatFile.Click += new System.EventHandler(this.MenuItemSaveFlatFile_Click);
             // 
             // toolStripSeparator4
             // 
@@ -255,7 +262,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -282,7 +289,7 @@
             this.menuItem_Edit_Undo.ImageTransparentColor = System.Drawing.Color.Fuchsia;
             this.menuItem_Edit_Undo.Name = "menuItem_Edit_Undo";
             this.menuItem_Edit_Undo.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.menuItem_Edit_Undo.Size = new System.Drawing.Size(164, 22);
+            this.menuItem_Edit_Undo.Size = new System.Drawing.Size(180, 22);
             this.menuItem_Edit_Undo.Text = "&Undo";
             // 
             // menuItem_Edit_Redo
@@ -290,13 +297,13 @@
             this.menuItem_Edit_Redo.Image = global::Porno_Graphic.Properties.Resources.Edit_Redo;
             this.menuItem_Edit_Redo.ImageTransparentColor = System.Drawing.Color.Fuchsia;
             this.menuItem_Edit_Redo.Name = "menuItem_Edit_Redo";
-            this.menuItem_Edit_Redo.Size = new System.Drawing.Size(164, 22);
+            this.menuItem_Edit_Redo.Size = new System.Drawing.Size(180, 22);
             this.menuItem_Edit_Redo.Text = "&Redo";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(161, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // menuItem_Edit_Cut
             // 
@@ -304,7 +311,7 @@
             this.menuItem_Edit_Cut.ImageTransparentColor = System.Drawing.Color.Fuchsia;
             this.menuItem_Edit_Cut.Name = "menuItem_Edit_Cut";
             this.menuItem_Edit_Cut.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.menuItem_Edit_Cut.Size = new System.Drawing.Size(164, 22);
+            this.menuItem_Edit_Cut.Size = new System.Drawing.Size(180, 22);
             this.menuItem_Edit_Cut.Text = "Cu&t";
             // 
             // menuItem_Edit_Copy
@@ -313,7 +320,7 @@
             this.menuItem_Edit_Copy.ImageTransparentColor = System.Drawing.Color.Fuchsia;
             this.menuItem_Edit_Copy.Name = "menuItem_Edit_Copy";
             this.menuItem_Edit_Copy.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.menuItem_Edit_Copy.Size = new System.Drawing.Size(164, 22);
+            this.menuItem_Edit_Copy.Size = new System.Drawing.Size(180, 22);
             this.menuItem_Edit_Copy.Text = "&Copy";
             // 
             // menuItem_Edit_Paste
@@ -322,7 +329,7 @@
             this.menuItem_Edit_Paste.ImageTransparentColor = System.Drawing.Color.Fuchsia;
             this.menuItem_Edit_Paste.Name = "menuItem_Edit_Paste";
             this.menuItem_Edit_Paste.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.menuItem_Edit_Paste.Size = new System.Drawing.Size(164, 22);
+            this.menuItem_Edit_Paste.Size = new System.Drawing.Size(180, 22);
             this.menuItem_Edit_Paste.Text = "&Paste";
             // 
             // menuItem_Edit_Delete
@@ -331,19 +338,19 @@
             this.menuItem_Edit_Delete.ImageTransparentColor = System.Drawing.Color.Fuchsia;
             this.menuItem_Edit_Delete.Name = "menuItem_Edit_Delete";
             this.menuItem_Edit_Delete.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.menuItem_Edit_Delete.Size = new System.Drawing.Size(164, 22);
+            this.menuItem_Edit_Delete.Size = new System.Drawing.Size(180, 22);
             this.menuItem_Edit_Delete.Text = "Delete";
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(161, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
             // 
             // menuItem_Edit_SelectAll
             // 
             this.menuItem_Edit_SelectAll.Name = "menuItem_Edit_SelectAll";
             this.menuItem_Edit_SelectAll.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.menuItem_Edit_SelectAll.Size = new System.Drawing.Size(164, 22);
+            this.menuItem_Edit_SelectAll.Size = new System.Drawing.Size(180, 22);
             this.menuItem_Edit_SelectAll.Text = "Select &All";
             // 
             // viewToolStripMenuItem
@@ -362,7 +369,7 @@
             this.menuItem_View_GridEdit.CheckOnClick = true;
             this.menuItem_View_GridEdit.ImageTransparentColor = System.Drawing.Color.Fuchsia;
             this.menuItem_View_GridEdit.Name = "menuItem_View_GridEdit";
-            this.menuItem_View_GridEdit.Size = new System.Drawing.Size(145, 22);
+            this.menuItem_View_GridEdit.Size = new System.Drawing.Size(180, 22);
             this.menuItem_View_GridEdit.Text = "&Editor Grid";
             this.menuItem_View_GridEdit.Click += new System.EventHandler(this.editorGridToolStripMenuItem_Click);
             // 
@@ -371,7 +378,7 @@
             this.menuItem_View_GridArranger.CheckOnClick = true;
             this.menuItem_View_GridArranger.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.menuItem_View_GridArranger.Name = "menuItem_View_GridArranger";
-            this.menuItem_View_GridArranger.Size = new System.Drawing.Size(145, 22);
+            this.menuItem_View_GridArranger.Size = new System.Drawing.Size(180, 22);
             this.menuItem_View_GridArranger.Text = "Arranger Grid";
             this.menuItem_View_GridArranger.Click += new System.EventHandler(this.menuItem_View_GridArranger_Click);
             // 
@@ -380,7 +387,7 @@
             this.menuItem_View_GridView.CheckOnClick = true;
             this.menuItem_View_GridView.ImageTransparentColor = System.Drawing.Color.Fuchsia;
             this.menuItem_View_GridView.Name = "menuItem_View_GridView";
-            this.menuItem_View_GridView.Size = new System.Drawing.Size(145, 22);
+            this.menuItem_View_GridView.Size = new System.Drawing.Size(180, 22);
             this.menuItem_View_GridView.Text = "&Viewer Grid";
             this.menuItem_View_GridView.Click += new System.EventHandler(this.viewerGridToolStripMenuItem_Click);
             // 
@@ -408,7 +415,7 @@
             this.menuItem_PalType_NES,
             this.menuItem_PalType_GameBoy});
             this.menuItem_Palette_PaletteType.Name = "menuItem_Palette_PaletteType";
-            this.menuItem_Palette_PaletteType.Size = new System.Drawing.Size(158, 22);
+            this.menuItem_Palette_PaletteType.Size = new System.Drawing.Size(180, 22);
             this.menuItem_Palette_PaletteType.Text = "Palette &Type";
             // 
             // menuItem_PalType_RGB888
@@ -451,21 +458,21 @@
             this.menuItem_Palette_PalSets.Image = global::Porno_Graphic.Properties.Resources.ChooseColor;
             this.menuItem_Palette_PalSets.ImageTransparentColor = System.Drawing.Color.Fuchsia;
             this.menuItem_Palette_PalSets.Name = "menuItem_Palette_PalSets";
-            this.menuItem_Palette_PalSets.Size = new System.Drawing.Size(158, 22);
+            this.menuItem_Palette_PalSets.Size = new System.Drawing.Size(180, 22);
             this.menuItem_Palette_PalSets.Text = "Palette S&ets...";
             this.menuItem_Palette_PalSets.Click += new System.EventHandler(this.menuItem_Palette_PalSets_Click);
             // 
             // toolStripSeparator11
             // 
             this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(155, 6);
+            this.toolStripSeparator11.Size = new System.Drawing.Size(177, 6);
             // 
             // menuItem_Palette_Load
             // 
             this.menuItem_Palette_Load.Image = global::Porno_Graphic.Properties.Resources.OpenFolder;
             this.menuItem_Palette_Load.ImageTransparentColor = System.Drawing.Color.Fuchsia;
             this.menuItem_Palette_Load.Name = "menuItem_Palette_Load";
-            this.menuItem_Palette_Load.Size = new System.Drawing.Size(158, 22);
+            this.menuItem_Palette_Load.Size = new System.Drawing.Size(180, 22);
             this.menuItem_Palette_Load.Text = "&Load Palette...";
             this.menuItem_Palette_Load.ToolTipText = "Load palette data from a palette file.";
             this.menuItem_Palette_Load.Click += new System.EventHandler(this.loadPaletteToolStripMenuItem_Click);
@@ -475,7 +482,7 @@
             this.menuItem_Palette_Save.Image = global::Porno_Graphic.Properties.Resources.Save;
             this.menuItem_Palette_Save.ImageTransparentColor = System.Drawing.Color.Fuchsia;
             this.menuItem_Palette_Save.Name = "menuItem_Palette_Save";
-            this.menuItem_Palette_Save.Size = new System.Drawing.Size(158, 22);
+            this.menuItem_Palette_Save.Size = new System.Drawing.Size(180, 22);
             this.menuItem_Palette_Save.Text = "&Save Palette";
             this.menuItem_Palette_Save.ToolTipText = "Save palette data to a file.";
             this.menuItem_Palette_Save.Click += new System.EventHandler(this.savePaletteToolStripMenuItem_Click);
@@ -483,7 +490,7 @@
             // menu_PaletteItem_Import
             // 
             this.menu_PaletteItem_Import.Name = "menu_PaletteItem_Import";
-            this.menu_PaletteItem_Import.Size = new System.Drawing.Size(158, 22);
+            this.menu_PaletteItem_Import.Size = new System.Drawing.Size(180, 22);
             this.menu_PaletteItem_Import.Text = "&Import Palette...";
             this.menu_PaletteItem_Import.ToolTipText = "Import a palette from a file.";
             this.menu_PaletteItem_Import.Click += new System.EventHandler(this.menu_PaletteItem_Import_Click);
@@ -502,7 +509,7 @@
             this.menuItem_Tools_Options.Image = global::Porno_Graphic.Properties.Resources.Options;
             this.menuItem_Tools_Options.ImageTransparentColor = System.Drawing.Color.Fuchsia;
             this.menuItem_Tools_Options.Name = "menuItem_Tools_Options";
-            this.menuItem_Tools_Options.Size = new System.Drawing.Size(125, 22);
+            this.menuItem_Tools_Options.Size = new System.Drawing.Size(180, 22);
             this.menuItem_Tools_Options.Text = "&Options...";
             this.menuItem_Tools_Options.Click += new System.EventHandler(this.menuItem_Tools_Options_Click);
             // 
@@ -853,6 +860,31 @@
             this.panelActiveBGColor.Size = new System.Drawing.Size(32, 32);
             this.panelActiveBGColor.TabIndex = 0;
             // 
+            // projectToolStripMenuItem
+            // 
+            this.projectToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.propertiesToolStripMenuItem});
+            this.projectToolStripMenuItem.Name = "projectToolStripMenuItem";
+            this.projectToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
+            this.projectToolStripMenuItem.Text = "Project";
+            // 
+            // propertiesToolStripMenuItem
+            // 
+            this.propertiesToolStripMenuItem.Enabled = false;
+            this.propertiesToolStripMenuItem.Image = global::Porno_Graphic.Properties.Resources.Options;
+            this.propertiesToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Fuchsia;
+            this.propertiesToolStripMenuItem.Name = "propertiesToolStripMenuItem";
+            this.propertiesToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+            this.propertiesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.propertiesToolStripMenuItem.Text = "&Properties";
+            // 
+            // saveProjectAsToolStripMenuItem
+            // 
+            this.saveProjectAsToolStripMenuItem.Enabled = false;
+            this.saveProjectAsToolStripMenuItem.Name = "saveProjectAsToolStripMenuItem";
+            this.saveProjectAsToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
+            this.saveProjectAsToolStripMenuItem.Text = "Save Project As...";
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -970,6 +1002,9 @@
         private System.Windows.Forms.ToolStripMenuItem MenuItemSaveGraphicsData;
         private System.Windows.Forms.ToolStripMenuItem splitRegionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MenuItemSaveFlatFile;
+        private System.Windows.Forms.ToolStripMenuItem projectToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem propertiesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveProjectAsToolStripMenuItem;
     }
 }
 

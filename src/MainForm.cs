@@ -107,6 +107,9 @@ namespace Porno_Graphic
 			menuItem_View_GridView.Checked = ShowViewerGrid;
 
 			splitRegionsToolStripMenuItem.Click += MenuItemSplitRegions_Click;
+			projectToolStripMenuItem.DropDownOpened += projectToolStripMenuItem_DropDownOpening;
+			saveProjectAsToolStripMenuItem.Click += menuItem_File_SaveAs_Click;
+			propertiesToolStripMenuItem.Click += propertiesToolStripMenuItem_Click;
 		}
 
 		private void menuItem_File_Exit_Click(object sender, EventArgs e) {
@@ -643,14 +646,26 @@ namespace Porno_Graphic
 			if (profileSelector.ShowDialog() != DialogResult.OK)
 				return;
 
-			TileImporter importer = new TileImporter(this, profileSelector.SelectedProfile, profileSelector.SelectedProfilePath);
+			TileImporter importer = new TileImporter(this, profileSelector.SelectedProfile, profileSelector.SelectedProfilePath, string.Format(Porno_Graphic.Properties.Resources.MainForm_ImportProjectFormat, ++mImportCount));
 			importer.Show();
 		}
 
 		public void CreateImportProject(Classes.GfxElementSet elementSet)
         {
-            string displayName = string.Format(Porno_Graphic.Properties.Resources.MainForm_ImportProjectFormat, ++mImportCount);
-            Classes.Project project = new Classes.Project(displayName, elementSet);
+			Classes.Project project = new Classes.Project(elementSet);
+			BuildProject(elementSet, project);
+		}
+
+		public void CreateLoadedProject(Classes.GfxElementSet elementSet, string projectPath)
+        {
+			Classes.Project project = new Classes.Project(elementSet);
+			project.FilePath = projectPath;
+			project.ClearDirty();
+			BuildProject(elementSet, project);
+		}
+
+		public void BuildProject(Classes.GfxElementSet elementSet, Classes.Project project)
+        {
             TileViewer viewer = new TileViewer();
             viewer.MdiParent = this;
             viewer.ElementWidth = elementSet.ElementWidth;
@@ -660,7 +675,7 @@ namespace Porno_Graphic
             viewer.PalettesBindingSource = new BindingSource();
             viewer.SelectedPalette = viewer.Palettes[0];
 			viewer.Planes = elementSet.Planes;
-			
+			viewer.Text = elementSet.Name;
 
             ProjectState state = new ProjectState(project);
             state.TileViewer = viewer;
@@ -714,8 +729,24 @@ namespace Porno_Graphic
 			menuItemApplyTmx.Enabled = mActiveProject != null;
 			MenuItemConvertTmxToGif.Enabled = mActiveProject != null;
 			MenuItemSaveGraphicsData.Enabled = mActiveProject != null;
+			saveProjectAsToolStripMenuItem.Enabled = mActiveProject != null;
             //menuItem_File_SaveAs.Enabled = mActiveProject != null;
             //menuItem_File_Reload.Enabled = (mActiveProject != null) && (mActiveProject.Project.FilePath != null);
+        }
+
+		private void projectToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+			propertiesToolStripMenuItem.Enabled = mActiveProject != null;
+        }
+
+		private void propertiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+			ProjectProperties projectProperties = new ProjectProperties(mActiveProject.Project.ImportMetadata, mActiveProject.Project.DisplayName);
+			if (projectProperties.ShowDialog() == DialogResult.OK)
+            {
+				mActiveProject.Project.DisplayName = projectProperties.ProjectName;
+				mActiveProject.TileViewer.Text = mActiveProject.Project.DisplayName;
+            }
         }
 
         private bool SaveProject(Classes.Project project, string path)
@@ -939,7 +970,7 @@ namespace Porno_Graphic
                 }
 
 				elementSet.Palettes = paletteSet;
-				CreateImportProject(elementSet);
+				CreateLoadedProject(elementSet, path);
 			}
 			else
 				throw new Exception("Invalid 'Planes' value in TileImportMetadata");			

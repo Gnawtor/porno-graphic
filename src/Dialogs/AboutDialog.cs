@@ -15,6 +15,7 @@ namespace Porno_Graphic
 			this.about_ProductLabel.Text = String.Format("{0} v{1} by freem, Gnawtor, and Man With Cat Ears", AssemblyProduct, AssemblyVersion);
 			this.about_CompanyLabel.Text = AssemblyCompany;
 			this.about_CopyrightLabel.Text = AssemblyCopyright;
+			this.about_DisclaimerLabel.Text = "Tiled is owned by its copyright holder. The implementation of its file formats in this" + Environment.NewLine + "software is absolutely unofficial and done without permission.";
 		}
 
 		#region Assembly Attribute Accessors

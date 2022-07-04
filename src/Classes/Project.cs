@@ -9,20 +9,18 @@ namespace Porno_Graphic.Classes
 {
     public class Project
     {
-        private string mDisplayName = null;
         private bool mDirty;
         private GfxElementSet mGfxSet = null;
         private string mFilePath = null;
 
-        public string DisplayName { get { return mDisplayName; } }
+        public string DisplayName { get { return mGfxSet.Name; } set { mGfxSet.Name = value; } }
         public bool Dirty { get { return mDirty; } }
-        public string FilePath { get { return mFilePath; } }
+        public string FilePath { get { return mFilePath; } set { mFilePath = value; } }
         public uint Offset { get { return mGfxSet.Offset; } }
         public TileImportMetadata ImportMetadata { get { return mGfxSet.ImportMetadata; } }
 
-        public Project(string displayName, GfxElementSet gfxSet)
+        public Project(GfxElementSet gfxSet)
         {
-            mDisplayName = displayName;
             mDirty = true;
             mGfxSet = gfxSet;
         }
@@ -30,6 +28,11 @@ namespace Porno_Graphic.Classes
         public void SetDirty()
         {
             mDirty = true;
+        }
+
+        public void ClearDirty()
+        {
+            mDirty = false;
         }
 
         public void Save(string path)
@@ -45,7 +48,6 @@ namespace Porno_Graphic.Classes
             }
             mDirty = false;
             mFilePath = path;
-            mDisplayName = Path.GetFileName(path);
         }
     }
 }

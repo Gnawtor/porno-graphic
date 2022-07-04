@@ -467,6 +467,15 @@ namespace Porno_Graphic.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; Properties.
+        /// </summary>
+        internal static string ProjectProperties_Title {
+            get {
+                return ResourceManager.GetString("ProjectProperties_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap rect_fill {
