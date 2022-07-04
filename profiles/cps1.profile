@@ -5,7 +5,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 >
   <layouts>
-    <layout name="8x8">
+    <layout name="8x8 (1)">
       <plane multiplier="8">
         <offset bits="3" />
         <offset bits="2" />
@@ -35,7 +35,7 @@
       <stride>512</stride>
     </layout>
 
-    <layout name="8x8 2">
+    <layout name="8x8 (2)">
       <plane multiplier="8">
         <offset bits="3" />
         <offset bits="2" />
@@ -51,6 +51,36 @@
         <offset bits="37" />
         <offset bits="38" />
         <offset bits="39" />
+      </x>
+      <y multiplier="64">
+        <offset bits="0" />
+        <offset bits="1" />
+        <offset bits="2" />
+        <offset bits="3" />
+        <offset bits="4" />
+        <offset bits="5" />
+        <offset bits="6" />
+        <offset bits="7" />
+      </y>
+      <stride>512</stride>
+    </layout>
+	
+	<layout name="8x8 (Comprehensive)">
+      <plane multiplier="8" duplicator="32">
+        <offset bits="3" />
+        <offset bits="2" />
+        <offset bits="1" />
+        <offset bits="0" />
+      </plane>
+      <x multiplier="1">
+        <offset bits="0" />
+        <offset bits="1" />
+        <offset bits="2" />
+        <offset bits="3" />
+        <offset bits="4" />
+        <offset bits="5" />
+        <offset bits="6" />
+        <offset bits="7" />
       </x>
       <y multiplier="64">
         <offset bits="0" />

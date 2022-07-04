@@ -65,17 +65,22 @@ namespace Porno_Graphic.Classes
                     uint planeBit = 1U << (int)(layout.Planes - 1);
                     for (uint plane = 0; plane < layout.Planes; plane++, planeBit >>= 1)
                     {
-                        uint bitOffset = pixOffset + layout.PlaneOffset(data, plane);
-                        uint byteOffset = bitOffset / 8;
-                        //byte mask = (byte)(0x0080U >> (int)(7 - (bitOffset % 8)));
-                        byte mask = (byte)(0x0080U >> (int)(bitOffset % 8));
-                        if ((Pixels[x + (Width * y)] & planeBit) != 0)
-                            data[byteOffset] |= mask;
-                        else
-                            data[byteOffset] &= (byte)(~mask);
+                        WritePlane(pixOffset, layout, data, plane, x, y, planeBit, 0);
+                        if (layout.Plane.Duplicator > 0) WritePlane(pixOffset, layout, data, plane, x, y, planeBit, layout.Plane.Duplicator);
                     }
                 }
             }
+        }
+
+        private void WritePlane(uint pixOffset, CharLayout layout, byte[] data, uint plane, uint x, uint y, uint planeBit, uint duplicateOffset)
+        {
+            uint bitOffset = pixOffset + layout.PlaneOffset(data, plane) + duplicateOffset;
+            uint byteOffset = bitOffset / 8;
+            byte mask = (byte)(0x0080U >> (int)(bitOffset % 8));
+            if ((Pixels[x + (Width * y)] & planeBit) != 0)
+                data[byteOffset] |= mask;
+            else
+                data[byteOffset] &= (byte)(~mask);
         }
 
         public void Write(ChunkWriter writer)

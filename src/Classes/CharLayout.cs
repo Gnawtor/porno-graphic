@@ -35,6 +35,9 @@ namespace Porno_Graphic.Classes
             [XmlAttribute("multiplier")]
             public uint Multiplier { get; set; }
 
+            [XmlAttribute("duplicator")]
+            public uint Duplicator { get; set; }
+
             [XmlElement(ElementName = "offset", Form = XmlSchemaForm.Unqualified)]
             public Offset[] Offsets { get; set; }
 
@@ -51,6 +54,7 @@ namespace Porno_Graphic.Classes
             public OffsetList()
             {
                 Multiplier = 1U;
+                Duplicator = 0U;
             }
         };
 
@@ -77,6 +81,7 @@ namespace Porno_Graphic.Classes
         public uint XOffset(byte[] data, uint index) { return X.Offset((uint)data.Length, index); }
         public uint YOffset(byte[] data, uint index) { return Y.Offset((uint)data.Length, index); }
         public uint MaxOffset(uint length, uint index) { return (Stride * index) + Plane.MaxOffset(length) + X.MaxOffset(length) + Y.MaxOffset(length); }
+        public uint Duplicator() { return (Plane.Duplicator ); }
 
         public uint MaxElements(uint length, uint offset)
         {
