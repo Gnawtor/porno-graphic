@@ -28,7 +28,6 @@ namespace Porno_Graphic.Classes
 
         public PaletteSingleBar() : base()
         {
-            
             DoubleBuffered = true;
         }
 

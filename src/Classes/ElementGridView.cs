@@ -25,6 +25,7 @@ namespace Porno_Graphic.Classes
         private Color mHighlightColor = Color.FromArgb(255, 255, 255, 0);
 
         private GfxElement[] mElements = new GfxElement[0];
+
         private IPalette mSelectedPalette;
         private BindingList<IPalette> mPalettes;
         private BindingSource mPalettesBindingSource;
