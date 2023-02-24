@@ -56,7 +56,6 @@ namespace Porno_Graphic.Classes
             {
                 return (uint)mColors.Length;
             }
-            
         }
 
         public override Color GetColor(uint pen)

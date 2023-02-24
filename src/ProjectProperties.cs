@@ -49,6 +49,7 @@ namespace Porno_Graphic
                 for (int i = 0; i < Profile.LoadRegions.Length; i++, regionIndex++)
                     if (Profile.LoadRegions[i].Name == TileImportMetadata.RegionName) break;
 
+                // TODO this crashes if using Flat File region. Fix this.
                 foreach (Classes.LoadRegion.File file in Profile.LoadRegions[regionIndex].Files)
                 {
                     int i = fileGrid.Rows.Add();

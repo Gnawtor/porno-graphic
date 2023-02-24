@@ -16,6 +16,7 @@ namespace Porno_Graphic
 	public partial class TileViewer : Form
 	{
         private uint mPlanes;
+        private uint mSelectedPen;
         public uint ElementWidth { get { return tileGrid.ElementWidth; } set { tileGrid.ElementWidth = value; } }
         public uint ElementHeight { get { return tileGrid.ElementHeight; } set { tileGrid.ElementHeight = value; } }
         public Classes.GfxElement[] Elements { get { return tileGrid.Elements; } set { tileGrid.Elements = value; } }
@@ -28,7 +29,8 @@ namespace Porno_Graphic
             set 
             { 
                 tileGrid.SelectedPalette = value; 
-                paletteBar.Palette = value; 
+                paletteBar.Palette = value;
+                RefreshColorControls();
             } 
         }
         public BindingList<Classes.IPalette> Palettes { get { return tileGrid.Palettes; } set 
@@ -53,6 +55,7 @@ namespace Porno_Graphic
         public bool FlipY { get { return yFlip.Checked; } }
         public uint Rotate { get { return (uint)rotate.SelectedIndex; } }
         public uint Planes { get { return mPlanes; } set { mPlanes = value; } }
+        public uint SelectedPen { get { return mSelectedPen; } set { mSelectedPen = value; RefreshColorControls(); } }
 
 		public TileViewer() 
         {
@@ -63,7 +66,59 @@ namespace Porno_Graphic
 
             btnAddPalette.Click += btnAddPalette_Click;
             btnDuplicatePalette.Click += btnDuplicatePalette_Click;
-            btnEditPalette.Click += btnEditPalette_Click;
+            btnRenamePalette.Click += btnEditPalette_Click;
+            paletteBar.ColorSelected += paletteBar_ColorSelected;
+        }
+
+        private void RefreshColorControls()
+        {
+            sliderPanelRed.ValueChanged -= handleChangeColor;
+            sliderPanelGreen.ValueChanged -= handleChangeColor;
+            sliderPanelBlue.ValueChanged -= handleChangeColor;
+            Color color = SelectedPalette.GetColor(SelectedPen);
+            if (color != null)
+            {
+                sliderPanelRed.Value = color.R;
+                sliderPanelGreen.Value = color.G;
+                sliderPanelBlue.Value = color.B;
+                if (!sliderPanelRed.Enabled) sliderPanelRed.Enabled = true;
+                if (!sliderPanelGreen.Enabled) sliderPanelGreen.Enabled = true;
+                if (!sliderPanelBlue.Enabled) sliderPanelBlue.Enabled = true;
+                setColorPreviewBox(color);
+            }
+            else
+            {
+                sliderPanelRed.Value = 0;
+                sliderPanelGreen.Value = 0;
+                sliderPanelBlue.Value = 0;
+                if (sliderPanelRed.Enabled) sliderPanelRed.Enabled = false;
+                if (sliderPanelGreen.Enabled) sliderPanelGreen.Enabled = false;
+                if (sliderPanelBlue.Enabled) sliderPanelBlue.Enabled = false;
+                setColorPreviewBox(Color.Transparent);
+            }
+            sliderPanelRed.ValueChanged += handleChangeColor;
+            sliderPanelGreen.ValueChanged += handleChangeColor;
+            sliderPanelBlue.ValueChanged += handleChangeColor;
+        }
+
+        private void handleChangeColor(object sender, EventArgs e)
+        {
+            Color color = Color.FromArgb((int)sliderPanelRed.Value, (int)sliderPanelGreen.Value, (int)sliderPanelBlue.Value);
+            setColorPreviewBox(color);
+            tileGrid.SelectedPalette.SetColor(color, SelectedPen);
+            tileGrid.Invalidate();
+            paletteBar.Invalidate();
+        }
+
+        private void setColorPreviewBox(Color color)
+        {
+            colorPreviewBox.BackColor = color;
+            colorPreviewBox.Invalidate();
+        }
+
+        private void paletteBar_ColorSelected(object sender, Classes.PaletteSingleBar.PaletteSingleBarEventArgs e)
+        {
+            SelectedPen = e.SelectedColorIndex;
         }
 
         private void comboPalettes_SelectedIndexChanged(object sender, EventArgs e)
@@ -71,10 +126,10 @@ namespace Porno_Graphic
             if (comboPalettes.SelectedIndex > -1)
             {
                 SelectedPalette = Palettes[comboPalettes.SelectedIndex];
-                if (btnEditPalette.Enabled == false) btnEditPalette.Enabled = true;
+                if (btnRenamePalette.Enabled == false) btnRenamePalette.Enabled = true;
                 if (btnDuplicatePalette.Enabled == false) btnDuplicatePalette.Enabled = true;
             }
-            else { btnEditPalette.Enabled = false; btnDuplicatePalette.Enabled = false; }
+            else { btnRenamePalette.Enabled = false; btnDuplicatePalette.Enabled = false; }
         }
 
         private void btnAddPalette_Click(object sender, EventArgs e)
@@ -98,7 +153,6 @@ namespace Porno_Graphic
                 paletteBar.Invalidate();
             }
         }
-
 
         private void TileViewer_Resize(object sender, EventArgs e) 
         {

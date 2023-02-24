@@ -81,7 +81,7 @@ namespace Porno_Graphic
 			curActiveTool = ToolTypes.Tool_Pointer;
 
 			/* palette related */
-			cBox_ActivePaletteSet.SelectedIndex = 0;
+			//cBox_ActivePaletteSet.SelectedIndex = 0;   // OBSOLETE
 
 			/* add tile editor to main window */
 			//editorForm = new TileEditor();
