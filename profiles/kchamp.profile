@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<profile:profile name="Karate Champ/Karate Do (Arcade)"
+<profile:profile name="Karate Champ/Karate Do"
     xsi:schemaLocation="http://romhackers.net/porno-graphic/profile profile.xsd"
     xmlns:profile="http://romhackers.net/porno-graphic/profile"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
