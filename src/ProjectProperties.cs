@@ -45,17 +45,29 @@ namespace Porno_Graphic
             }
             else
             {
-                int regionIndex = 0;
-                for (int i = 0; i < Profile.LoadRegions.Length; i++, regionIndex++)
-                    if (Profile.LoadRegions[i].Name == TileImportMetadata.RegionName) break;
-
-                // TODO this crashes if using Flat File region. Fix this.
-                foreach (Classes.LoadRegion.File file in Profile.LoadRegions[regionIndex].Files)
+                if (Profile.LoadRegions != null)
                 {
-                    int i = fileGrid.Rows.Add();
-                    fileGrid.Rows[i].Cells[0].Value = file.Name;
-                    fileGrid.Rows[i].Cells[1].Value = String.Format("0x{0:x}", file.LoadedLength);
-                    fileGrid.Rows[i].Cells[3].Value = TileImportMetadata.RomFilenames[i];
+                    int regionIndex = 0;
+                    for (int i = 0; i < Profile.LoadRegions.Length; i++, regionIndex++)
+                        if (Profile.LoadRegions[i].Name == TileImportMetadata.RegionName) break;
+
+                    // TODO this crashes if using Flat File region. Fix this.
+                    foreach (Classes.LoadRegion.File file in Profile.LoadRegions[regionIndex].Files)
+                    {
+                        int i = fileGrid.Rows.Add();
+                        fileGrid.Rows[i].Cells[0].Value = file.Name;
+                        fileGrid.Rows[i].Cells[1].Value = String.Format("0x{0:x}", file.LoadedLength);
+                        fileGrid.Rows[i].Cells[3].Value = TileImportMetadata.RomFilenames[i];
+                    }
+                }
+                else // flat file
+                {
+                    byte[] flatFile = null;
+                    flatFile = System.IO.File.ReadAllBytes(TileImportMetadata.RomFilenames[0]);
+                    fileGrid.Rows.Add();
+                    fileGrid.Rows[0].Cells[0].Value = "Flat File";
+                    fileGrid.Rows[0].Cells[1].Value = String.Format("0x{0:x}", flatFile.Length);
+                    fileGrid.Rows[0].Cells[3].Value = TileImportMetadata.RomFilenames[0];
                 }
             }
         }

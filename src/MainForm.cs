@@ -1192,7 +1192,17 @@ namespace Porno_Graphic
 		private void SaveToSourceRoms()
         {
 			Classes.ExportDataSet exportData = WriteProjectTilesToSource(mActiveProject.Project, mActiveProject.TileViewer);
-			exportData.LoadRegion.SaveFiles(exportData.Data, mActiveProject.Project.ImportMetadata.RomFilenames);
-		}
+            if (exportData.LoadRegion != null)
+            {
+                exportData.LoadRegion.SaveFiles(exportData.Data, mActiveProject.Project.ImportMetadata.RomFilenames);
+            }
+            else
+            {
+                // Flat file (not a profile region)
+                FileStream stream = new FileStream(mActiveProject.Project.ImportMetadata.RomFilenames[0], FileMode.OpenOrCreate, FileAccess.Write);
+                try { stream.Write(exportData.Data, 0, exportData.Data.Length); }
+                finally { stream.Close(); }
+            }
+        }
     }
 }
