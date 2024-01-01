@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Rom Hackers Sans Frontières")]
 [assembly: AssemblyProduct("Porno-Graphic")]
-[assembly: AssemblyCopyright("Copyright © Rom Hackers Sans Frontières 2016-2022")]
+[assembly: AssemblyCopyright("Copyright © Rom Hackers Sans Frontières 2016-2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

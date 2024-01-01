@@ -81,7 +81,8 @@ namespace Porno_Graphic
 		#endregion
 
 		private void about_CompanyLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-			System.Diagnostics.Process.Start("http://www.romhackers.net/");
+			//System.Diagnostics.Process.Start("http://www.romhackers.net/");
+			// Domain name expired...
 		}
 	}
 }
