@@ -60,27 +60,30 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.layoutBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.layoutBox.FormattingEnabled = true;
-            this.layoutBox.Location = new System.Drawing.Point(66, 249);
+            this.layoutBox.Location = new System.Drawing.Point(132, 479);
+            this.layoutBox.Margin = new System.Windows.Forms.Padding(6);
             this.layoutBox.Name = "layoutBox";
-            this.layoutBox.Size = new System.Drawing.Size(435, 21);
+            this.layoutBox.Size = new System.Drawing.Size(866, 33);
             this.layoutBox.TabIndex = 0;
             this.layoutBox.SelectedIndexChanged += new System.EventHandler(this.layoutBox_SelectedIndexChanged);
             // 
             // layoutLabel
             // 
             this.layoutLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.layoutLabel.Location = new System.Drawing.Point(12, 252);
+            this.layoutLabel.Location = new System.Drawing.Point(24, 485);
+            this.layoutLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.layoutLabel.Name = "layoutLabel";
-            this.layoutLabel.Size = new System.Drawing.Size(48, 13);
+            this.layoutLabel.Size = new System.Drawing.Size(96, 25);
             this.layoutLabel.TabIndex = 2;
             this.layoutLabel.Text = "Layout:";
             // 
             // offsetBox
             // 
             this.offsetBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.offsetBox.Location = new System.Drawing.Point(90, 276);
+            this.offsetBox.Location = new System.Drawing.Point(180, 531);
+            this.offsetBox.Margin = new System.Windows.Forms.Padding(6);
             this.offsetBox.Name = "offsetBox";
-            this.offsetBox.Size = new System.Drawing.Size(120, 20);
+            this.offsetBox.Size = new System.Drawing.Size(236, 31);
             this.offsetBox.TabIndex = 5;
             this.offsetBox.Text = "0x0";
             this.offsetBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -89,18 +92,20 @@
             // offsetLabel
             // 
             this.offsetLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.offsetLabel.Location = new System.Drawing.Point(12, 279);
+            this.offsetLabel.Location = new System.Drawing.Point(24, 537);
+            this.offsetLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.offsetLabel.Name = "offsetLabel";
-            this.offsetLabel.Size = new System.Drawing.Size(72, 13);
+            this.offsetLabel.Size = new System.Drawing.Size(144, 25);
             this.offsetLabel.TabIndex = 6;
             this.offsetLabel.Text = "Offset:";
             // 
             // countBox
             // 
             this.countBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.countBox.Location = new System.Drawing.Point(90, 302);
+            this.countBox.Location = new System.Drawing.Point(180, 629);
+            this.countBox.Margin = new System.Windows.Forms.Padding(6);
             this.countBox.Name = "countBox";
-            this.countBox.Size = new System.Drawing.Size(120, 20);
+            this.countBox.Size = new System.Drawing.Size(236, 31);
             this.countBox.TabIndex = 7;
             this.countBox.Text = "1";
             this.countBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -110,9 +115,10 @@
             // 
             this.importButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.importButton.Enabled = false;
-            this.importButton.Location = new System.Drawing.Point(426, 375);
+            this.importButton.Location = new System.Drawing.Point(852, 721);
+            this.importButton.Margin = new System.Windows.Forms.Padding(6);
             this.importButton.Name = "importButton";
-            this.importButton.Size = new System.Drawing.Size(75, 23);
+            this.importButton.Size = new System.Drawing.Size(150, 44);
             this.importButton.TabIndex = 9;
             this.importButton.Text = "Import";
             this.importButton.UseVisualStyleBackColor = true;
@@ -132,10 +138,12 @@
             this.length,
             this.browse,
             this.path});
-            this.fileGrid.Location = new System.Drawing.Point(12, 39);
+            this.fileGrid.Location = new System.Drawing.Point(24, 75);
+            this.fileGrid.Margin = new System.Windows.Forms.Padding(6);
             this.fileGrid.Name = "fileGrid";
             this.fileGrid.RowHeadersVisible = false;
-            this.fileGrid.Size = new System.Drawing.Size(489, 201);
+            this.fileGrid.RowHeadersWidth = 82;
+            this.fileGrid.Size = new System.Drawing.Size(978, 387);
             this.fileGrid.TabIndex = 10;
             this.fileGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.fileGrid_CellContentClick);
             this.fileGrid.DragDrop += new System.Windows.Forms.DragEventHandler(this.fileGrid_DragDrop);
@@ -145,43 +153,48 @@
             // 
             this.name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.name.HeaderText = "Name";
+            this.name.MinimumWidth = 10;
             this.name.Name = "name";
             this.name.ReadOnly = true;
             this.name.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.name.Width = 41;
+            this.name.Width = 74;
             // 
             // length
             // 
             this.length.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.length.HeaderText = "Length";
+            this.length.MinimumWidth = 10;
             this.length.Name = "length";
             this.length.ReadOnly = true;
             this.length.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.length.Width = 46;
+            this.length.Width = 84;
             // 
             // browse
             // 
             this.browse.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.browse.HeaderText = "";
+            this.browse.MinimumWidth = 10;
             this.browse.Name = "browse";
             this.browse.ReadOnly = true;
             this.browse.Text = "Browse...";
             this.browse.UseColumnTextForButtonValue = true;
-            this.browse.Width = 5;
+            this.browse.Width = 10;
             // 
             // path
             // 
             this.path.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.path.HeaderText = "File (path)";
+            this.path.MinimumWidth = 10;
             this.path.Name = "path";
             this.path.ReadOnly = true;
             this.path.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // regionLabel
             // 
-            this.regionLabel.Location = new System.Drawing.Point(12, 15);
+            this.regionLabel.Location = new System.Drawing.Point(24, 29);
+            this.regionLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.regionLabel.Name = "regionLabel";
-            this.regionLabel.Size = new System.Drawing.Size(48, 13);
+            this.regionLabel.Size = new System.Drawing.Size(96, 25);
             this.regionLabel.TabIndex = 12;
             this.regionLabel.Text = "Region:";
             // 
@@ -193,21 +206,21 @@
             this.regionBox.FormattingEnabled = true;
             this.regionBox.Items.AddRange(new object[] {
             "Flat file"});
-            this.regionBox.Location = new System.Drawing.Point(66, 12);
+            this.regionBox.Location = new System.Drawing.Point(132, 23);
+            this.regionBox.Margin = new System.Windows.Forms.Padding(6);
             this.regionBox.Name = "regionBox";
-            this.regionBox.Size = new System.Drawing.Size(435, 21);
+            this.regionBox.Size = new System.Drawing.Size(866, 33);
             this.regionBox.TabIndex = 11;
             this.regionBox.SelectedIndexChanged += new System.EventHandler(this.regionBox_SelectedIndexChanged);
             // 
             // countButton
             // 
             this.countButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.countButton.Checked = true;
-            this.countButton.Location = new System.Drawing.Point(12, 303);
+            this.countButton.Location = new System.Drawing.Point(24, 631);
+            this.countButton.Margin = new System.Windows.Forms.Padding(6);
             this.countButton.Name = "countButton";
-            this.countButton.Size = new System.Drawing.Size(72, 17);
+            this.countButton.Size = new System.Drawing.Size(144, 33);
             this.countButton.TabIndex = 13;
-            this.countButton.TabStop = true;
             this.countButton.Text = "Count:";
             this.countButton.UseVisualStyleBackColor = true;
             this.countButton.CheckedChanged += new System.EventHandler(this.countButton_CheckedChanged);
@@ -215,9 +228,10 @@
             // fractionButton
             // 
             this.fractionButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.fractionButton.Location = new System.Drawing.Point(12, 328);
+            this.fractionButton.Location = new System.Drawing.Point(24, 679);
+            this.fractionButton.Margin = new System.Windows.Forms.Padding(6);
             this.fractionButton.Name = "fractionButton";
-            this.fractionButton.Size = new System.Drawing.Size(72, 17);
+            this.fractionButton.Size = new System.Drawing.Size(144, 33);
             this.fractionButton.TabIndex = 14;
             this.fractionButton.Text = "Fraction:";
             this.fractionButton.UseVisualStyleBackColor = true;
@@ -227,7 +241,8 @@
             // 
             this.fracNumUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.fracNumUpDown.Enabled = false;
-            this.fracNumUpDown.Location = new System.Drawing.Point(90, 328);
+            this.fracNumUpDown.Location = new System.Drawing.Point(180, 679);
+            this.fracNumUpDown.Margin = new System.Windows.Forms.Padding(6);
             this.fracNumUpDown.Maximum = new decimal(new int[] {
             1,
             0,
@@ -239,7 +254,7 @@
             0,
             0});
             this.fracNumUpDown.Name = "fracNumUpDown";
-            this.fracNumUpDown.Size = new System.Drawing.Size(48, 20);
+            this.fracNumUpDown.Size = new System.Drawing.Size(96, 31);
             this.fracNumUpDown.TabIndex = 15;
             this.fracNumUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.fracNumUpDown.Value = new decimal(new int[] {
@@ -253,9 +268,10 @@
             // 
             this.fracSepLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.fracSepLabel.AutoSize = true;
-            this.fracSepLabel.Location = new System.Drawing.Point(144, 330);
+            this.fracSepLabel.Location = new System.Drawing.Point(288, 683);
+            this.fracSepLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.fracSepLabel.Name = "fracSepLabel";
-            this.fracSepLabel.Size = new System.Drawing.Size(12, 13);
+            this.fracSepLabel.Size = new System.Drawing.Size(18, 25);
             this.fracSepLabel.TabIndex = 16;
             this.fracSepLabel.Text = "/";
             // 
@@ -263,7 +279,8 @@
             // 
             this.fracDenUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.fracDenUpDown.Enabled = false;
-            this.fracDenUpDown.Location = new System.Drawing.Point(162, 328);
+            this.fracDenUpDown.Location = new System.Drawing.Point(324, 679);
+            this.fracDenUpDown.Margin = new System.Windows.Forms.Padding(6);
             this.fracDenUpDown.Maximum = new decimal(new int[] {
             1024,
             0,
@@ -275,7 +292,7 @@
             0,
             0});
             this.fracDenUpDown.Name = "fracDenUpDown";
-            this.fracDenUpDown.Size = new System.Drawing.Size(48, 20);
+            this.fracDenUpDown.Size = new System.Drawing.Size(96, 31);
             this.fracDenUpDown.TabIndex = 17;
             this.fracDenUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.fracDenUpDown.Value = new decimal(new int[] {
@@ -289,21 +306,24 @@
             // 
             this.maxButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.maxButton.AutoSize = true;
-            this.maxButton.Location = new System.Drawing.Point(12, 354);
+            this.maxButton.Checked = true;
+            this.maxButton.Location = new System.Drawing.Point(24, 587);
+            this.maxButton.Margin = new System.Windows.Forms.Padding(6);
             this.maxButton.Name = "maxButton";
-            this.maxButton.Size = new System.Drawing.Size(118, 17);
+            this.maxButton.Size = new System.Drawing.Size(219, 29);
             this.maxButton.TabIndex = 18;
             this.maxButton.TabStop = true;
-            this.maxButton.Text = "All Tiles From Offset";
+            this.maxButton.Text = "All tiles from offset";
             this.maxButton.UseVisualStyleBackColor = true;
             // 
             // projectNameLabel
             // 
             this.projectNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.projectNameLabel.AutoSize = true;
-            this.projectNameLabel.Location = new System.Drawing.Point(12, 380);
+            this.projectNameLabel.Location = new System.Drawing.Point(24, 731);
+            this.projectNameLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.projectNameLabel.Name = "projectNameLabel";
-            this.projectNameLabel.Size = new System.Drawing.Size(74, 13);
+            this.projectNameLabel.Size = new System.Drawing.Size(147, 25);
             this.projectNameLabel.TabIndex = 19;
             this.projectNameLabel.Text = "Project Name:";
             // 
@@ -311,16 +331,17 @@
             // 
             this.projectNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.projectNameTextBox.Location = new System.Drawing.Point(90, 377);
+            this.projectNameTextBox.Location = new System.Drawing.Point(180, 725);
+            this.projectNameTextBox.Margin = new System.Windows.Forms.Padding(6);
             this.projectNameTextBox.Name = "projectNameTextBox";
-            this.projectNameTextBox.Size = new System.Drawing.Size(290, 20);
+            this.projectNameTextBox.Size = new System.Drawing.Size(576, 31);
             this.projectNameTextBox.TabIndex = 20;
             // 
             // TileImporter
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(513, 407);
+            this.ClientSize = new System.Drawing.Size(1026, 783);
             this.Controls.Add(this.projectNameTextBox);
             this.Controls.Add(this.projectNameLabel);
             this.Controls.Add(this.maxButton);
@@ -338,9 +359,10 @@
             this.Controls.Add(this.offsetBox);
             this.Controls.Add(this.layoutLabel);
             this.Controls.Add(this.layoutBox);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(360, 260);
+            this.MinimumSize = new System.Drawing.Size(694, 434);
             this.Name = "TileImporter";
             this.ShowIcon = false;
             this.Text = "Import Tiles";

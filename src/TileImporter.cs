@@ -64,6 +64,8 @@ namespace Porno_Graphic
                                 layout.Height,
                                 layout.Planes));
                     }
+
+                    if (layoutBox.Items.Count > 0) layoutBox.SelectedIndex = 0;
                 }
             }
         }

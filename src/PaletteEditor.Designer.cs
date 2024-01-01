@@ -53,152 +53,154 @@ namespace Porno_Graphic
             // labelRename
             // 
             this.labelRename.AutoSize = true;
-            this.labelRename.Location = new System.Drawing.Point(6, 11);
-            this.labelRename.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelRename.Location = new System.Drawing.Point(12, 21);
+            this.labelRename.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelRename.Name = "labelRename";
-            this.labelRename.Size = new System.Drawing.Size(38, 13);
+            this.labelRename.Size = new System.Drawing.Size(74, 25);
             this.labelRename.TabIndex = 0;
             this.labelRename.Text = "Name:";
             // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(48, 11);
-            this.textBoxName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxName.Location = new System.Drawing.Point(96, 21);
+            this.textBoxName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(238, 20);
+            this.textBoxName.Size = new System.Drawing.Size(472, 31);
             this.textBoxName.TabIndex = 1;
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(8, 327);
-            this.btnOk.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOk.Location = new System.Drawing.Point(17, 83);
+            this.btnOk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(70, 22);
+            this.btnOk.Size = new System.Drawing.Size(140, 42);
             this.btnOk.TabIndex = 2;
             this.btnOk.Text = "OK";
             this.btnOk.UseVisualStyleBackColor = true;
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(90, 327);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancel.Location = new System.Drawing.Point(181, 83);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(70, 22);
+            this.btnCancel.Size = new System.Drawing.Size(140, 42);
             this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(300, 11);
-            this.trackBar1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.trackBar1.Location = new System.Drawing.Point(600, 21);
+            this.trackBar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.trackBar1.Maximum = 255;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar1.Size = new System.Drawing.Size(45, 271);
+            this.trackBar1.Size = new System.Drawing.Size(90, 521);
             this.trackBar1.TabIndex = 5;
             this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
             // trackBar2
             // 
-            this.trackBar2.Location = new System.Drawing.Point(330, 11);
-            this.trackBar2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.trackBar2.Location = new System.Drawing.Point(660, 21);
+            this.trackBar2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.trackBar2.Maximum = 255;
             this.trackBar2.Name = "trackBar2";
             this.trackBar2.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar2.Size = new System.Drawing.Size(45, 271);
+            this.trackBar2.Size = new System.Drawing.Size(90, 521);
             this.trackBar2.TabIndex = 6;
             this.trackBar2.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
             // trackBar3
             // 
-            this.trackBar3.Location = new System.Drawing.Point(359, 11);
-            this.trackBar3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.trackBar3.Location = new System.Drawing.Point(718, 21);
+            this.trackBar3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.trackBar3.Maximum = 255;
             this.trackBar3.Name = "trackBar3";
             this.trackBar3.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar3.Size = new System.Drawing.Size(45, 271);
+            this.trackBar3.Size = new System.Drawing.Size(90, 521);
             this.trackBar3.TabIndex = 7;
             this.trackBar3.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(296, 307);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox1.Location = new System.Drawing.Point(592, 590);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(27, 20);
+            this.textBox1.Size = new System.Drawing.Size(50, 31);
             this.textBox1.TabIndex = 8;
             // 
             // labelRed
             // 
             this.labelRed.AutoSize = true;
-            this.labelRed.Location = new System.Drawing.Point(302, 287);
-            this.labelRed.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelRed.Location = new System.Drawing.Point(604, 552);
+            this.labelRed.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelRed.Name = "labelRed";
-            this.labelRed.Size = new System.Drawing.Size(15, 13);
+            this.labelRed.Size = new System.Drawing.Size(27, 25);
             this.labelRed.TabIndex = 9;
             this.labelRed.Text = "R";
             // 
             // labelGreen
             // 
             this.labelGreen.AutoSize = true;
-            this.labelGreen.Location = new System.Drawing.Point(331, 287);
-            this.labelGreen.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelGreen.Location = new System.Drawing.Point(662, 552);
+            this.labelGreen.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelGreen.Name = "labelGreen";
-            this.labelGreen.Size = new System.Drawing.Size(15, 13);
+            this.labelGreen.Size = new System.Drawing.Size(28, 25);
             this.labelGreen.TabIndex = 10;
             this.labelGreen.Text = "G";
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(325, 307);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox2.Location = new System.Drawing.Point(650, 590);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(27, 20);
+            this.textBox2.Size = new System.Drawing.Size(50, 31);
             this.textBox2.TabIndex = 11;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(355, 307);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox3.Location = new System.Drawing.Point(710, 590);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(27, 20);
+            this.textBox3.Size = new System.Drawing.Size(50, 31);
             this.textBox3.TabIndex = 13;
             // 
             // labelBlue
             // 
             this.labelBlue.AutoSize = true;
-            this.labelBlue.Location = new System.Drawing.Point(361, 287);
-            this.labelBlue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelBlue.Location = new System.Drawing.Point(722, 552);
+            this.labelBlue.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelBlue.Name = "labelBlue";
-            this.labelBlue.Size = new System.Drawing.Size(14, 13);
+            this.labelBlue.Size = new System.Drawing.Size(26, 25);
             this.labelBlue.TabIndex = 12;
             this.labelBlue.Text = "B";
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(296, 331);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox4.Location = new System.Drawing.Point(592, 637);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(86, 20);
+            this.textBox4.Size = new System.Drawing.Size(168, 31);
             this.textBox4.TabIndex = 14;
             // 
             // paletteGrid
             // 
             this.paletteGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.paletteGrid.ColorCount = ((uint)(0u));
-            this.paletteGrid.Location = new System.Drawing.Point(8, 37);
-            this.paletteGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.paletteGrid.Enabled = false;
+            this.paletteGrid.Location = new System.Drawing.Point(18, 193);
+            this.paletteGrid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.paletteGrid.Name = "paletteGrid";
             this.paletteGrid.Palette = null;
-            this.paletteGrid.Size = new System.Drawing.Size(277, 288);
+            this.paletteGrid.Size = new System.Drawing.Size(550, 550);
             this.paletteGrid.TabIndex = 4;
+            this.paletteGrid.Visible = false;
             // 
             // PaletteEditor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 362);
+            this.ClientSize = new System.Drawing.Size(584, 152);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.labelBlue);
@@ -216,14 +218,14 @@ namespace Porno_Graphic
             this.Controls.Add(this.labelRename);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PaletteEditor";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Palette Editor";
+            this.Text = "Rename Palette";
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).EndInit();

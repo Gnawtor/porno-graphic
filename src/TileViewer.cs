@@ -57,9 +57,9 @@ namespace Porno_Graphic
         public uint Planes { get { return mPlanes; } set { mPlanes = value; } }
         public uint SelectedPen { get { return mSelectedPen; } set { mSelectedPen = value; RefreshColorControls(); } }
 
-		public TileViewer() 
+        public TileViewer()
         {
-			InitializeComponent();
+            InitializeComponent();
             rotate.SelectedIndex = 0;
 
             comboPalettes.SelectedIndexChanged += comboPalettes_SelectedIndexChanged;
@@ -68,6 +68,8 @@ namespace Porno_Graphic
             btnDuplicatePalette.Click += btnDuplicatePalette_Click;
             btnRenamePalette.Click += btnEditPalette_Click;
             paletteBar.ColorSelected += paletteBar_ColorSelected;
+            columnsLimit.ValueChanged += columnsLimit_ValueChanged;
+            limitColumns.CheckedChanged += limitColums_CheckedChanged;
         }
 
         private void RefreshColorControls()
@@ -192,6 +194,16 @@ namespace Porno_Graphic
         private void rotate_SelectedIndexChanged(object sender, EventArgs e)
         {
             tileGrid.Rotate = (uint)rotate.SelectedIndex;
+        }
+
+        private void limitColums_CheckedChanged(object sender, EventArgs e)
+        {
+            tileGrid.LimitColumns = limitColumns.Checked;
+        }
+
+        private void columnsLimit_ValueChanged(object sender, EventArgs e)
+        {
+            tileGrid.ColumnsLimit = (uint)columnsLimit.Value;
         }
 
         public void DrawExportTileset(Graphics graphics, long ElementsCount, long RowCount, long ColumnCount)

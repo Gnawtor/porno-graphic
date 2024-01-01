@@ -21,6 +21,7 @@ namespace Porno_Graphic.Classes
         private TrackBar Slider;
         private NumericUpDownPlain ValueBox;
         private Label IdTextLabel;
+        private TableLayoutPanel layoutPanel;
 
         private string mIdText;
         private uint mValue;
@@ -33,7 +34,7 @@ namespace Porno_Graphic.Classes
             {
                 mIdText = value;
                 IdTextLabel.Text = value;
-                RecomputeLayout();
+                //RecomputeLayout();
             }
         }
 
@@ -69,7 +70,7 @@ namespace Porno_Graphic.Classes
             set
             {
                 mControlPadding = value;
-                RecomputeLayout();
+                //RecomputeLayout();
             }
         }
 
@@ -81,7 +82,7 @@ namespace Porno_Graphic.Classes
                 Maximum = (int)this.Maximum,
                 SmallChange = 1,
                 LargeChange = 1,
-                Width = 300,
+                Width = 600,
                 TickStyle = TickStyle.BottomRight,
                 TickFrequency = 16,
                 Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right
@@ -98,29 +99,79 @@ namespace Porno_Graphic.Classes
 
             ValueBox = new NumericUpDownPlain
             {
-                Width = 25,
+                Width = 40,
                 Hexadecimal = true,
                 Anchor = AnchorStyles.Top | AnchorStyles.Right
             };
 
-            Controls.Add(Slider);
-            Controls.Add(IdTextLabel);
-            Controls.Add(ValueBox);
+            layoutPanel = new TableLayoutPanel
+            {
+                ColumnCount = 3,
+                RowCount = 1,
+                CellBorderStyle = TableLayoutPanelCellBorderStyle.None,
+                Dock = DockStyle.Fill,
+            };
+
+            layoutPanel.ColumnStyles.Add(new ColumnStyle { SizeType = SizeType.Percent });
+            layoutPanel.ColumnStyles.Add(new ColumnStyle { SizeType = SizeType.Absolute, Width = 40 });
+            layoutPanel.ColumnStyles.Add(new ColumnStyle { SizeType = SizeType.Absolute, Width = 50 });
+
+            //layoutPanel.ColumnStyles[0].SizeType = SizeType.AutoSize;
+            //layoutPanel.ColumnStyles[1].SizeType = SizeType.Absolute;
+            //layoutPanel.ColumnStyles[1].Width = 40;
+            //layoutPanel.ColumnStyles[2].SizeType = SizeType.Absolute;
+            //layoutPanel.ColumnStyles[2].Width = 50;
+
+
+            Controls.Add(layoutPanel);
+
+            //Controls.Add(Slider);
+            //Controls.Add(IdTextLabel);
+            //Controls.Add(ValueBox);
+
+            layoutPanel.Controls.Add(Slider);
+            layoutPanel.SetColumn(Slider, 0);
+            layoutPanel.SetRow(Slider, 0);
+
+            layoutPanel.Controls.Add(IdTextLabel);
+            layoutPanel.SetColumn(IdTextLabel, 1);
+            layoutPanel.SetRow(IdTextLabel, 0);
+
+            layoutPanel.Controls.Add(ValueBox);
+            layoutPanel.SetColumn(ValueBox, 2);
+            layoutPanel.SetRow(ValueBox, 0);
 
             Slider.ValueChanged += HandleSliderValueChanged;
+
+            ValueBox.Enter += ValueBox_Enter;
+            ValueBox.MouseDown += ValueBox_MouseDown;
         }
 
-        public void RecomputeLayout()
+        private void ValueBox_MouseDown(object sender, MouseEventArgs e)
         {
-            int labelAndNudWidth = IdTextLabel.Width + ValueBox.Width + (ControlPadding * 2);
-            int sliderWidth = this.Width - labelAndNudWidth;
-            if (sliderWidth < 0) sliderWidth = 1;
-            Slider.Width = sliderWidth;
-            Slider.Location = new System.Drawing.Point(0, 0);
-            IdTextLabel.Location = new System.Drawing.Point(sliderWidth + ControlPadding, 2);
-            ValueBox.Location = new System.Drawing.Point(IdTextLabel.Location.X + IdTextLabel.Width + ControlPadding, 0);
-            Invalidate();
+            var valueBox = sender as NumericUpDown;
+            valueBox.Select();
+            valueBox.Select(0, valueBox.Text.Length);
         }
+
+        private void ValueBox_Enter(object sender, EventArgs e)
+        {
+            var valueBox = sender as NumericUpDown;
+            valueBox.Select();
+            valueBox.Select(0, valueBox.Text.Length);
+        }
+
+        //public void RecomputeLayout()
+        //{
+        //    int labelAndNudWidth = IdTextLabel.Width + ValueBox.Width + (ControlPadding * 2);
+        //    int sliderWidth = this.Width - labelAndNudWidth;
+        //    if (sliderWidth < 0) sliderWidth = 1;
+        //    Slider.Width = sliderWidth;
+        //    Slider.Location = new System.Drawing.Point(0, 0);
+        //    IdTextLabel.Location = new System.Drawing.Point(sliderWidth + ControlPadding, 2);
+        //    ValueBox.Location = new System.Drawing.Point(IdTextLabel.Location.X + IdTextLabel.Width + ControlPadding, 0);
+        //    Invalidate();
+        //}
 
         public void SetLabel(string text)
         {
@@ -158,7 +209,7 @@ namespace Porno_Graphic.Classes
         protected override void OnResize(EventArgs eventargs)
         {
             base.OnResize(eventargs);
-            RecomputeLayout();
+            //RecomputeLayout();
         }
 
         //private void HandleValueBoxKeyDown(object sender, KeyEventArgs e)
