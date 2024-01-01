@@ -136,7 +136,8 @@ namespace Porno_Graphic
 
         private void btnAddPalette_Click(object sender, EventArgs e)
         {
-            Classes.IndexedPalette pal = new Classes.IndexedPalette(Planes, "New palette");
+            Classes.IndexedPalette pal = new Classes.IndexedPalette(1U << (int)Planes, "New palette");
+            Palettes.Add(pal);
         }
 
         private void btnDuplicatePalette_Click(object sender, EventArgs e)
