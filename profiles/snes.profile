@@ -7,10 +7,10 @@
 	<layouts>
 		<layout name="SNES/Super Famicom 4BPP">
 			<plane multiplier="8">
-				<offset bits="0" />
-				<offset bits="1" />
-				<offset bits="16" />
 				<offset bits="17" />
+				<offset bits="16" />
+				<offset bits="1" />
+				<offset bits="0" />
 			</plane>
 			<x multiplier="1">
 				<offset bits="0" />
