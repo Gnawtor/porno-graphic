@@ -14,11 +14,11 @@ namespace Porno_Graphic.Classes
         private uint mElementWidth = 8U;
         private uint mElementHeight = 8U;
         private uint mElementPadding = 1U;
-        private uint mColumnsLimit = 1U;
 
         private uint mScaleX = 1U;
         private uint mScaleY = 1U;
         private uint mRotate = 0U;
+        private uint mMaxColumns = 1U;
         private bool mFlipX = false;
         private bool mFlipY = false;
         private bool mLimitColumns = false;
@@ -136,17 +136,17 @@ namespace Porno_Graphic.Classes
             }
         }
         [DefaultValue(typeof(uint), "1")]
-        public uint ColumnsLimit
+        public uint MaxColumns
         {
             get
             {
-                return mColumnsLimit;
+                return mMaxColumns;
             }
             set
             {
-                if (value >= 1 && value != mColumnsLimit)
+                if (value >= 1 && value != mMaxColumns)
                 {
-                    mColumnsLimit = value;
+                    mMaxColumns = value;
                     RecomputeLayout();
                     Invalidate();
                 }
@@ -268,12 +268,12 @@ namespace Porno_Graphic.Classes
             clip.Offset(-AutoScrollPosition.X, -AutoScrollPosition.Y);
             e.Graphics.TranslateTransform(AutoScrollPosition.X, AutoScrollPosition.Y);
 
-            int columns = mLimitColumns ? (mColumnsLimit <= Elements.Length ? (int)mColumnsLimit : Elements.Length) : (int)((AutoScrollMinSize.Width - (2 * ElementPadding)) / ItemWidth);
+            int columns = mLimitColumns ? (mMaxColumns <= Elements.Length ? (int)mMaxColumns : Elements.Length) : (int)((AutoScrollMinSize.Width - (2 * ElementPadding)) / ItemWidth);
             int rows = (Elements.Length + columns - 1) / columns;
             int firstRow = (int)Math.Max(clip.Top / ItemHeight, 0);
             int lastRow = (int)Math.Min((clip.Bottom - 1 - (2 * ElementPadding)) / ItemHeight, rows - 1);
             int firstColumn = mLimitColumns ? 0 : (int)Math.Max(clip.Left / ItemWidth, 0);
-            int lastColumn = mLimitColumns ? (int)mColumnsLimit - 1 : (int)Math.Min((clip.Right - 1 - (2 * ElementPadding)) / ItemWidth, columns - 1);
+            int lastColumn = mLimitColumns ? (int)mMaxColumns - 1 : (int)Math.Min((clip.Right - 1 - (2 * ElementPadding)) / ItemWidth, columns - 1);
             if (SelectedPalette != null)
             {
                 bool swapAxes = (Rotate & 1U) != 0U;
@@ -441,7 +441,7 @@ namespace Porno_Graphic.Classes
             int rows = (((Elements != null) ? Elements.Length : 0) + columns - 1) / columns;
             if (((ItemHeight * rows) + (2 * ElementPadding)) > Size.Height)
             {
-                columns = mLimitColumns ? (int)mColumnsLimit : (int)Math.Max(1, (Size.Width - SystemInformation.VerticalScrollBarWidth - (2 * ElementPadding)) / ItemWidth);
+                columns = mLimitColumns ? (int)mMaxColumns : (int)Math.Max(1, (Size.Width - SystemInformation.VerticalScrollBarWidth - (2 * ElementPadding)) / ItemWidth);
                 rows = (((Elements != null) ? Elements.Length : 0) + columns - 1) / columns;
             }
             int desiredWidth = (int)((columns * ItemWidth) + (2 * ElementPadding));

@@ -204,7 +204,7 @@ namespace Porno_Graphic
 
         private void columnsLimit_ValueChanged(object sender, EventArgs e)
         {
-            tileGrid.ColumnsLimit = (uint)columnsLimit.Value;
+            tileGrid.MaxColumns = (uint)columnsLimit.Value;
         }
 
         public void DrawExportTileset(Graphics graphics, long ElementsCount, long RowCount, long ColumnCount)
