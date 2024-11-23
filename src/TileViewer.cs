@@ -19,6 +19,7 @@ namespace Porno_Graphic
         private uint mSelectedPen;
         public uint ElementWidth { get { return tileGrid.ElementWidth; } set { tileGrid.ElementWidth = value; } }
         public uint ElementHeight { get { return tileGrid.ElementHeight; } set { tileGrid.ElementHeight = value; } }
+        public uint ColumnCountOrLimit { get { return tileGrid.LimitColumns ? tileGrid.MaxColumns : ColumnCount; } }
         public Classes.GfxElement[] Elements { get { return tileGrid.Elements; } set { tileGrid.Elements = value; } }
         public Classes.IPalette SelectedPalette 
         { 

@@ -990,7 +990,7 @@ namespace Porno_Graphic
 				ElementWidth = ElementHeight;
 				ElementHeight = ElementWidthTemp;
             }
-			long ColumnCount = mActiveProject.TileViewer.ColumnCount;
+			long ColumnCount = mActiveProject.TileViewer.ColumnCountOrLimit;
 			long RowCount = ElementsCount / ColumnCount;
 			long BitmapHeight = ElementHeight * RowCount;
 			long BitmapWidth = ElementWidth * ColumnCount;
